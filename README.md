@@ -1,7 +1,7 @@
 nebula-bintray
 ==============
 
-Addition Bintray tasks
+Additional Bintray tasks and defaults for nebula projects
 
 ## Usage
 
@@ -19,10 +19,15 @@ To include, add the following to your build.gradle
 
     apply plugin: 'nebula-bintray'
 
-### Tasks Provided
+### Applies the Following Plugins
 
-`<your tasks>`
+* nebula-bintray-publishing
+* nebula-bintray-sync-publishing
+* nebula-ojo-publishing
 
-### Extensions Provided
+nebula-bintray-publishing
+=========================
 
-`<your extensions>`
+## Usage
+
+Sets defaults on many of the fields from com.jfrog.bintray.gradle:gradle-bintray-plugin.  

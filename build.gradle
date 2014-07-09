@@ -3,7 +3,7 @@ buildscript {
     dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:1.12.+' }
 }
 
-description 'Addition Bintray tasks'
+description 'Additional Bintray tasks'
 apply plugin: 'nebula-plugin'
 
 contacts {
@@ -11,8 +11,17 @@ contacts {
         moniker 'Justin Ryan'
         github 'quidryan'
     }
+    'rob.spieldenner@gmail.com' {
+        moniker 'Rob Spieldenner'
+        github 'rspieldenner'
+    }
 }
 
 dependencies {
+    compile('com.jfrog.bintray.gradle:gradle-bintray-plugin:0.+') {
+        //exclude group: 'org.codehaus.groovy.modules.http-builder', module: 'http-builder'
+    }
+    compile 'com.netflix.nebula:nebula-publishing-plugin:1.12.+'
+    compile('org.jfrog.buildinfo:build-info-extractor-gradle:2.2.4')
     testCompile 'com.netflix.nebula:nebula-test:1.12.+'
 }

@@ -17,9 +17,17 @@ package nebula.plugin.bintray
 
 import nebula.test.PluginProjectSpec
 
-class BintrayPluginSpec extends PluginProjectSpec {
+class NebulaBintrayPublishingPluginSpec extends PluginProjectSpec {
     @Override
     String getPluginName() {
-        'nebula-bintray'
+        'nebula-bintray-publishing'
+    }
+
+    def 'apply plugin'() {
+        when:
+        project.plugins.apply(NebulaBintrayPublishingPlugin)
+
+        then:
+        project.tasks.getByName('bintrayUpload') != null
     }
 }
