@@ -21,5 +21,8 @@ import org.gradle.api.Project
 class BintrayPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
+        project.plugins.apply(NebulaBintrayPublishingPlugin)
+        project.plugins.apply(NebulaBintraySyncPublishingPlugin)
+        project.plugins.apply(NebulaOJOPublishingPlugin)
     }
 }
