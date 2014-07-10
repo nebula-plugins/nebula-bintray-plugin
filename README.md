@@ -13,7 +13,7 @@ To include, add the following to your build.gradle
       repositories { jcenter() }
 
       dependencies {
-        classpath 'com.netflix.nebula:nebula-bintray:1.12.+'
+        classpath 'com.netflix.nebula:nebula-bintray-plugin:1.12.+'
       }
     }
 
