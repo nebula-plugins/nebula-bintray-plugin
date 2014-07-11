@@ -1,0 +1,6 @@
+{
+  "com.jfrog.bintray.gradle:gradle-bintray-plugin": { "locked": "0.5", "requested": "0.+" },
+  "com.netflix.nebula:nebula-publishing-plugin": { "locked": "1.12.5", "requested": "1.12.+" },
+  "com.netflix.nebula:nebula-test": { "locked": "1.12.0", "requested": "1.12.+" },
+  "org.jfrog.buildinfo:build-info-extractor-gradle": { "locked": "2.2.4", "requested": "2.2.4" }
+}
