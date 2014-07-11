@@ -31,7 +31,7 @@ import static groovyx.net.http.Method.POST
  * to sync to Maven Central.
  */
 class NebulaBintraySyncPublishingPlugin implements Plugin<Project> {
-    private static Logger logger = Logging.getLogger(NebulaBintraySyncPublishingPlugin);
+    private static Logger logger = Logging.getLogger(NebulaBintraySyncPublishingPlugin)
 
     protected Project project
 
@@ -67,12 +67,11 @@ class NebulaBintraySyncPublishingPlugin implements Plugin<Project> {
                             response.failure = { HttpResponseDecorator resp ->
                                 logger.error(resp.data)
                                 retries++
-                                //throw new GradleException("Could not publish package $packageName")
                             }
                         }
                     }
                     if (!successful) {
-                        logger.error("Unable to sync to Maven Central, please do manually at https://bintray.com/nebula/gradle-plugins/${project.name}/${project.version}/view/central")
+                        logger.error("Unable to sync to Maven Central, please do manually at https://bintray.com/$userOrg/$repoName/${project.name}/${project.version}/view/central")
                     }
                 }
             }
