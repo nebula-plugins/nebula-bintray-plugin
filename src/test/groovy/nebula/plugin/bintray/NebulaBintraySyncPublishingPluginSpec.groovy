@@ -35,8 +35,8 @@ class NebulaBintraySyncPublishingPluginSpec extends PluginProjectSpec {
 
     def 'apply plugin with credentials'() {
         when:
-        project.setProperty('sonatypeUsername', 'username')
-        project.setProperty('sonatypePassword', 'password')
+        project.ext.sonatypeUsername = 'username'
+        project.ext.sonatypePassword = 'password'
         project.plugins.apply(NebulaBintraySyncPublishingPlugin)
 
         then:

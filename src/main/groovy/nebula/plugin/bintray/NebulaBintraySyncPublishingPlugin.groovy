@@ -44,8 +44,8 @@ class NebulaBintraySyncPublishingPlugin implements Plugin<Project> {
         BintrayUploadTask bintrayUpload = (BintrayUploadTask) project.tasks.find { it instanceof BintrayUploadTask }
 
         if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
-            def sonatypeUsername = project.sonatypeUsername
-            def sonatypePassword = project.sonatypePassword
+            def sonatypeUsername = project.properties['sonatypeUsername']
+            def sonatypePassword = project.properties['sonatypePassword']
             bintrayUpload.doLast {
                 bintrayUpload.with {
                     def http = BintrayHttpClientFactory.create(bintrayUpload.apiUrl, bintrayUpload.user, bintrayUpload.apiKey)
