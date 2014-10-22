@@ -1,3 +1,8 @@
+1.12.5 / 2014-10-22
+===================
+
+* Downgrade gradle-bintray-plugin to 0.5, was causing publishing issues
+
 1.12.4 / 2014-10-16
 ===================
 
