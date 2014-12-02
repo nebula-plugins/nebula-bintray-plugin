@@ -30,7 +30,7 @@ class NebulaBintraySyncPublishingPluginSpec extends PluginProjectSpec {
         then:
         def uploadTask = project.tasks.getByName('bintrayUpload')
         uploadTask != null
-        uploadTask.actions.size() == 2
+        uploadTask.actions.size() == 3
     }
 
     def 'apply plugin with credentials'() {
@@ -42,6 +42,6 @@ class NebulaBintraySyncPublishingPluginSpec extends PluginProjectSpec {
         then:
         def uploadTask = project.tasks.getByName('bintrayUpload')
         uploadTask != null
-        uploadTask.actions.size() == 3
+        uploadTask.actions.size() == 4
     }
 }
