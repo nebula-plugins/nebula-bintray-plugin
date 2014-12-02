@@ -72,7 +72,7 @@ class NebulaOJOPublishingPlugin implements Plugin<Project> {
                 repoKey = 'oss-snapshot-local' //The Artifactory repository key to publish to
                 //when using oss.jfrog.org the credentials are from Bintray. For local build we expect them to be found in
                 //~/.gradle/gradle.properties, otherwise to be set in the build server
-                // COnditionalize for the users who don't have bintray credentials setup
+                // Conditionalize for the users who don't have bintray credentials setup
                 if (project.hasProperty('bintrayUser')) {
                     username = project.property('bintrayUser')
                     password = project.property('bintrayKey')
