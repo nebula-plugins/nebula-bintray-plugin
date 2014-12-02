@@ -1,3 +1,8 @@
+1.12.6 / 2014-12-02
+===================
+
+* Use gradle-bintray-plugin 1.0, compensate for its problems with multi-projects and groovy version.
+
 1.12.5 / 2014-10-22
 ===================
 
