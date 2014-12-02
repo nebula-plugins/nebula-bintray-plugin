@@ -47,12 +47,21 @@ class NebulaBintraySyncPublishingPlugin implements Plugin<Project> {
             def sonatypeUsername = project.sonatypeUsername
             def sonatypePassword = project.sonatypePassword
             bintrayUpload.doLast {
+                if (project != project.rootProject) { // Subproject
+                    def rootBintrayUpload = project.rootProject.tasks.find { it instanceof BintrayUploadTask }
+                    def hasRootUploadInGraph = project.gradle.taskGraph.hasTask(rootBintrayUpload)
+                    // If we're uploading a single project, we want to let the sign
+                    if (hasRootUploadInGraph) {
+                        return
+                    }
+                }
+
                 bintrayUpload.with {
                     def http = BintrayHttpClientFactory.create(bintrayUpload.apiUrl, bintrayUpload.user, bintrayUpload.apiKey)
                     def repoPath = "${userOrg ?: user}/$repoName"
                     // /maven_central_sync/:subject/:repo/:package/versions/:version?username=:username&password=:password[&close=0/1]
                     def uploadUri = "/maven_central_sync/$repoPath/$packageName/versions/${project.version}"
-                    println "Package Sync: $uploadUri"
+                    logger.info("Package Sync: $uploadUri")
                     def successful = false
                     def retries = 0
                     while (!successful && retries < 3) {
@@ -65,7 +74,15 @@ class NebulaBintraySyncPublishingPlugin implements Plugin<Project> {
                                 logger.info("Synced package $packageName.")
                             }
                             response.failure = { HttpResponseDecorator resp ->
-                                logger.error(resp.data)
+                                logger.error("Retrying sync to Maven Central")
+                                logger.debug(new StringBuilder()
+                                        .append(resp.getStatusLine().toString())
+                                        .append("\n")
+                                        .append(resp.getHeaders().iterator().join(","))
+                                        .append("\n")
+                                        .append(resp.getData().toString())
+                                        .append("\n")
+                                        .toString())
                                 retries++
                             }
                         }

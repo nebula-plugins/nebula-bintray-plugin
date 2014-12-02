@@ -54,7 +54,7 @@ class NebulaBintrayPublishingPlugin implements Plugin<Project> {
                 throw new GradleException("Project should have a status of release when uploading to bintray")
             }
 
-            def hasSnapshot = project.version.contains('-SNAPSHOT')
+            def hasSnapshot = project.version.toString().contains('-SNAPSHOT')
             if (hasSnapshot) {
                 throw new GradleException("Version (${project.version}) can not have -SNAPSHOT if publishing release")
             }
@@ -72,11 +72,23 @@ class NebulaBintrayPublishingPlugin implements Plugin<Project> {
             bintray.key = project.property('bintrayKey')
         }
         bintray.publish = true
-        bintray.publications = ['mavenNebula'] // TODO Assuming this from the other plugin
-        bintray.pkg.repo = 'gradle-plugins'
+        bintray.pkg.version.gpg.sign = true
+        bintray.pkg.publicDownloadNumbers = true
+        // Would like to use their Maven Upload, except it will fail the build if there's any problems
+        // and there's no retry in their code.
+//        if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
+//            def sync = bintray.pkg.version.mavenCentralSync
+//            sync.sync = true
+//            sync.user = project.sonatypeUsername
+//            sync.password = project.sonatypePassword
+//        }
+        bintray.publications = ['mavenNebula'] // TODO Assuming this from the publishing plugin
         bintray.pkg.desc = project.hasProperty('description') ? project.description : ''
-        bintray.pkg.userOrg = 'nebula'
         bintray.pkg.name = project.name
+
+        // Horrible assumptions
+        bintray.pkg.repo = 'gradle-plugins'
+        bintray.pkg.userOrg = 'nebula'
         bintray.pkg.licenses = ['Apache-2.0']
         bintray.pkg.labels = ['gradle', 'nebula']
         bintray.pkg.websiteUrl = "https://github.com/nebula-plugins/${project.name}"
@@ -86,6 +98,20 @@ class NebulaBintrayPublishingPlugin implements Plugin<Project> {
         BintrayUploadTask bintrayUpload = (BintrayUploadTask) project.tasks.find { it instanceof BintrayUploadTask }
         bintrayUpload.group = 'publishing'
 
+        bintrayUpload.doFirst {
+            // GPG and Maven Central sync are run on every bintrayUpload unnecessarily, when we want them solely
+            // executed on the root task, in a multi-module project. This is dealt with publish via the
+            // subtaskSkipPublish field. I don't know why GPG and sync aren't also called out.
+            if (project != project.rootProject) { // Subproject
+                def rootBintrayUpload = project.rootProject.tasks.find { it instanceof BintrayUploadTask }
+                def hasRootUploadInGraph = project.gradle.taskGraph.hasTask(rootBintrayUpload)
+                // If we're uploading a single project, we want to let the sign
+                if (hasRootUploadInGraph) {
+                    //bintrayUpload.syncToMavenCentral = false
+                    bintrayUpload.signVersion = false
+                }
+            }
+        }
         bintrayUpload
     }
 }
