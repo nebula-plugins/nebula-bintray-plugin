@@ -8,6 +8,16 @@
 
 * Move to gradle 2.0
 
+1.12.6 / 2014-12-02
+===================
+
+* Use gradle-bintray-plugin 1.0, compensate for its problems with multi-projects and groovy version.
+
+1.12.5 / 2014-10-22
+===================
+
+* Downgrade gradle-bintray-plugin to 0.5, was causing publishing issues
+
 1.12.4 / 2014-10-16
 ===================
 

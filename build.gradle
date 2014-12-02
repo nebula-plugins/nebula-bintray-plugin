@@ -18,11 +18,11 @@ contacts {
 }
 
 dependencies {
-    compile('com.jfrog.bintray.gradle:gradle-bintray-plugin:0.+') {
+    compile('com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release') {
         //exclude group: 'org.codehaus.groovy.modules.http-builder', module: 'http-builder'
     }
     compile 'com.netflix.nebula:nebula-publishing-plugin:2.0.+'
-    compile('org.jfrog.buildinfo:build-info-extractor-gradle:2.2.4')
+    compile('org.jfrog.buildinfo:build-info-extractor-gradle:latest.release')
     testCompile('com.netflix.nebula:nebula-test:2.0.+') {
         exclude group: 'org.codehaus.groovy'
     }
