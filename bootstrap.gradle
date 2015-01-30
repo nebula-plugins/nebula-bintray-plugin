@@ -54,13 +54,13 @@ dependencies {
     compile('com.jfrog.bintray.gradle:gradle-bintray-plugin:0.+') {
         //exclude group: 'org.codehaus.groovy.modules.http-builder', module: 'http-builder'
     }
-    compile 'com.netflix.nebula:nebula-publishing-plugin:2.0.0-SNAPSHOT'
+    compile 'com.netflix.nebula:nebula-publishing-plugin:2.2.0-SNAPSHOT'
     compile('org.jfrog.buildinfo:build-info-extractor-gradle:2.2.4')
-    testCompile('com.netflix.nebula:nebula-test:2.0.0-SNAPSHOT') {
+    testCompile('com.netflix.nebula:nebula-test:2.2.0-SNAPSHOT') {
         exclude group: 'org.codehaus.groovy'
     }
 }
 
 task createWrapper(type: Wrapper) {
-    gradleVersion = '2.0'
+    gradleVersion = '2.2.1'
 }
