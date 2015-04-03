@@ -1,3 +1,8 @@
+1.12.7 / 2015-04-03
+===================
+
+* Move to com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1 since 1.0 isn't available on jcenter today
+
 1.12.6 / 2014-12-02
 ===================
 
