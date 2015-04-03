@@ -1,6 +1,6 @@
 {
-  "com.jfrog.bintray.gradle:gradle-bintray-plugin": { "locked": "1.0", "requested": "latest.release" },
-  "com.netflix.nebula:nebula-publishing-plugin": { "locked": "1.12.16", "requested": "1.12.+" },
+  "com.jfrog.bintray.gradle:gradle-bintray-plugin": { "locked": "1.1", "requested": "latest.release" },
+  "com.netflix.nebula:nebula-publishing-plugin": { "locked": "1.12.18", "requested": "1.12.+" },
   "com.netflix.nebula:nebula-test": { "locked": "1.12.6", "requested": "1.12.+" },
   "org.codehaus.groovy:groovy-backports-compat23": { "locked": "2.3.5", "requested": "2.3.5" },
   "org.jfrog.buildinfo:build-info-extractor-gradle": { "locked": "3.0.1", "requested": "latest.release" }
