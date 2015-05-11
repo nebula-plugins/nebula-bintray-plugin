@@ -1,6 +1,6 @@
 {
-  "com.jfrog.bintray.gradle:gradle-bintray-plugin": { "locked": "1.0", "requested": "latest.release" },
-  "com.netflix.nebula:nebula-publishing-plugin": { "locked": "2.2.0", "requested": "2.2.+" },
-  "com.netflix.nebula:nebula-test": { "locked": "2.2.0", "requested": "2.2.+" },
+  "com.jfrog.bintray.gradle:gradle-bintray-plugin": { "locked": "1.2", "requested": "latest.release" },
+  "com.netflix.nebula:nebula-publishing-plugin": { "locked": "2.4.0", "requested": "2.4.+" },
+  "com.netflix.nebula:nebula-test": { "locked": "2.4.0", "requested": "2.4.+" },
   "org.jfrog.buildinfo:build-info-extractor-gradle": { "locked": "3.0.1", "requested": "latest.release" }
 }

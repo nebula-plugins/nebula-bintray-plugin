@@ -1,6 +1,6 @@
 buildscript {
     repositories { jcenter() }
-    dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:2.0.+' }
+    dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:2.4.+' }
 }
 
 description 'Additional Bintray tasks'
@@ -21,9 +21,9 @@ dependencies {
     compile('com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release') {
         //exclude group: 'org.codehaus.groovy.modules.http-builder', module: 'http-builder'
     }
-    compile 'com.netflix.nebula:nebula-publishing-plugin:2.2.+'
+    compile 'com.netflix.nebula:nebula-publishing-plugin:2.4.+'
     compile('org.jfrog.buildinfo:build-info-extractor-gradle:latest.release')
-    testCompile('com.netflix.nebula:nebula-test:2.2.+') {
+    testCompile('com.netflix.nebula:nebula-test:2.4.+') {
         exclude group: 'org.codehaus.groovy'
     }
 }
