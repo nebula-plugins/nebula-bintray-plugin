@@ -1,3 +1,9 @@
+2.2.1 / 2015-07-16
+==================
+
+* Move gradle-bintray-plugin to 1.0 -> 1.2
+* Move build-info-extractor-gradle from 3.0.1 -> 3.1.1
+
 2.2.0 / 2015-1-30
 ===================
 
