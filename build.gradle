@@ -1,10 +1,10 @@
 buildscript {
     repositories { jcenter() }
-    dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:2.0.+' }
+    dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:2.2.+' }
 }
 
 description 'Additional Bintray tasks'
-apply plugin: 'nebula-plugin'
+apply plugin: 'nebula.nebula-plugin'
 
 contacts {
     'justin@halfempty.org' {

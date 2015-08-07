@@ -18,13 +18,11 @@ package nebula.plugin.bintray
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.BintrayPlugin
 import com.jfrog.bintray.gradle.BintrayUploadTask
-import nebula.plugin.publishing.maven.NebulaBaseMavenPublishingPlugin
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
-import org.gradle.api.publish.maven.internal.publication.MavenPublicationInternal
 
 /**
  * Defaults for publishing the nebula-plugins on bintray
@@ -39,13 +37,6 @@ class NebulaBintrayPublishingPlugin implements Plugin<Project> {
         this.project = project
 
         def bintrayUpload = addBintray(project)
-
-        project.plugins.withType(NebulaBaseMavenPublishingPlugin) { NebulaBaseMavenPublishingPlugin mavenPublishingPlugin ->
-            mavenPublishingPlugin.withMavenPublication { MavenPublicationInternal mavenPublication ->
-                // Ensure everything is built before uploading
-                bintrayUpload.dependsOn(mavenPublication.publishableFiles)
-            }
-        }
 
         // Ensure our versions look like the project status before publishing
         def verifyStatus = project.tasks.create('verifyReleaseStatus')
