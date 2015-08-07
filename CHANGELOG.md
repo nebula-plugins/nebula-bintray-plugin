@@ -1,3 +1,8 @@
+2.2.2 / 2015-08-07
+==================
+
+* Remove dependency on nebula-publishing-plugin
+
 2.2.1 / 2015-07-16
 ==================
 
