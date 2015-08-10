@@ -61,11 +61,6 @@ Sets defaults on many of the fields from com.jfrog.bintray.gradle:gradle-bintray
       }
     }
 
-nebula-bintray-sync-publishing
-==============================
-
-Syncs the bintray publish to a mavenCentral publish.
-
 nebula-ojo-publishing
 =====================
 
@@ -87,4 +82,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
