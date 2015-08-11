@@ -1,3 +1,9 @@
+2.2.3 / 2015-08-10
+==================
+
+* Eliminate rest call to do mavenCentral sync, let the gradle-bintray plugin do its job
+* Upgrade gradle-bintray-plugin 1.2 -> 1.3.1
+
 2.2.2 / 2015-08-07
 ==================
 
