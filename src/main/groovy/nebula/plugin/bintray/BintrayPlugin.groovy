@@ -22,6 +22,6 @@ class BintrayPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         project.plugins.apply(NebulaBintrayPublishingPlugin)
-        //project.plugins.apply(NebulaOJOPublishingPlugin)
+        project.plugins.apply(NebulaOJOPublishingPlugin)
     }
 }

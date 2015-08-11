@@ -1,3 +1,8 @@
+2.2.4 / 2015-08-11
+==================
+
+* Uncomment the OJO publishing plugin from the umbrella plugin
+
 2.2.3 / 2015-08-10
 ==================
 
