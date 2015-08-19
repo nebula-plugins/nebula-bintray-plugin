@@ -20,6 +20,6 @@ import nebula.test.PluginProjectSpec
 class BintrayPluginSpec extends PluginProjectSpec {
     @Override
     String getPluginName() {
-        'nebula-bintray'
+        'nebula.nebula-bintray'
     }
 }

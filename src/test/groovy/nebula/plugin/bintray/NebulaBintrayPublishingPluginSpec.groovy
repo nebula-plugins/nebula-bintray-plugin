@@ -20,7 +20,7 @@ import nebula.test.PluginProjectSpec
 class NebulaBintrayPublishingPluginSpec extends PluginProjectSpec {
     @Override
     String getPluginName() {
-        'nebula-bintray-publishing'
+        'nebula.nebula-bintray-publishing'
     }
 
     def 'apply plugin'() {

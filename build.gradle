@@ -1,10 +1,28 @@
 buildscript {
     repositories { jcenter() }
-    dependencies { classpath 'com.netflix.nebula:nebula-plugin-plugin:2.2.+' }
+    dependencies {
+        classpath 'com.netflix.nebula:nebula-plugin-plugin:3.0.5'
+    }
+}
+
+plugins {
+    id 'groovy'
+    id 'idea'
+    id 'jacoco'
+    id 'nebula.maven-publishing' version '3.0.2'
+    id 'nebula.javadoc-jar' version '3.0.2'
+    id 'nebula.source-jar' version '3.0.2'
+    id 'nebula.apache-license-pom' version '3.0.2'
+    id 'nebula.info' version '2.2.4'
+    id 'nebula.contacts' version '2.2.0'
+    id 'com.github.kt3k.coveralls' version '2.4.0'
+    id "org.ysb33r.gradletest" version "0.5.4"
 }
 
 description 'Additional Bintray tasks'
-apply plugin: 'nebula.nebula-plugin'
+apply plugin: 'nebula.plugin-plugin'
+
+group = 'com.netflix.nebula'
 
 contacts {
     'justin@halfempty.org' {
@@ -17,12 +35,40 @@ contacts {
     }
 }
 
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    jcenter()
+}
+
 dependencies {
+    compile localGroovy()
+    compile gradleApi()
     compile('com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release') {
         //exclude group: 'org.codehaus.groovy.modules.http-builder', module: 'http-builder'
     }
     compile('org.jfrog.buildinfo:build-info-extractor-gradle:latest.release')
-    testCompile('com.netflix.nebula:nebula-test:2.2.+') {
+    testCompile('com.netflix.nebula:nebula-test:3.0.0') {
         exclude group: 'org.codehaus.groovy'
     }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
+bintray {
+    publications = ['nebula']
+}
+
+gradleTest {
+    versions '2.2.1', '2.3', '2.4', '2.5', '2.6'
+}
+
+gradleTest.doFirst {
+    project.version = project.version.toString()
 }

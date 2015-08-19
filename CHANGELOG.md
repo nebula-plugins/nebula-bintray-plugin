@@ -1,3 +1,11 @@
+3.0.0 / 2015-08-19
+==================
+
+* switch to publishing nebula publication instead of mavenNebula
+* switch to new publishing
+* gradle-2.6
+* add compatibility matrix testing
+
 2.2.4 / 2015-08-11
 ==================
 

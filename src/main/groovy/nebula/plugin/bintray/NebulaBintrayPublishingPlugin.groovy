@@ -63,7 +63,7 @@ class NebulaBintrayPublishingPlugin implements Plugin<Project> {
             bintray.key = project.property('bintrayKey')
         }
         bintray.publish = true
-        bintray.publications = ['mavenNebula']
+        bintray.publications = ['nebula']
         bintray.pkg {
             version {
                 name = project.getVersion()

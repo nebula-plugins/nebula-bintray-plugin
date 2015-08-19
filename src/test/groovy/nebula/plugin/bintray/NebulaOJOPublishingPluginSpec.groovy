@@ -20,12 +20,12 @@ import nebula.test.PluginProjectSpec
 class NebulaOJOPublishingPluginSpec extends PluginProjectSpec {
     @Override
     String getPluginName() {
-        'nebula-ojo-publishing'
+        'nebula.nebula-ojo-publishing'
     }
 
     def 'apply plugin'() {
         when:
-        project.plugins.apply('nebula-ojo-publishing')
+        project.plugins.apply('nebula.nebula-ojo-publishing')
 
         then:
         project.tasks.getByName('artifactoryPublish') != null
