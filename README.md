@@ -1,29 +1,48 @@
 nebula-bintray-plugin
 =====================
 
+[![Build Status](https://travis-ci.org/nebula-plugins/nebula-bintray-plugin.svg)](https://travis-ci.org/nebula-plugins/nebula-bintray-plugin)
+[![Coverage Status](https://coveralls.io/repos/nebula-plugins/nebula-bintray-plugin/badge.svg?branch=master&service=github)](https://coveralls.io/github/nebula-plugins/nebula-bintray-plugin?branch=master)
+[![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/nebula-bintray-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+
 Additional Bintray tasks and defaults for nebula projects
 
-## Usage
+Usages
+------
 
-### Applying the Plugin
+To apply this plugin if using Gradle 2.1 or newer
 
-To include, add the following to your build.gradle
+    plugins {
+      id 'nebula.nebula-bintray' version '3.0.0'
+    }
+
+If using an older version of Gradle
 
     buildscript {
       repositories { jcenter() }
 
       dependencies {
-        classpath 'com.netflix.nebula:nebula-bintray-plugin:2.2.+'
+        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.0.0'
       }
     }
 
-    apply plugin: 'nebula-bintray'
+    apply plugin: 'nebula.nebula-bintray'
 
 ### Applies the Following Plugins
 
-* nebula-bintray-publishing
-* nebula-bintray-sync-publishing
-* nebula-ojo-publishing
+* nebula.nebula-bintray-publishing
+* nebula.nebula-ojo-publishing
+
+Gradle Compatibility Tested
+---------------------------
+
+| Gradle Version | Works |
+| :------------: | :---: |
+| 2.2.1          | ??    |
+| 2.3            | ??    |
+| 2.4            | ??    |
+| 2.5            | ??    |
+| 2.6            | yes   |
 
 nebula-bintray-publishing
 =========================
@@ -38,7 +57,7 @@ Sets defaults on many of the fields from com.jfrog.bintray.gradle:gradle-bintray
       user = <user from hidden properties file>
       key = <key from hidden properties file>
 
-      publications = ['mavenNebula']
+      publications = ['nebula']
       dryRun = false
       publish = true
       pkg {
