@@ -45,10 +45,8 @@ repositories {
 dependencies {
     compile localGroovy()
     compile gradleApi()
-    compile('com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release') {
-        //exclude group: 'org.codehaus.groovy.modules.http-builder', module: 'http-builder'
-    }
-    compile('org.jfrog.buildinfo:build-info-extractor-gradle:latest.release')
+    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release'
+    compile 'org.jfrog.buildinfo:build-info-extractor-gradle:latest.release'
     testCompile('com.netflix.nebula:nebula-test:3.0.0') {
         exclude group: 'org.codehaus.groovy'
     }
@@ -61,6 +59,38 @@ jacocoTestReport {
     }
 }
 
+pluginBundle {
+    website = 'https://github.com/nebula-plugins/nebula-bintray-plugin'
+    vcsUrl = 'https://github.com/nebula-plugins/nebula-bintray-plugin.git'
+    description = 'Plugins to configure common  configuration'
+
+    plugins {
+        nebulaBintray {
+            id = 'nebula.nebula-bintray'
+            displayName = 'Nebula Bintray plugin'
+            description = 'Applies nebula.nebula-bintray-publishing and nebula.nebula-ojo-publishing'
+            tags = ['nebula', 'bintray']
+        }
+        nebulaBintrayPublishing {
+            id = 'nebula.nebula-bintray-publishing'
+            displayName = 'Nebula Bintray Publishing plugin'
+            description = 'Uploads candidate and final artifacts to bintray with Nebula defaults'
+            tags = ['nebula', 'bintray']
+        }
+        nebulaOjoPublishing {
+            id = 'nebula.nebula-ojo-publishing'
+            displayName = 'Nebula OJO Publishing plugin'
+            description = 'Uploads snapshots to oss.jfrog.org with Nebula defaults'
+            tags = ['nebula', 'bintray']
+        }
+    }
+
+    mavenCoordinates {
+        groupId = 'com.netflix.nebula'
+        artifactId = 'nebula-bintray-plugin'
+    }
+}
+
 bintray {
     publications = ['nebula']
 }
@@ -69,6 +99,7 @@ gradleTest {
     versions '2.2.1', '2.3', '2.4', '2.5', '2.6'
 }
 
+gradleTest.dependsOn(jar)
 gradleTest.doFirst {
     project.version = project.version.toString()
 }

@@ -1,4 +1,4 @@
-3.0.0 / 2015-08-19
+3.0.0 / 2015-08-20
 ==================
 
 * switch to publishing nebula publication instead of mavenNebula
