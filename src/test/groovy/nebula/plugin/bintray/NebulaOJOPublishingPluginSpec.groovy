@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Netflix, Inc.
+ * Copyright 2014-2015 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,12 @@ import nebula.test.PluginProjectSpec
 class NebulaOJOPublishingPluginSpec extends PluginProjectSpec {
     @Override
     String getPluginName() {
-        'nebula-ojo-publishing'
+        'nebula.nebula-ojo-publishing'
     }
 
     def 'apply plugin'() {
         when:
-        project.plugins.apply('nebula-ojo-publishing')
+        project.plugins.apply('nebula.nebula-ojo-publishing')
 
         then:
         project.tasks.getByName('artifactoryPublish') != null

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Netflix, Inc.
+ * Copyright 2014-2015 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ class NebulaBintrayPublishingPlugin implements Plugin<Project> {
             bintray.key = project.property('bintrayKey')
         }
         bintray.publish = true
-        bintray.publications = ['mavenNebula']
+        bintray.publications = ['nebula']
         bintray.pkg {
             version {
                 name = project.getVersion()
