@@ -15,6 +15,7 @@ plugins {
     id 'nebula.apache-license-pom' version '3.0.2'
     id 'nebula.info' version '2.2.4'
     id 'nebula.contacts' version '2.2.0'
+    id 'com.gradle.plugin-publish' version '0.9.1'
     id 'com.github.kt3k.coveralls' version '2.4.0'
     id "org.ysb33r.gradletest" version "0.5.4"
 }
