@@ -1,3 +1,8 @@
+3.0.1 / 2015-08-24
+==================
+
+* Fix oss.jfrog.org snapshot publications to look at nebula publication instead of mavenNebula
+
 3.0.0 / 2015-08-20
 ==================
 

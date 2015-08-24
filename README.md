@@ -13,7 +13,7 @@ Usages
 To apply this plugin if using Gradle 2.1 or newer
 
     plugins {
-      id 'nebula.nebula-bintray' version '3.0.0'
+      id 'nebula.nebula-bintray' version '3.0.1'
     }
 
 If using an older version of Gradle
@@ -22,7 +22,7 @@ If using an older version of Gradle
       repositories { jcenter() }
 
       dependencies {
-        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.0.0'
+        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.0.1'
       }
     }
 

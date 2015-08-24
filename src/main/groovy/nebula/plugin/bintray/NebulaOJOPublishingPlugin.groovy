@@ -79,7 +79,7 @@ class NebulaOJOPublishingPlugin implements Plugin<Project> {
                 }
             }
             defaults {
-                publications 'mavenNebula'
+                publications 'nebula'
             }
         }
     }
