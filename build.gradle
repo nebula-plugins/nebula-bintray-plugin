@@ -13,6 +13,7 @@ plugins {
     id 'nebula.javadoc-jar' version '4.0.1'
     id 'nebula.source-jar' version '4.0.1'
     id 'nebula.maven-apache-license' version '4.0.1'
+    id 'nebula.dependency-lock' version '3.0.0'
     id 'nebula.info' version '2.2.4'
     id 'nebula.contacts' version '2.2.0'
     id 'com.gradle.plugin-publish' version '0.9.1'
@@ -46,9 +47,9 @@ repositories {
 dependencies {
     compile localGroovy()
     compile gradleApi()
-    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release'
-    compile 'org.jfrog.buildinfo:build-info-extractor-gradle:latest.release'
-    testCompile('com.netflix.nebula:nebula-test:3.0.0') {
+    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
+    compile 'org.jfrog.buildinfo:build-info-extractor-gradle:3.+'
+    testCompile('com.netflix.nebula:nebula-test:3.+') {
         exclude group: 'org.codehaus.groovy'
     }
 }
