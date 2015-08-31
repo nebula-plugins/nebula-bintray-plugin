@@ -1,3 +1,8 @@
+3.1.0 / 2015-08-31
+==================
+
+* Remove verifyReleaseStatus and verifySnapshotStatus as all of our other plugins just disable them.
+
 3.0.1 / 2015-08-24
 ==================
 

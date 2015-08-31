@@ -33,19 +33,8 @@ If using an older version of Gradle
 * nebula.nebula-bintray-publishing
 * nebula.nebula-ojo-publishing
 
-Gradle Compatibility Tested
----------------------------
-
-| Gradle Version | Works |
-| :------------: | :---: |
-| 2.2.1          | yes   |
-| 2.3            | yes   |
-| 2.4            | yes   |
-| 2.5            | yes   |
-| 2.6            | yes   |
-
 nebula-bintray-publishing
-=========================
+-------------------------
 
 ## Usage
 
@@ -81,9 +70,24 @@ Sets defaults on many of the fields from com.jfrog.bintray.gradle:gradle-bintray
     }
 
 nebula-ojo-publishing
-=====================
+---------------------
 
 Publish snapshots to oss.jfrog.org
+
+Gradle Compatibility Tested
+---------------------------
+
+Built with Oracle JDK7
+Tested with Oracle JDK8
+
+| Gradle Version | Works |
+| :------------: | :---: |
+| 2.2.1          | yes   |
+| 2.3            | yes   |
+| 2.4            | yes   |
+| 2.5            | yes   |
+| 2.6            | yes   |
+| 2.7-rc-1       | yes   |
 
 LICENSE
 =======

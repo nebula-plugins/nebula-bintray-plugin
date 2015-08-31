@@ -31,7 +31,4 @@ publishing {
     }
 }
 
-project.tasks.getByName('verifyReleaseStatus').actions.clear()
-project.tasks.getByName('verifySnapshotStatus').actions.clear()
-
 task runGradleTest(dependsOn: 'bintrayUpload')
