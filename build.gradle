@@ -1,7 +1,7 @@
 buildscript {
     repositories { jcenter() }
     dependencies {
-        classpath 'com.netflix.nebula:nebula-plugin-plugin:3.0.5'
+        classpath 'com.netflix.nebula:nebula-plugin-plugin:3.1.1'
     }
 }
 
@@ -9,10 +9,10 @@ plugins {
     id 'groovy'
     id 'idea'
     id 'jacoco'
-    id 'nebula.maven-publishing' version '3.0.2'
-    id 'nebula.javadoc-jar' version '3.0.2'
-    id 'nebula.source-jar' version '3.0.2'
-    id 'nebula.apache-license-pom' version '3.0.2'
+    id 'nebula.maven-publish' version '4.0.1'
+    id 'nebula.javadoc-jar' version '4.0.1'
+    id 'nebula.source-jar' version '4.0.1'
+    id 'nebula.maven-apache-license' version '4.0.1'
     id 'nebula.info' version '2.2.4'
     id 'nebula.contacts' version '2.2.0'
     id 'com.gradle.plugin-publish' version '0.9.1'
@@ -92,12 +92,8 @@ pluginBundle {
     }
 }
 
-bintray {
-    publications = ['nebula']
-}
-
 gradleTest {
-    versions '2.2.1', '2.3', '2.4', '2.5', '2.6'
+    versions '2.2.1', '2.3', '2.4', '2.5', '2.6', '2.7-rc-1'
 }
 
 gradleTest.dependsOn(jar)

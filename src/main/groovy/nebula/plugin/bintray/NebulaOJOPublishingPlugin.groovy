@@ -35,23 +35,6 @@ class NebulaOJOPublishingPlugin implements Plugin<Project> {
         this.project = project
 
         applyArtifactory()
-
-        // Ensure our versions look like the project status before publishing
-        def verifyStatus = project.tasks.create('verifySnapshotStatus')
-        verifyStatus.doFirst {
-            if(project.status != 'integration') {
-                throw new GradleException("Project should have a status of integration when uploading to OJO")
-            }
-
-            def hasSnapshot = project.version.contains('-SNAPSHOT')
-            if (!hasSnapshot) {
-                throw new GradleException("Version (${project.version}) must have -SNAPSHOT if publishing to OJO")
-            }
-        }
-        project.tasks.matching { it.name == 'artifactoryPublish' }.all {
-            it.dependsOn(verifyStatus)
-        }
-
     }
 
     def applyArtifactory() {
@@ -61,12 +44,6 @@ class NebulaOJOPublishingPlugin implements Plugin<Project> {
 
         convention.contextUrl = 'https://oss.jfrog.org'
 
-        // TODO Conditionalize this, we only want to resolve from oss.jfrog.org when someone explicitly says so
-//        convention.resolve {
-//            repository {
-//                repoKey = 'libs-release'
-//            }
-//        }
         convention.publish {
             repository {
                 repoKey = 'oss-snapshot-local' //The Artifactory repository key to publish to
