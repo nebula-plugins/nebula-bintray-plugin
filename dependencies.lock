@@ -1,5 +1,5 @@
 {
   "com.jfrog.bintray.gradle:gradle-bintray-plugin": { "locked": "1.4", "requested": "1.+" },
-  "com.netflix.nebula:nebula-test": { "locked": "3.1.0", "requested": "3.+" },
+  "com.netflix.nebula:nebula-test": { "locked": "4.0.0", "requested": "4.0.0" },
   "org.jfrog.buildinfo:build-info-extractor-gradle": { "locked": "3.1.1", "requested": "3.+" }
 }
