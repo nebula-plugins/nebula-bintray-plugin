@@ -1,3 +1,9 @@
+3.2.0 / 2016-01-29
+==================
+
+* Move to artifactory's build-info-extractor-gradle plugin version 4.0.0
+* Move to gradle 2.10
+
 3.1.0 / 2015-08-31
 ==================
 
@@ -38,8 +44,8 @@
 * Move gradle-bintray-plugin to 1.0 -> 1.2
 * Move build-info-extractor-gradle from 3.0.1 -> 3.1.1
 
-2.2.0 / 2015-1-30
-===================
+2.2.0 / 2015-01-30
+==================
 
 * Move to gradle 2.2.1
 

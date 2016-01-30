@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Netflix, Inc.
+ * Copyright 2014-2016 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,16 +22,15 @@ plugins {
     id 'jacoco'
     id 'nebula.info' version '3.0.3'
     id 'nebula.contacts' version '3.0.1'
-    id 'nebula.maven-publish' version '4.2.2'
-    id 'nebula.nebula-release' version '3.0.5'
+    id 'nebula.maven-publish' version '4.4.4'
+    id 'nebula.nebula-release' version '3.1.3'
     id 'nebula.nebula-bintray' version '3.1.0'
-    id 'com.gradle.plugin-publish' version '0.9.1'
-    id 'nebula.javadoc-jar' version '4.2.2'
-    id 'nebula.source-jar' version '4.2.2'
-    id 'nebula.maven-apache-license' version '4.2.2'
-    id 'com.github.kt3k.coveralls' version '2.4.0'
-
-    id 'nebula.dependency-lock' version '3.0.0'
+    id 'com.gradle.plugin-publish' version '0.9.3'
+    id 'nebula.javadoc-jar' version '4.4.4'
+    id 'nebula.source-jar' version '4.4.4'
+    id 'nebula.maven-apache-license' version '4.4.4'
+    id 'com.github.kt3k.coveralls' version '2.6.0'
+    id 'nebula.dependency-lock' version '4.2.0'
     id 'org.ysb33r.gradletest' version '0.5.4'
 }
 
@@ -56,13 +55,15 @@ dependencies {
     compile localGroovy()
     compile gradleApi()
     compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
-    compile 'org.jfrog.buildinfo:build-info-extractor-gradle:3.+'
+    compile('org.jfrog.buildinfo:build-info-extractor-gradle:4.+') {
+        exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+    }
 }
 
 pluginBundle {
     website = 'https://github.com/nebula-plugins/nebula-bintray-plugin'
     vcsUrl = 'https://github.com/nebula-plugins/nebula-bintray-plugin.git'
-    description = 'Plugins to configure common  configuration'
+    description = 'Plugins to configure common configuration'
 
     plugins {
         nebulaBintray {
@@ -92,7 +93,7 @@ pluginBundle {
 }
 
 gradleTest {
-    versions '2.2.1', '2.3', '2.4', '2.5', '2.6', '2.7-rc-1'
+    versions '2.2.1', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', '2.9', '2.10'
 }
 
 gradleTest.dependsOn(jar)
