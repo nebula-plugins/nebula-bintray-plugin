@@ -1,4 +1,4 @@
-3.2.0 / 2016-01-29
+3.2.0 / 2016-02-01
 ==================
 
 * Move to artifactory's build-info-extractor-gradle plugin version 4.0.0
