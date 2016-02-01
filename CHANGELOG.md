@@ -1,3 +1,8 @@
+3.3.1 / 2016-02-01
+==================
+
+* Move to specific versions as the plugin portal is not using our bintray pom
+
 3.3.0 / 2016-02-01
 ==================
 

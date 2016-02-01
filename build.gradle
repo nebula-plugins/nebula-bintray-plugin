@@ -54,8 +54,8 @@ contacts {
 dependencies {
     compile localGroovy()
     compile gradleApi()
-    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.+'
-    compile('org.jfrog.buildinfo:build-info-extractor-gradle:4.+') {
+    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.5'
+    compile('org.jfrog.buildinfo:build-info-extractor-gradle:4.0.0') {
         exclude group: 'org.codehaus.groovy', module: 'groovy-all'
     }
 }

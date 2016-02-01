@@ -2,21 +2,21 @@
     "compile": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
             "locked": "1.5",
-            "requested": "1.+"
+            "requested": "1.5"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.0.0",
-            "requested": "4.+"
+            "requested": "4.0.0"
         }
     },
     "default": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
             "locked": "1.5",
-            "requested": "1.+"
+            "requested": "1.5"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.0.0",
-            "requested": "4.+"
+            "requested": "4.0.0"
         }
     },
     "jacocoAgent": {
@@ -32,17 +32,17 @@
     "runtime": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
             "locked": "1.5",
-            "requested": "1.+"
+            "requested": "1.5"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.0.0",
-            "requested": "4.+"
+            "requested": "4.0.0"
         }
     },
     "testCompile": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
             "locked": "1.5",
-            "requested": "1.+"
+            "requested": "1.5"
         },
         "com.netflix.nebula:nebula-test": {
             "locked": "4.0.0",
@@ -50,13 +50,13 @@
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.0.0",
-            "requested": "4.+"
+            "requested": "4.0.0"
         }
     },
     "testRuntime": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
             "locked": "1.5",
-            "requested": "1.+"
+            "requested": "1.5"
         },
         "com.netflix.nebula:nebula-test": {
             "locked": "4.0.0",
@@ -64,7 +64,7 @@
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.0.0",
-            "requested": "4.+"
+            "requested": "4.0.0"
         }
     }
 }
