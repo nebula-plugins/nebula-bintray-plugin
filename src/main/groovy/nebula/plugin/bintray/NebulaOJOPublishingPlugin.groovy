@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Netflix, Inc.
+ * Copyright 2014-2016 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,11 @@
  */
 package nebula.plugin.bintray
 
-import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
-import org.jfrog.gradle.plugin.artifactory.ArtifactoryPublicationsPlugin
+import org.jfrog.gradle.plugin.artifactory.ArtifactoryPlugin
 
 /**
  * Instructions for publishing snapshots oss.jfrog.org
@@ -33,18 +32,18 @@ class NebulaOJOPublishingPlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         this.project = project
+        this.project.plugins.apply(ArtifactoryPlugin)
 
-        applyArtifactory()
+        if (this.project == this.project.rootProject) {
+            configureArtifactory()
+        }
     }
 
-    def applyArtifactory() {
-        def artifactoryPublicationsPlugin = project.plugins.apply(ArtifactoryPublicationsPlugin)
+    def configureArtifactory() {
+        def artifactoryConvention = project.convention.plugins.artifactory
 
-        def convention = artifactoryPublicationsPlugin.getArtifactoryPluginConvention(project) // Will peak into rootProject
-
-        convention.contextUrl = 'https://oss.jfrog.org'
-
-        convention.publish {
+        artifactoryConvention.contextUrl = 'https://oss.jfrog.org'
+        artifactoryConvention.publish {
             repository {
                 repoKey = 'oss-snapshot-local' //The Artifactory repository key to publish to
                 //when using oss.jfrog.org the credentials are from Bintray. For local build we expect them to be found in
