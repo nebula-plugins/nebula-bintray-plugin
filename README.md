@@ -12,6 +12,7 @@ Usages
 
 To apply this plugin if using Gradle 2.1 or newer
 
+    buildscript { repositories { jcenter() } } // need jcenter since gradle-bintray-plugin is not in mavenCentral
     plugins {
       id 'nebula.nebula-bintray' version '3.2.0'
     }
