@@ -1,3 +1,8 @@
+3.3.2 / 2016-02-04
+==================
+
+* Move ordering of configuration to allow tasks task to run on multiproject
+
 3.3.1 / 2016-02-01
 ==================
 
