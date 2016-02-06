@@ -1,3 +1,8 @@
+3.3.3 / 2016-02-05
+==================
+
+* Move ordering of configuration in NebulaBintrayPublishingPlugin
+
 3.3.2 / 2016-02-04
 ==================
 
