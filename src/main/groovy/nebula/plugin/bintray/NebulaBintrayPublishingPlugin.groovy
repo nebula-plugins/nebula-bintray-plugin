@@ -42,43 +42,41 @@ class NebulaBintrayPublishingPlugin implements Plugin<Project> {
     BintrayUploadTask addBintray(Project project) {
         // Bintray Side
         project.plugins.apply(BintrayPlugin)
-        project.gradle.projectsEvaluated {
-            BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
-            if (project.hasProperty('bintrayUser')) {
-                bintray.user = project.property('bintrayUser')
-                bintray.key = project.property('bintrayKey')
-            }
-            bintray.publish = true
-            bintray.publications = ['nebula']
-            bintray.pkg {
-                version {
-                    name = project.getVersion()
-                    vcsTag = "v${project.getVersion()}"
-                    gpg {
-                        sign = true
-                    }
-                    if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
-                        def sonatypeUsername = project.property('sonatypeUsername')
-                        def sonatypePassword = project.property('sonatypePassword')
-                        mavenCentralSync {
-                            user = sonatypeUsername
-                            password = sonatypePassword
-                        }
+        BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
+        if (project.hasProperty('bintrayUser')) {
+            bintray.user = project.property('bintrayUser')
+            bintray.key = project.property('bintrayKey')
+        }
+        bintray.publish = true
+        bintray.publications = ['nebula']
+        bintray.pkg {
+            version {
+                name = project.getVersion()
+                vcsTag = "v${project.getVersion()}"
+                gpg {
+                    sign = true
+                }
+                if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
+                    def sonatypeUsername = project.property('sonatypeUsername')
+                    def sonatypePassword = project.property('sonatypePassword')
+                    mavenCentralSync {
+                        user = sonatypeUsername
+                        password = sonatypePassword
                     }
                 }
-                publicDownloadNumbers = true
-
-                desc = project.hasProperty('description') ? project.description : ''
-                name = project.name
-
-                repo = 'gradle-plugins'
-                userOrg = 'nebula'
-                licenses = ['Apache-2.0']
-                labels = ['gradle', 'nebula']
-                websiteUrl = "https://github.com/nebula-plugins/${project.name}"
-                issueTrackerUrl = "https://github.com/nebula-plugins/${project.name}/issues"
-                vcsUrl = "https://github.com/nebula-plugins/${project.name}.git"
             }
+            publicDownloadNumbers = true
+
+            desc = project.hasProperty('description') ? project.description : ''
+            name = project.name
+
+            repo = 'gradle-plugins'
+            userOrg = 'nebula'
+            licenses = ['Apache-2.0']
+            labels = ['gradle', 'nebula']
+            websiteUrl = "https://github.com/nebula-plugins/${project.name}"
+            issueTrackerUrl = "https://github.com/nebula-plugins/${project.name}/issues"
+            vcsUrl = "https://github.com/nebula-plugins/${project.name}.git"
         }
 
         BintrayUploadTask bintrayUpload = (BintrayUploadTask) project.tasks.find { it instanceof BintrayUploadTask }

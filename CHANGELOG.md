@@ -1,3 +1,8 @@
+3.3.4 / 2016-02-09
+==================
+
+* Restore original operation as this blocks publishing to bintray
+
 3.3.3 / 2016-02-05
 ==================
 
