@@ -1,6 +1,7 @@
 nebula-bintray-plugin
 =====================
 
+![Support Status](https://img.shields.io/badge/Nebula-supported-brightgreen.svg)
 [![Build Status](https://travis-ci.org/nebula-plugins/nebula-bintray-plugin.svg)](https://travis-ci.org/nebula-plugins/nebula-bintray-plugin)
 [![Coverage Status](https://coveralls.io/repos/nebula-plugins/nebula-bintray-plugin/badge.svg?branch=master&service=github)](https://coveralls.io/github/nebula-plugins/nebula-bintray-plugin?branch=master)
 [![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/nebula-bintray-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
