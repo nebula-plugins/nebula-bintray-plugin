@@ -37,8 +37,8 @@ contacts {
 }
 
 dependencies {
-    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release'
-    compile('org.jfrog.buildinfo:build-info-extractor-gradle:latest.release') {
+    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+    compile('org.jfrog.buildinfo:build-info-extractor-gradle:4.3.0') {
         exclude group: 'org.codehaus.groovy', module: 'groovy-all'
     }
 }
