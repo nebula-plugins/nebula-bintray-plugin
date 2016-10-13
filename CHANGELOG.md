@@ -1,3 +1,8 @@
+3.5.1 / 2016-10-13
+==================
+
+* Put hard coded versions in build.gradle to fix pom on gradle plugin portal
+
 3.3.4 / 2016-02-09
 ==================
 

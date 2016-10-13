@@ -15,8 +15,8 @@
  */
 
 plugins {
-    id 'com.gradle.plugin-publish' version '0.9.5'
-    id 'nebula.plugin-plugin' version '4.24.0'
+    id 'com.gradle.plugin-publish' version '0.9.6'
+    id 'nebula.plugin-plugin' version '4.24.2'
     id 'org.ysb33r.gradletest' version '0.5.4'
 }
 
@@ -36,8 +36,8 @@ contacts {
 }
 
 dependencies {
-    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release'
-    compile('org.jfrog.buildinfo:build-info-extractor-gradle:latest.release') {
+    compile 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.1'
+    compile('org.jfrog.buildinfo:build-info-extractor-gradle:4.4.2') {
         exclude group: 'org.codehaus.groovy', module: 'groovy-all'
     }
 }
@@ -75,7 +75,7 @@ pluginBundle {
 }
 
 gradleTest {
-    versions '2.2.1', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', '2.9', '2.10'
+    versions '2.2.1', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', '2.9', '2.10', '2.13', '2.14.1', '3.0'
 }
 
 gradleTest.dependsOn(jar)

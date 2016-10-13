@@ -15,7 +15,7 @@ To apply this plugin if using Gradle 2.1 or newer
 
     buildscript { repositories { jcenter() } } // need jcenter since gradle-bintray-plugin is not in mavenCentral
     plugins {
-      id 'nebula.nebula-bintray' version '3.3.4'
+      id 'nebula.nebula-bintray' version '3.5.1'
     }
 
 If using an older version of Gradle
@@ -24,7 +24,7 @@ If using an older version of Gradle
       repositories { jcenter() }
 
       dependencies {
-        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.3.4'
+        classpath 'com.netflix.nebula:nebula-bintray-plugin:3.5.1'
       }
     }
 
