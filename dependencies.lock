@@ -19,16 +19,6 @@
             "requested": "4.4.7"
         }
     },
-    "compileOnly": {
-        "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.7.1",
-            "requested": "1.7.1"
-        },
-        "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
-        }
-    },
     "default": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
             "locked": "1.7.1",
@@ -45,8 +35,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "4.2.2",
-            "requested": "4.2.2"
+            "locked": "6.0.0",
+            "requested": "6.0.0"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -59,22 +49,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "4.2.2",
-            "requested": "4.2.2"
-        },
-        "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
-        }
-    },
-    "integTestCompileOnly": {
-        "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.7.1",
-            "requested": "1.7.1"
-        },
-        "com.netflix.nebula:nebula-test": {
-            "locked": "4.2.2",
-            "requested": "4.2.2"
+            "locked": "6.0.0",
+            "requested": "6.0.0"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -87,8 +63,22 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "4.2.2",
-            "requested": "4.2.2"
+            "locked": "6.0.0",
+            "requested": "6.0.0"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.4.7",
+            "requested": "4.4.7"
+        }
+    },
+    "integTestRuntimeClasspath": {
+        "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
+            "locked": "1.7.1",
+            "requested": "1.7.1"
+        },
+        "com.netflix.nebula:nebula-test": {
+            "locked": "6.0.0",
+            "requested": "6.0.0"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -97,15 +87,25 @@
     },
     "jacocoAgent": {
         "org.jacoco:org.jacoco.agent": {
-            "locked": "0.7.7.201606060606"
+            "locked": "0.7.8"
         }
     },
     "jacocoAnt": {
         "org.jacoco:org.jacoco.ant": {
-            "locked": "0.7.7.201606060606"
+            "locked": "0.7.8"
         }
     },
     "runtime": {
+        "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
+            "locked": "1.7.1",
+            "requested": "1.7.1"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.4.7",
+            "requested": "4.4.7"
+        }
+    },
+    "runtimeClasspath": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
             "locked": "1.7.1",
             "requested": "1.7.1"
@@ -121,8 +121,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "4.2.2",
-            "requested": "4.2.2"
+            "locked": "6.0.0",
+            "requested": "6.0.0"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -135,22 +135,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "4.2.2",
-            "requested": "4.2.2"
-        },
-        "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
-        }
-    },
-    "testCompileOnly": {
-        "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.7.1",
-            "requested": "1.7.1"
-        },
-        "com.netflix.nebula:nebula-test": {
-            "locked": "4.2.2",
-            "requested": "4.2.2"
+            "locked": "6.0.0",
+            "requested": "6.0.0"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -163,8 +149,22 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "4.2.2",
-            "requested": "4.2.2"
+            "locked": "6.0.0",
+            "requested": "6.0.0"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.4.7",
+            "requested": "4.4.7"
+        }
+    },
+    "testRuntimeClasspath": {
+        "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
+            "locked": "1.7.1",
+            "requested": "1.7.1"
+        },
+        "com.netflix.nebula:nebula-test": {
+            "locked": "6.0.0",
+            "requested": "6.0.0"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
