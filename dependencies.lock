@@ -35,8 +35,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "6.0.1",
-            "requested": "6.0.1"
+            "locked": "6.1.0",
+            "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -49,8 +49,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "6.0.1",
-            "requested": "6.0.1"
+            "locked": "6.1.0",
+            "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -63,8 +63,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "6.0.1",
-            "requested": "6.0.1"
+            "locked": "6.1.0",
+            "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -77,8 +77,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "6.0.1",
-            "requested": "6.0.1"
+            "locked": "6.1.0",
+            "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -121,8 +121,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "6.0.1",
-            "requested": "6.0.1"
+            "locked": "6.1.0",
+            "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -135,8 +135,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "6.0.1",
-            "requested": "6.0.1"
+            "locked": "6.1.0",
+            "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -149,8 +149,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "6.0.1",
-            "requested": "6.0.1"
+            "locked": "6.1.0",
+            "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
@@ -163,8 +163,8 @@
             "requested": "1.7.1"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "6.0.1",
-            "requested": "6.0.1"
+            "locked": "6.1.0",
+            "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
             "locked": "4.4.7",
