@@ -5,8 +5,8 @@
             "requested": "1.7.1"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "compileClasspath": {
@@ -15,8 +15,8 @@
             "requested": "1.7.1"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "default": {
@@ -25,8 +25,8 @@
             "requested": "1.7.1"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "integTestCompile": {
@@ -39,8 +39,8 @@
             "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "integTestCompileClasspath": {
@@ -53,8 +53,8 @@
             "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "integTestRuntime": {
@@ -67,8 +67,8 @@
             "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "integTestRuntimeClasspath": {
@@ -81,8 +81,8 @@
             "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "jacocoAgent": {
@@ -101,8 +101,8 @@
             "requested": "1.7.1"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "runtimeClasspath": {
@@ -111,8 +111,8 @@
             "requested": "1.7.1"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "testCompile": {
@@ -125,8 +125,8 @@
             "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "testCompileClasspath": {
@@ -139,8 +139,8 @@
             "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "testRuntime": {
@@ -153,8 +153,8 @@
             "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     },
     "testRuntimeClasspath": {
@@ -167,8 +167,8 @@
             "requested": "6.+"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.4.7",
-            "requested": "4.4.7"
+            "locked": "4.5.2",
+            "requested": "latest.release"
         }
     }
 }
