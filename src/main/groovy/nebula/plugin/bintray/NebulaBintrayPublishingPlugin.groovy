@@ -17,8 +17,7 @@ package nebula.plugin.bintray
 
 import com.jfrog.bintray.gradle.BintrayExtension
 import com.jfrog.bintray.gradle.BintrayPlugin
-import com.jfrog.bintray.gradle.BintrayUploadTask
-import org.gradle.api.GradleException
+import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.logging.Logger

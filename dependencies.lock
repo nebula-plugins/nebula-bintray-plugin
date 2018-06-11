@@ -1,7 +1,7 @@
 {
     "compile": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
@@ -11,7 +11,7 @@
     },
     "compileClasspath": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
@@ -21,7 +21,7 @@
     },
     "default": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
@@ -31,7 +31,7 @@
     },
     "integTestCompile": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -45,7 +45,7 @@
     },
     "integTestCompileClasspath": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -59,7 +59,7 @@
     },
     "integTestRuntime": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -73,7 +73,7 @@
     },
     "integTestRuntimeClasspath": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -97,7 +97,7 @@
     },
     "runtime": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
@@ -107,7 +107,7 @@
     },
     "runtimeClasspath": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
@@ -117,7 +117,7 @@
     },
     "testCompile": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -131,7 +131,7 @@
     },
     "testCompileClasspath": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -145,7 +145,7 @@
     },
     "testRuntime": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -159,7 +159,7 @@
     },
     "testRuntimeClasspath": {
         "com.jfrog.bintray.gradle:gradle-bintray-plugin": {
-            "locked": "1.8.0",
+            "locked": "1.8.1",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
