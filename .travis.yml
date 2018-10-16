@@ -1,6 +1,6 @@
 language: java
 sudo: false
-jdk: oraclejdk8
+jdk: openjdk8
 git:
   depth: 150
 install: true
