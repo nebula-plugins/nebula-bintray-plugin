@@ -1,4 +1,2 @@
 rootProject.name = 'nebula-bintray-plugin'
 
-enableFeaturePreview('STABLE_PUBLISHING')
-
