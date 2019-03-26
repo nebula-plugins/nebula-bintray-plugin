@@ -75,6 +75,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                     val subject = bintray.subject()
                     val repoUrl = "${bintray.apiUrl}/content/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version}"
                     if (repository.url == project.uri(repoUrl)) {
+                        dependsOn(publishPackageToBintray)
                         finalizedBy(publishVersionToBintray)
                     }
                 }
