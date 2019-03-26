@@ -116,7 +116,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         if(project.hasProperty("bintray.user")) {
             bintray.user.set(project.prop("bintray.user"))
         } else if(project.hasProperty("bintrayUser")) {
-            bintray.user.set(project.prop("bintray.user"))
+            bintray.user.set(project.prop("bintrayUser"))
         }
 
         if(project.hasProperty("bintray.apiKey")) {
