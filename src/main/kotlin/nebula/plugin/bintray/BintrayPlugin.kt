@@ -22,5 +22,6 @@ import org.gradle.kotlin.dsl.apply
 open class BintrayPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.apply<NebulaBintrayPublishingPlugin>()
+        project.apply<NebulaOJOPublishingPlugin>()
     }
 }
