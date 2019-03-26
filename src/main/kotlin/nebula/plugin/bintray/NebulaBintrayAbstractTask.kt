@@ -28,9 +28,6 @@ open class NebulaBintrayAbstractTask : DefaultTask() {
     @Input
     @Optional
     val version: Property<String> = project.objects.property()
-    @Input
-    @Optional
-    val autoPublishWaitForSeconds: Property<Int> = project.objects.property()
 
     fun resolveSubject() : String {
         val resolvedSubject = userOrg.getOrElse(user.get())

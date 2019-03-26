@@ -13,7 +13,6 @@ open class BintrayExtension(objects: ObjectFactory) {
     val repo: Property<String> = objects.property()
     val userOrg: Property<String> = objects.property()
     val autoPublish: Property<Boolean> = objects.property()
-    val autoPublishWaitForSeconds: Property<Int> = objects.property()
     val licenses: ListProperty<String> = objects.listProperty(String::class.java)
     val customLicenses: ListProperty<String> = objects.listProperty(String::class.java)
     val labels: ListProperty<String> = objects.listProperty(String::class.java)

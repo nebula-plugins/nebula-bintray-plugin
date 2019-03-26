@@ -44,4 +44,33 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends LauncherSpec {
         then:
         result.standardOutput.contains('Task :publishPackageToBintray')
     }
+
+    def 'publishes library to bintray'() {
+        given:
+        buildFile << """ 
+            apply plugin: 'nebula.nebula-bintray'
+            apply plugin: 'java'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0'
+            description = 'my plugin'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'https://api.bintray.com'
+                pkgName = 'my-plugin'
+                autoPublish = true
+            }
+            
+        """
+
+        writeHelloWorld()
+
+        when:
+        def result = runTasks('publishPackageToBintray')
+
+        then:
+        result.standardOutput.contains('Task :publishPackageToBintray')
+    }
 }

@@ -19,8 +19,7 @@ open class NebulaBintrayVersionTask : NebulaBintrayAbstractTask() {
                 .build()
 
 
-        val resolvedWait = autoPublishWaitForSeconds.getOrElse(0)
-        val result = bintrayClient.publishVersion(resolvedSubject, resolvedRepoName, resolvedPkgName, resolvedVersion, PublishRequest(resolvedWait))
+        val result = bintrayClient.publishVersion(resolvedSubject, resolvedRepoName, resolvedPkgName, resolvedVersion, PublishRequest())
         if (result.isSuccessful) {
             logger.info("$resolvedPkgName version $resolvedVersion has been published")
         } else {
