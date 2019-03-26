@@ -1,6 +1,6 @@
 package nebula.plugin.bintray
 
-import org.gradle.api.GradleException
+import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Optional
@@ -14,13 +14,13 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
     val desc: Property<String> = project.objects.property()
     @Input
     @Optional
-    val licenses: Property<List<String>> = project.objects.property()
+    val licenses: ListProperty<String> = project.objects.listProperty(String::class.java)
     @Input
     @Optional
-    val customLicenses: Property<List<String>> = project.objects.property()
+    val customLicenses: ListProperty<String> = project.objects.listProperty(String::class.java)
     @Input
     @Optional
-    val labels: Property<List<String>> = project.objects.property()
+    val labels:ListProperty<String> = project.objects.listProperty(String::class.java)
     @Input
     @Optional
     val websiteUrl: Property<String> = project.objects.property()

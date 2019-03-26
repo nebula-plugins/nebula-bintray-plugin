@@ -15,11 +15,33 @@
  */
 package nebula.plugin.bintray
 
-import nebula.test.IntegrationSpec
 
-class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
+class NebulaBintrayPublishingPluginIntegrationSpec extends LauncherSpec {
 
     def 'apply plugin'() {
+        given:
+        buildFile << """ 
+            apply plugin: 'nebula.nebula-bintray'
+            apply plugin: 'java'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'https://api.bintray.com'
+                pkgName = 'my-plugin'
+            }
+            
+        """
 
+        writeHelloWorld()
+
+        when:
+        def result = runTasks('publishPackageToBintray')
+
+        then:
+        result.standardOutput.contains('Task :publishPackageToBintray')
     }
 }

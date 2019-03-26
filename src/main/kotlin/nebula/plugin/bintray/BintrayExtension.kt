@@ -1,6 +1,7 @@
 package nebula.plugin.bintray
 
 import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.property
 
@@ -13,9 +14,9 @@ open class BintrayExtension(objects: ObjectFactory) {
     val userOrg: Property<String> = objects.property()
     val autoPublish: Property<Boolean> = objects.property()
     val autoPublishWaitForSeconds: Property<Int> = objects.property()
-    val licenses: Property<List<String>> = objects.property()
-    val customLicenses: Property<List<String>> = objects.property()
-    val labels: Property<List<String>> = objects.property()
+    val licenses: ListProperty<String> = objects.listProperty(String::class.java)
+    val customLicenses: ListProperty<String> = objects.listProperty(String::class.java)
+    val labels: ListProperty<String> = objects.listProperty(String::class.java)
     val websiteUrl: Property<String> =objects.property()
     val issueTrackerUrl: Property<String> = objects.property()
     val vcsUrl: Property<String> = objects.property()
