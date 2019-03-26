@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2019 Netflix, Inc.
+ * Copyright 2019 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,13 @@
  */
 package nebula.plugin.bintray
 
-import nebula.test.PluginProjectSpec
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 
-class NebulaOJOPublishingPluginSpec extends PluginProjectSpec {
-    @Override
-    String getPluginName() {
-        'nebula.nebula-ojo-publishing'
-    }
-
-    def 'apply plugin'() {
-        when:
-        project.plugins.apply('nebula.nebula-ojo-publishing')
-
-        then:
-        project.tasks.getByName('artifactoryPublish') != null
+open class BintrayPlugin : Plugin<Project> {
+    override fun apply(project: Project) {
+        project.apply<NebulaBintrayPublishingPlugin>()
+        project.apply<NebulaOJOPublishingPlugin>()
     }
 }
-

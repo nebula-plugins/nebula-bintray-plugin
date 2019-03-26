@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Netflix, Inc.
+ * Copyright 2019 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,4 @@
  */
 package nebula.plugin.bintray
 
-import nebula.test.PluginProjectSpec
-
-class BintrayPluginSpec extends PluginProjectSpec {
-    @Override
-    String getPluginName() {
-        'nebula.nebula-bintray'
-    }
-}
+data class PublishRequest(val publish_wait_for_secs: Int = 0)

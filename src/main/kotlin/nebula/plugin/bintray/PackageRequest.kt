@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Netflix, Inc.
+ * Copyright 2019 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,14 @@
  */
 package nebula.plugin.bintray
 
-import org.gradle.api.Plugin
-import org.gradle.api.Project
-
-class BintrayPlugin implements Plugin<Project> {
-    @Override
-    void apply(Project project) {
-        project.plugins.apply(NebulaBintrayPublishingPlugin)
-        project.plugins.apply(NebulaOJOPublishingPlugin)
-    }
-}
+data class PackageRequest(val name: String,
+                          val desc: String,
+                          val labels: List<String>,
+                          val licenses: List<String>,
+                          val custom_licenses: List<String>,
+                          val vcs_url: String,
+                          val website_url: String,
+                          val issue_tracker_url: String,
+                          val public_download_numbers: Boolean = true,
+                          val public_stats: Boolean = true
+)
