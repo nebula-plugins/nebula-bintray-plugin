@@ -7,21 +7,10 @@ open class NebulaBintrayVersionTask : NebulaBintrayAbstractTask() {
 
     @TaskAction
     fun createVersion() {
-        val errors = mutableListOf()
-        val resolvedSubject = userOrg.getOrElse(user.get())
-        if (resolvedSubject.isNotSet()) {
-            errors.add("userOrg or bintray.user must be set")
-        }
-        val resolvedVersion = version.getOrElse(UNSET)
-        if (resolvedVersion == "unspecified" || resolvedVersion.isNotSet()) {
-            errors.add("version or project.version must be set")
-        }
+        val resolvedSubject = resolveSubject()
+        val resolvedVersion = resolveVersion()
         val resolvedRepoName = repo.get()
         val resolvedPkgName = pkgName.get()
-
-        if (errors.isNotEmpty()) {
-            throw GradleException("Missing required configuration for bintray task: $errors")
-        }
 
         val bintrayClient = BintrayClient.Builder()
                 .user(user.get())

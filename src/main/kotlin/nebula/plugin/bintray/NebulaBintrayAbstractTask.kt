@@ -1,6 +1,7 @@
 package nebula.plugin.bintray
 
 import org.gradle.api.DefaultTask
+import org.gradle.api.GradleException
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Optional
@@ -31,5 +32,23 @@ open class NebulaBintrayAbstractTask : DefaultTask() {
     @Optional
     val autoPublishWaitForSeconds: Property<Int> = project.objects.property()
 
-    protected fun String.isNotSet() = this == UNSET
+    fun resolveSubject() : String {
+        val resolvedSubject = userOrg.getOrElse(user.get())
+        if (resolvedSubject.isNotSet()) {
+           throw GradleException("userOrg or bintray.user must be set")
+        }
+        return resolvedSubject
+    }
+
+    fun resolveVersion() : String {
+        val resolvedVersion = version.getOrElse(UNSET)
+        if (resolvedVersion == "unspecified" || resolvedVersion.isNotSet()) {
+            throw GradleException("version or project.version must be set")
+        }
+        return resolvedVersion
+    }
+
+
+    private fun String.isNotSet() = this == UNSET
+
 }

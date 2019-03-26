@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Netflix, Inc.
+ * Copyright 2014-2019 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,20 +15,11 @@
  */
 package nebula.plugin.bintray
 
-import nebula.test.PluginProjectSpec
+import nebula.test.IntegrationSpec
 
-class NebulaBintrayPublishingPluginSpec extends PluginProjectSpec {
-    @Override
-    String getPluginName() {
-        'nebula.nebula-bintray-publishing'
-    }
+class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
 
     def 'apply plugin'() {
-        when:
-        project.plugins.apply(NebulaBintrayPublishingPlugin)
 
-        then:
-        project.tasks.getByName('publishPackageToBintray') != null
-        project.tasks.getByName('publishVersionToBintray') != null
     }
 }

@@ -34,22 +34,7 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
 
     @TaskAction
     fun createOrUpdatePackage() {
-        val errors = mutableListOf()
-        val resolvedSubject = userOrg.getOrElse(user.get())
-        if (resolvedSubject.isNotSet()) {
-            errors.add("userOrg or bintray.user must be set")
-        }
-        val resolvedVersion = version.getOrElse(UNSET)
-        if (resolvedVersion == "unspecified" || resolvedVersion.isNotSet()) {
-            errors.add("version or project.version must be set")
-        }
-        val resolvedRepoName = repo.get()
-        val resolvedPkgName = pkgName.get()
-
-        if (errors.isNotEmpty()) {
-            throw GradleException("Missing required configuration for bintray task: $errors")
-        }
-
+        val resolvedSubject = resolveSubject()
         val bintrayClient = BintrayClient.Builder()
                 .user(user.get())
                 .apiUrl(apiUrl.get())
@@ -69,6 +54,6 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
                 public_stats = true
         )
 
-        bintrayClient.createOrUpdatePackage(resolvedSubject, resolvedRepoName, resolvedPkgName, packageRequest)
+        bintrayClient.createOrUpdatePackage(resolvedSubject,  repo.get(), pkgName.get(), packageRequest)
     }
 }
