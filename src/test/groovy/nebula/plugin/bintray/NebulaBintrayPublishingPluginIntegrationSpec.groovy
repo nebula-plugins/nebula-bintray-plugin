@@ -52,7 +52,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends LauncherSpec {
         result.standardOutput.contains('Task :publishPackageToBintray')
     }
 
-    def 'build fails if bad response from bintray'() {
+    def 'build fails if bad response from bintray when getting package information'() {
         given:
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
                 .willReturn(aResponse()
@@ -86,4 +86,91 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends LauncherSpec {
         then:
         result.standardError.contains('Could not obtain information for package gradle-plugins/nebula/my-plugin')
     }
+
+    def 'build fails if bad response from bintray when creating package information'() {
+        given:
+        stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
+                .willReturn(aResponse()
+                .withStatus(404)
+                .withHeader("Content-Type", "application/json")))
+
+        stubFor(post(urlEqualTo("/packages/nebula/gradle-plugins"))
+                .withRequestBody(containing("\"name\":\"build-fails-if-bad-response-from-bintray-when-creating-package-information\""))
+                .withRequestBody(containing("\"vcs_url\":\"https://github.com/nebula-plugins/build-fails-if-bad-response-from-bintray-when-creating-package-information.git\""))
+                .willReturn(aResponse()
+                .withStatus(401)
+                .withHeader("Content-Type", "application/json")))
+
+
+
+        buildFile << """ 
+            apply plugin: 'nebula.nebula-bintray'
+            apply plugin: 'java'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0'
+            description = 'my plugin'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'http://localhost:${wireMockRule.port()}'
+                pkgName = 'my-plugin'
+                autoPublish = true
+            }
+            
+        """
+
+        writeHelloWorld()
+
+        when:
+        def result = runTasks('publishPackageToBintray')
+
+        then:
+        result.standardError.contains('Could not create or update information for package gradle-plugins/nebula/my-plugin ')
+    }
+
+    def 'build fails if bad response from bintray when updating package information'() {
+        given:
+        stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
+                .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")))
+
+        stubFor(put(urlEqualTo("/packages/nebula/gradle-plugins"))
+                .withRequestBody(containing("\"name\":\"build-fails-if-bad-response-from-bintray-when-updating-package-information\""))
+                .withRequestBody(containing("\"vcs_url\":\"https://github.com/nebula-plugins/build-fails-if-bad-response-from-bintray-when-updating-package-information.git\""))
+                .willReturn(aResponse()
+                .withStatus(401)
+                .withHeader("Content-Type", "application/json")))
+
+
+
+        buildFile << """ 
+            apply plugin: 'nebula.nebula-bintray'
+            apply plugin: 'java'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0'
+            description = 'my plugin'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'http://localhost:${wireMockRule.port()}'
+                pkgName = 'my-plugin'
+                autoPublish = true
+            }
+            
+        """
+
+        writeHelloWorld()
+
+        when:
+        def result = runTasks('publishPackageToBintray')
+
+        then:
+        result.standardError.contains('Could not create or update information for package gradle-plugins/nebula/my-plugin ')
+    }
+
 }
