@@ -17,7 +17,6 @@
 plugins {
     `kotlin-dsl`
     id("nebula.plugin-plugin") version "9.2.4"
-    id("nebula.kotlin") version "1.3.10"
 }
 
 description = "Additional Bintray tasks"

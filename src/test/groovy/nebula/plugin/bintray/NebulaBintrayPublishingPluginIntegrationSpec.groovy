@@ -319,7 +319,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
 
         then:
         !result.success
-        result.standardOutput.contains("version or project.version must be set")
+        result.standardError.contains("version or project.version must be set")
     }
 
     def 'publishes a plugin to bintray'() {
