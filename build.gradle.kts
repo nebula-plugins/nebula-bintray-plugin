@@ -29,10 +29,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-moshi:2.5.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
     implementation("com.squareup.okhttp3:logging-interceptor:3.12.2")
-    implementation("com.jfrog.bintray.gradle:gradle-bintray-plugin:latest.release")
-    implementation("org.jfrog.buildinfo:build-info-extractor-gradle:latest.release") {
-        exclude(module = "groovy-all")
-    }
     testImplementation("com.github.tomakehurst:wiremock:2.22.0")
 }
 

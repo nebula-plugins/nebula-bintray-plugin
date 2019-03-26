@@ -50,7 +50,6 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
 
     @TaskAction
     fun createOrUpdatePackage() {
-        val resolvedSubject = resolveSubject()
         val bintrayClient = BintrayClient.Builder()
                 .user(user.get())
                 .apiUrl(apiUrl.get())
@@ -70,7 +69,7 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
                 public_stats = true
         )
 
-        bintrayClient.createOrUpdatePackage(resolvedSubject,  repo.get(), pkgName.get(), packageRequest)
+        bintrayClient.createOrUpdatePackage(resolveSubject.get(),  repo.get(), pkgName.get(), packageRequest)
         logger.info("Package ${pkgName.get()} has been created/updated")
     }
 }

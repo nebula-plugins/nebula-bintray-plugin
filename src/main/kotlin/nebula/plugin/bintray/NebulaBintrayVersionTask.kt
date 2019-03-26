@@ -22,9 +22,7 @@ open class NebulaBintrayVersionTask : NebulaBintrayAbstractTask() {
 
     @TaskAction
     fun createVersion() {
-        val resolvedSubject = resolveSubject()
-        val resolvedVersion = resolveVersion()
-        val resolvedRepoName = repo.get()
+        val resolvedVersion = resolveVersion.get()
         val resolvedPkgName = pkgName.get()
 
         val bintrayClient = BintrayClient.Builder()
@@ -34,7 +32,7 @@ open class NebulaBintrayVersionTask : NebulaBintrayAbstractTask() {
                 .build()
 
 
-        bintrayClient.publishVersion(resolvedSubject, resolvedRepoName, resolvedPkgName, resolvedVersion, PublishRequest())
+        bintrayClient.publishVersion(resolveSubject.get(), repo.get(), resolvedPkgName, resolvedVersion, PublishRequest())
         logger.info("$resolvedPkgName version $resolvedVersion has been published")
     }
 }

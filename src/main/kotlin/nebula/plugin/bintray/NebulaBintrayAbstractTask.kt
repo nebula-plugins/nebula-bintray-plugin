@@ -18,7 +18,9 @@ package nebula.plugin.bintray
 import org.gradle.api.DefaultTask
 import org.gradle.api.GradleException
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.Optional
 import org.gradle.kotlin.dsl.property
 
@@ -44,22 +46,23 @@ open class NebulaBintrayAbstractTask : DefaultTask() {
     @Optional
     val version: Property<String> = project.objects.property()
 
-    fun resolveSubject() : String {
+    @Internal
+    val resolveSubject : Provider<String> = user.map {
         val resolvedSubject = userOrg.getOrElse(user.get())
         if (resolvedSubject.isNotSet()) {
-           throw GradleException("userOrg or bintray.user must be set")
+            throw GradleException("userOrg or bintray.user must be set")
         }
-        return resolvedSubject
+         resolvedSubject
     }
 
-    fun resolveVersion() : String {
+    @Internal
+    val resolveVersion : Provider<String> = version.map {
         val resolvedVersion = version.getOrElse(UNSET)
         if (resolvedVersion == "unspecified" || resolvedVersion.isNotSet()) {
             throw GradleException("version or project.version must be set")
         }
-        return resolvedVersion
+         resolvedVersion
     }
-
 
     private fun String.isNotSet() = this == UNSET
 
