@@ -8,26 +8,7 @@ import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.TaskAction
 import org.gradle.kotlin.dsl.property
 
-open class NebulaBintrayPackageTask : DefaultTask() {
-    @Input
-    val user: Property<String> = project.objects.property()
-    @Input
-    val apiKey: Property<String> = project.objects.property()
-    @Input
-    val apiUrl: Property<String> = project.objects.property()
-    @Input
-    val pkgName: Property<String> = project.objects.property()
-    @Input
-    val repo: Property<String> = project.objects.property()
-    @Input
-    @Optional
-    val userOrg: Property<String> = project.objects.property()
-    @Input
-    @Optional
-    val version: Property<String> = project.objects.property()
-    @Input
-    @Optional
-    val autoPublishWaitForSeconds: Property<Int> = project.objects.property()
+open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
     @Input
     val name: Property<String> = project.objects.property()
     @Input
@@ -51,11 +32,6 @@ open class NebulaBintrayPackageTask : DefaultTask() {
     @Optional
     val vcsUrl: Property<String> = project.objects.property()
 
-    private var bintrayService: BintrayService? = null
-
-    private companion object {
-        const val UNSET = "UNSET"
-    }
 
     @TaskAction
     fun createOrUpdatePackage() {
@@ -96,6 +72,4 @@ open class NebulaBintrayPackageTask : DefaultTask() {
 
         bintrayClient.createOrUpdatePackage(resolvedSubject, resolvedRepoName, resolvedPkgName, packageRequest)
     }
-
-    private fun String.isNotSet() = this == UNSET
 }
