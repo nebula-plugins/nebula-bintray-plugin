@@ -1,6 +1,5 @@
 package nebula.plugin.bintray
 
-import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
 
 open class NebulaBintrayVersionTask : NebulaBintrayAbstractTask() {
@@ -19,11 +18,7 @@ open class NebulaBintrayVersionTask : NebulaBintrayAbstractTask() {
                 .build()
 
 
-        val result = bintrayClient.publishVersion(resolvedSubject, resolvedRepoName, resolvedPkgName, resolvedVersion, PublishRequest())
-        if (result.isSuccessful) {
-            logger.info("$resolvedPkgName version $resolvedVersion has been published")
-        } else {
-            throw GradleException("Received ${result.code()} attempting to publish $resolvedPkgName version $resolvedVersion")
-        }
+        bintrayClient.publishVersion(resolvedSubject, resolvedRepoName, resolvedPkgName, resolvedVersion, PublishRequest())
+        logger.info("$resolvedPkgName version $resolvedVersion has been published")
     }
 }

@@ -15,8 +15,15 @@
  */
 package nebula.plugin.bintray
 
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration
+import com.github.tomakehurst.wiremock.junit.WireMockRule
+import org.junit.Rule
+import static com.github.tomakehurst.wiremock.client.WireMock.*
 
 class NebulaBintrayPublishingPluginIntegrationSpec extends LauncherSpec {
+
+    @Rule
+    WireMockRule wireMockRule = new WireMockRule(WireMockConfiguration.wireMockConfig().dynamicPort().dynamicPort())
 
     def 'apply plugin'() {
         given:
@@ -45,8 +52,14 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends LauncherSpec {
         result.standardOutput.contains('Task :publishPackageToBintray')
     }
 
-    def 'publishes library to bintray'() {
+    def 'build fails if bad response from bintray'() {
         given:
+        stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
+                .willReturn(aResponse()
+                .withStatus(500)
+                .withHeader("Content-Type", "application/json")))
+
+
         buildFile << """ 
             apply plugin: 'nebula.nebula-bintray'
             apply plugin: 'java'
@@ -58,7 +71,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends LauncherSpec {
             bintray {
                 user = 'nebula-plugins'
                 apiKey = 'mykey'
-                apiUrl = 'https://api.bintray.com'
+                apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
                 autoPublish = true
             }
@@ -71,6 +84,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends LauncherSpec {
         def result = runTasks('publishPackageToBintray')
 
         then:
-        result.standardOutput.contains('Task :publishPackageToBintray')
+        result.standardError.contains('Could not obtain information for package gradle-plugins/nebula/my-plugin')
     }
 }

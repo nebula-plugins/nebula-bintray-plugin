@@ -34,7 +34,7 @@ dependencies {
     implementation("org.jfrog.buildinfo:build-info-extractor-gradle:latest.release") {
         exclude(module = "groovy-all")
     }
-
+    testImplementation("com.github.tomakehurst:wiremock:2.22.0")
 }
 
 pluginBundle {

@@ -1,5 +1,6 @@
 package nebula.plugin.bintray
 
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -12,7 +13,7 @@ interface BintrayService {
             @Path("pkg") pkg: String,
             @Path("version") version: String,
             @Body body: PublishRequest
-    ): Call<Void>
+    ): Call<ResponseBody>
 
     @Headers("Content-Type: application/json")
     @GET("/packages/{subject}/{repo}/{pkg}")
@@ -20,7 +21,7 @@ interface BintrayService {
             @Path("subject") subject: String,
             @Path("repo") repo: String,
             @Path("pkg") pkg: String
-    ): Call<Void>
+    ): Call<ResponseBody>
 
     @Headers("Content-Type: application/json")
     @POST("/packages/{subject}/{repo}")
@@ -28,7 +29,7 @@ interface BintrayService {
             @Path("subject") subject: String,
             @Path("repo") repo: String,
             @Body body: PackageRequest
-    ): Call<Void>
+    ): Call<ResponseBody>
 
     @Headers("Content-Type: application/json")
     @PUT("/packages/{subject}/{repo}")
@@ -36,5 +37,5 @@ interface BintrayService {
             @Path("subject") subject: String,
             @Path("repo") repo: String,
             @Body body: PackageRequest
-    ): Call<Void>
+    ): Call<ResponseBody>
 }

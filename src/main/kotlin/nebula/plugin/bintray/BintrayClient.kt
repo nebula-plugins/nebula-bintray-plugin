@@ -5,8 +5,8 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
-import retrofit2.Response
+import org.apache.http.HttpStatus
+import org.gradle.api.GradleException
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -23,16 +23,23 @@ class BintrayClient private constructor(val bintrayService: BintrayService) {
         fun build() = BintrayClient(bintray(apiUrl!!, user!!, apiKey!!))
     }
 
-    fun createOrUpdatePackage(subject: String, repo: String, pkg: String, packageRequest: PackageRequest) : Call<Void> {
-        if(bintrayService.getPackage(subject, repo, pkg).execute().isSuccessful) {
-            return bintrayService.updatePackage(subject, repo, packageRequest)
-        } else {
-            return bintrayService.createPackage(subject, repo, packageRequest)
+    fun createOrUpdatePackage(subject: String, repo: String, pkg: String, packageRequest: PackageRequest) {
+        val getPackageResult = bintrayService.getPackage(subject, repo, pkg).execute()
+        if(!getPackageResult.isSuccessful && getPackageResult.code() != HttpStatus.SC_NOT_FOUND) {
+            throw GradleException("Could not obtain information for package $repo/$subject/$pkg - ${getPackageResult.errorBody()?.string()}")
+        }
+
+        val createOrUpdatePackageResult = if(getPackageResult.isSuccessful)  bintrayService.updatePackage(subject, repo, packageRequest).execute() else bintrayService.createPackage(subject, repo, packageRequest).execute()
+        if(!createOrUpdatePackageResult.isSuccessful) {
+            throw GradleException("Could not create or update information for package $repo/$subject/$pkg - ${getPackageResult.errorBody()?.string()}")
         }
     }
 
-    fun publishVersion(subject: String, repo: String, pkg: String, version: String, publishRequest: PublishRequest) : Response<Void> {
-        return bintrayService.publishVersion(subject, repo, pkg, version, publishRequest).execute()
+    fun publishVersion(subject: String, repo: String, pkg: String, version: String, publishRequest: PublishRequest) {
+        val publishVersionResult = bintrayService.publishVersion(subject, repo, pkg, version, publishRequest).execute()
+        if(!publishVersionResult.isSuccessful) {
+            throw GradleException("Could not publish $version version for package $repo/$subject/$pkg - ${publishVersionResult.errorBody()?.string()}")
+        }
     }
 }
 
