@@ -18,6 +18,7 @@ package nebula.plugin.bintray
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.kotlin.dsl.apply
@@ -64,6 +65,11 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
 
         project.afterEvaluate {
             project.extensions.configure<PublishingExtension> {
+                publications {
+                    register("maven", MavenPublication::class) {
+                        from(components.getByName("java"))
+                    }
+                }
                 repositories {
                     maven {
                         if (!bintray.hasSubject()) {

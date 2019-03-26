@@ -302,14 +302,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 autoPublish = true
             }
             
-             publishing {
-                publications {
-                    maven(MavenPublication) {
-                        from components.java
-                    }
-                }
-             }
-            
         """
 
         writeHelloWorld()
@@ -382,14 +374,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 autoPublish = true
             }
             
-             publishing {
-                publications {
-                    maven(MavenPublication) {
-                        from components.java
-                    }
-                }
-             }
-            
         """
 
         writeHelloWorld()
@@ -459,14 +443,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 pkgName = 'my-plugin'
                 autoPublish = true
             }
-            
-             publishing {
-                publications {
-                    maven(MavenPublication) {
-                        from components.java
-                    }
-                }
-             }
+           
             
         """
 
