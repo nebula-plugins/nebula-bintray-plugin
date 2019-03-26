@@ -29,7 +29,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.apply<MavenPublishPlugin>()
         val bintray = project.extensions.create("bintray", BintrayExtension::class)
-        setExtensionDefaults(bintray, project)
+        configureBintrayExtensionConventions(bintray, project)
         setBintrayCredentials(bintray, project)
         val description = if (project.hasProperty("description") && project.description != null) project.description else project.name
         val publishPackageToBintray = project.tasks.register<NebulaBintrayPackageTask>("publishPackageToBintray") {
@@ -95,29 +95,17 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         }
     }
 
-    private fun setExtensionDefaults(bintray: BintrayExtension, project: Project) {
-        if(!bintray.repo.isPresent) {
-            bintray.repo.set("gradle-plugins")
-        }
-        if(!bintray.userOrg.isPresent) {
-            bintray.userOrg.set("nebula")
-        }
-        if(!bintray.websiteUrl.isPresent) {
-            bintray.websiteUrl.set("https://github.com/nebula-plugins/${project.name}")
-        }
-        if(!bintray.issueTrackerUrl.isPresent) {
-            bintray.issueTrackerUrl.set("https://github.com/nebula-plugins/${project.name}/issues")
-        }
-        if(!bintray.vcsUrl.isPresent) {
-            bintray.vcsUrl.set("https://github.com/nebula-plugins/${project.name}.git")
-        }
-        if(!bintray.licenses.isPresent) {
-            bintray.licenses.set(listOf("Apache-2.0"))
-        }
-        if(!bintray.labels.isPresent) {
-            bintray.labels.set(listOf("gradle", "nebula"))
-        }
+    private fun configureBintrayExtensionConventions(bintray: BintrayExtension, project: Project) {
+        bintray.repo.convention("gradle-plugins")
+        bintray.userOrg.convention("nebula")
+        bintray.licenses.convention(listOf("Apache-2.0"))
+        bintray.customLicenses.convention(emptyList())
+        bintray.labels.convention(listOf("gradle", "nebula"))
+        bintray.websiteUrl.convention("https://github.com/nebula-plugins/${project.name}")
+        bintray.issueTrackerUrl.convention("https://github.com/nebula-plugins/${project.name}/issues")
+        bintray.vcsUrl.convention("https://github.com/nebula-plugins/${project.name}.git")
     }
+
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {
         if(project.hasProperty("bintray.user")) {
             bintray.user.set(project.prop("bintray.user"))
