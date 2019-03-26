@@ -20,7 +20,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.apache.http.HttpStatus
 import org.gradle.api.GradleException
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -40,7 +39,7 @@ class BintrayClient private constructor(val bintrayService: BintrayService) {
 
     fun createOrUpdatePackage(subject: String, repo: String, pkg: String, packageRequest: PackageRequest) {
         val getPackageResult = bintrayService.getPackage(subject, repo, pkg).execute()
-        if(!getPackageResult.isSuccessful && getPackageResult.code() != HttpStatus.SC_NOT_FOUND) {
+        if(!getPackageResult.isSuccessful && getPackageResult.code() != 404) {
             throw GradleException("Could not obtain information for package $repo/$subject/$pkg - ${getPackageResult.errorBody()?.string()}")
         }
 
