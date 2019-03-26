@@ -12,7 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ *//*
+
 package nebula.plugin.bintray
 
 import com.jfrog.bintray.gradle.BintrayExtension
@@ -23,9 +24,11 @@ import org.gradle.api.Project
 import org.gradle.api.logging.Logger
 import org.gradle.api.logging.Logging
 
+*/
 /**
  * Defaults for publishing the nebula-plugins on bintray
- */
+ *//*
+
 class NebulaBintrayPublishingPlugin implements Plugin<Project> {
     private static Logger logger = Logging.getLogger(NebulaBintrayPublishingPlugin)
 
@@ -84,3 +87,4 @@ class NebulaBintrayPublishingPlugin implements Plugin<Project> {
         bintrayUpload
     }
 }
+*/

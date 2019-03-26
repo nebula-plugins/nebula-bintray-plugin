@@ -28,6 +28,6 @@ class NebulaBintrayPublishingPluginSpec extends PluginProjectSpec {
         project.plugins.apply(NebulaBintrayPublishingPlugin)
 
         then:
-        project.tasks.getByName('bintrayUpload') != null
+        project.tasks.getByName('publishToBintray') != null
     }
 }
