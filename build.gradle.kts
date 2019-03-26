@@ -61,12 +61,6 @@ gradlePlugin {
             description = "Uploads candidate and final artifacts to bintray with Nebula defaults"
             implementationClass = "nebula.plugin.bintray.NebulaBintrayPublishingPlugin"
         }
-        create("nebulaOjoPublishing") {
-            id = "nebula.nebula-ojo-publishing"
-            displayName = "Nebula OJO Publishing plugin"
-            description = "Uploads snapshots to oss.jfrog.org with Nebula defaults"
-            implementationClass = "nebula.plugin.bintray.NebulaOJOPublishingPlugin"
-        }
     }
 }
 
