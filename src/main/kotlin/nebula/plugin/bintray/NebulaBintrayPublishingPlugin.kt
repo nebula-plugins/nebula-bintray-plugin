@@ -1,3 +1,18 @@
+/*
+ * Copyright 2019 Netflix, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package nebula.plugin.bintray
 
 import org.gradle.api.Plugin
@@ -54,9 +69,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                         if (!bintray.hasSubject()) {
                             project.logger.warn("Skipping adding Bintray repository - Neither bintray.user or bintray.userOrg defined")
                         } else {
-                            val subject = bintray.subject()
                             name = "Bintray"
-                            url = project.uri("${bintray.apiUrl}/maven/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version}")
+                            url = project.uri("${bintray.apiUrl.get()}/maven/${bintray.subject()}/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version}")
                             credentials {
                                 username = bintray.user.get()
                                 password = bintray.apiKey.get()
@@ -71,7 +85,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                     project.logger.warn("Skipping task dependencies setup - Neither bintray.user or bintray.userOrg defined")
                 } else {
                     val subject = bintray.subject()
-                    val repoUrl = "${bintray.apiUrl}/maven/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version}"
+                    val repoUrl = "${bintray.apiUrl.get()}/maven/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version}"
                     if (repository.url == project.uri(repoUrl)) {
                         dependsOn(publishPackageToBintray)
                         finalizedBy(publishVersionToBintray)
