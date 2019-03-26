@@ -317,14 +317,14 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
     def 'publishes a plugin to bintray'() {
         given:
         List<String> filePutUris = ["/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar",
-                                 "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar.md5",
-                                 "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar.sha1",
-                                 "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom",
-                                 "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom.md5",
-                                 "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom.sha1",
-                                 "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml",
-                                 "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml.md5",
-                                 "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml.sha1"]
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar.md5",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar.sha1",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom.md5",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom.sha1",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml.md5",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml.sha1"]
 
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
@@ -457,6 +457,85 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         result.standardError.contains("Could not transfer artifact test.nebula.netflix:publication-fails-if-repository-is-not-reachable:pom:1.0.0 from/to remote")
 
     }
+
+    def 'publishes a plugin to bintray with gradle metadata'() {
+        given:
+        List<String> filePutUris = ["/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.md5",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.sha1",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.md5",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.sha1",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.md5",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.sha1",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.md5",
+                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.sha1"]
+
+
+        stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
+                .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")))
+
+        stubFor(put(urlEqualTo("/packages/nebula/gradle-plugins"))
+                .withRequestBody(containing("\"name\":\"publishes-a-plugin-to-bintray-with-gradle-metadata\""))
+                .withRequestBody(containing("\"vcs_url\":\"https://github.com/nebula-plugins/publishes-a-plugin-to-bintray-with-gradle-metadata.git\""))
+                .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")))
+
+        stubFor(post(urlEqualTo("/content/nebula/gradle-plugins/my-plugin/1.0.0/publish"))
+                .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")))
+
+
+        filePutUris.each { fileUri ->
+            stubFor(put(urlEqualTo(fileUri))
+                    .willReturn(aResponse()
+                    .withStatus(200)
+                    .withHeader("Content-Type", "application/json")))
+        }
+
+        stubFor(get(urlEqualTo("/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml"))
+                .willReturn(aResponse()
+                .withStatus(404)
+                .withHeader("Content-Type", "application/json")))
+
+        settingsFile << """enableFeaturePreview("GRADLE_METADATA")"""
+
+        buildFile << """ 
+            apply plugin: 'java'
+            apply plugin: 'nebula.nebula-bintray'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0.0'
+            description = 'my plugin'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'http://localhost:${wireMockRule.port()}'
+                pkgName = 'my-plugin'
+                autoPublish = true
+            }
+            
+        """
+
+        writeHelloWorld()
+
+        when:
+        def result = runTasksSuccessfully('publishMavenPublicationToBintrayRepository')
+
+        then:
+        result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar to repository remote at")
+        result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom to repository remote at")
+        result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module to repository remote at")
+        result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml to repository remote at")
+    }
+
 
     void writeHelloWorld(String dottedPackage = 'netflix.hello') {
         writeHelloWorld(dottedPackage, getProjectDir())
