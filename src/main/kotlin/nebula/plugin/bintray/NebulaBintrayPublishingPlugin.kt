@@ -113,16 +113,16 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     }
 
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {
-        if(project.hasProperty("bintray.user")) {
-            bintray.user.set(project.prop("bintray.user"))
-        } else if(project.hasProperty("bintrayUser")) {
+        if(project.hasProperty("bintrayUser")) {
             bintray.user.set(project.prop("bintrayUser"))
+        } else if(project.hasProperty("bintray.user")) {
+            bintray.user.set(project.prop("bintray.user"))
         }
 
-        if(project.hasProperty("bintray.apiKey")) {
-            bintray.apiKey.set(project.prop("bintray.apiKey"))
-        } else if(project.hasProperty("bintrayKey")) {
+        if(project.hasProperty("bintrayKey")) {
             bintray.apiKey.set(project.prop("bintrayKey"))
+        } else if(project.hasProperty("bintray.apiKey")) {
+            bintray.apiKey.set(project.prop("bintray.apiKey"))
         }
     }
 
