@@ -40,7 +40,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             pkgName.set(bintray.pkgName)
             repo.set(bintray.repo)
             userOrg.set(bintray.userOrg)
-            version.set(project.version as String)
+            version.set(project.version.toString())
             desc.set(description)
             name.set(project.name)
             licenses.set(bintray.licenses)
@@ -59,7 +59,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             pkgName.set(bintray.pkgName)
             repo.set(bintray.repo)
             userOrg.set(bintray.userOrg)
-            version.set(project.version as String)
+            version.set(project.version.toString())
             onlyIf { bintray.autoPublish.getOrElse(false) }
         }
 
