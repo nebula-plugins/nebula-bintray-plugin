@@ -13,11 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+buildscript {
+    repositories { jcenter() }
+    dependencies {
+        classpath('com.netflix.nebula:nebula-plugin-plugin:9.2.4')
+        classpath('com.netflix.nebula:nebula-bintray-plugin:5.0.0')
+    }
+}
 
 plugins {
-    id 'nebula.plugin-plugin' version '9.2.2'
     id 'org.ysb33r.gradletest' version '0.5.4'
 }
+
+apply plugin: 'nebula.plugin-plugin'
 
 description 'Additional Bintray tasks'
 
