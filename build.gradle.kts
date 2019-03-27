@@ -1,3 +1,7 @@
+import nebula.plugin.contacts.Contact
+import nebula.plugin.contacts.ContactsExtension
+import org.jfrog.gradle.plugin.artifactory.dsl.PublisherConfig
+
 /*
  * Copyright 2014-2019 Netflix, Inc.
  *
@@ -22,6 +26,13 @@ plugins {
 description = "Additional Bintray tasks"
 
 group = "com.netflix.nebula"
+
+val contact = Contact("robertoperezalcolea.info")
+contact.moniker = "Roberto Perez"
+contact.github = "rpalcolea"
+contacts {
+    people.set("robertoperezalcolea.info", contact)
+}
 
 
 dependencies {
