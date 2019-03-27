@@ -76,7 +76,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                             project.logger.warn("Skipping adding Bintray repository - Neither bintray.user or bintray.userOrg defined")
                         } else {
                             name = "Bintray"
-                            url = project.uri("${bintray.apiUrl.get()}/maven/${bintray.subject()}/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version}")
+                            url = project.uri("${bintray.apiUrl.get()}/maven/${bintray.subject()}/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}")
                             credentials {
                                 username = bintray.user.get()
                                 password = bintray.apiKey.get()
@@ -91,7 +91,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                     project.logger.warn("Skipping task dependencies setup - Neither bintray.user or bintray.userOrg defined")
                 } else {
                     val subject = bintray.subject()
-                    val repoUrl = "${bintray.apiUrl.get()}/maven/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version}"
+                    val repoUrl = "${bintray.apiUrl.get()}/maven/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}"
                     if (repository.url == project.uri(repoUrl)) {
                         dependsOn(publishPackageToBintray)
                         finalizedBy(publishVersionToBintray)
@@ -102,6 +102,10 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     }
 
     private fun configureBintrayExtensionConventions(bintray: BintrayExtension, project: Project) {
+        bintray.user.convention("MY_USER")
+        bintray.apiKey.convention("MY_API_KEY")
+        bintray.apiUrl.convention("https://api.bintray.com")
+        bintray.pkgName.convention(project.name)
         bintray.repo.convention("gradle-plugins")
         bintray.userOrg.convention("nebula")
         bintray.licenses.convention(listOf("Apache-2.0"))
