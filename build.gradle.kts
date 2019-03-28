@@ -50,6 +50,7 @@ pluginBundle {
     website = "https://github.com/nebula-plugins/nebula-bintray-plugin"
     vcsUrl = "https://github.com/nebula-plugins/nebula-bintray-plugin.git"
     description = "Plugins to configure common configuration"
+    tags = listOf("nebula")
 
     mavenCoordinates {
         groupId = "com.netflix.nebula"
