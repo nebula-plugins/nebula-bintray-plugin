@@ -20,7 +20,7 @@ import org.jfrog.gradle.plugin.artifactory.dsl.PublisherConfig
 
 plugins {
     `kotlin-dsl`
-    id("nebula.plugin-plugin") version "9.2.4"
+    id("nebula.plugin-plugin") version "9.3.4"
 }
 
 description = "Additional Bintray tasks"
