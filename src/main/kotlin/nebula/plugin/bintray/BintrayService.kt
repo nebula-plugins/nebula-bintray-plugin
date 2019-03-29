@@ -47,7 +47,7 @@ interface BintrayService {
     ): Call<ResponseBody>
 
     @Headers("Content-Type: application/json")
-    @PUT("/packages/{subject}/{repo}")
+    @PATCH("/packages/{subject}/{repo}")
     fun updatePackage(
             @Path("subject") subject: String,
             @Path("repo") repo: String,

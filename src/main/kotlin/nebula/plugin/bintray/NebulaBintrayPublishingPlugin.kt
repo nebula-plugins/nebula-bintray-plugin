@@ -49,7 +49,6 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             websiteUrl.set(bintray.websiteUrl)
             issueTrackerUrl.set(bintray.issueTrackerUrl)
             vcsUrl.set(bintray.vcsUrl)
-            onlyIf { bintray.autoPublish.getOrElse(false) }
         }
 
         val publishVersionToBintray = project.tasks.register<NebulaBintrayVersionTask>("publishVersionToBintray") {
@@ -60,7 +59,6 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             repo.set(bintray.repo)
             userOrg.set(bintray.userOrg)
             version.set(project.version.toString())
-            onlyIf { bintray.autoPublish.getOrElse(false) }
         }
 
         project.afterEvaluate {

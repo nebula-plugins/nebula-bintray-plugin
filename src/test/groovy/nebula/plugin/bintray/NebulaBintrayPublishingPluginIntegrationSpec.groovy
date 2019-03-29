@@ -60,7 +60,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
-        stubFor(put(urlEqualTo("/packages/nebula/gradle-plugins"))
+        stubFor(patch(urlEqualTo("/packages/nebula/gradle-plugins"))
                 .willReturn(aResponse()
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
@@ -179,7 +179,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
-        stubFor(put(urlEqualTo("/packages/nebula/gradle-plugins"))
+        stubFor(patch(urlEqualTo("/packages/nebula/gradle-plugins"))
                 .withRequestBody(containing("\"name\":\"build-fails-if-bad-response-from-bintray-when-updating-package-information\""))
                 .withRequestBody(containing("\"vcs_url\":\"https://github.com/nebula-plugins/build-fails-if-bad-response-from-bintray-when-updating-package-information.git\""))
                 .willReturn(aResponse()
@@ -332,7 +332,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
-        stubFor(put(urlEqualTo("/packages/nebula/gradle-plugins"))
+        stubFor(patch(urlEqualTo("/packages/nebula/gradle-plugins"))
                 .withRequestBody(containing("\"name\":\"publishes-a-plugin-to-bintray\""))
                 .withRequestBody(containing("\"vcs_url\":\"https://github.com/nebula-plugins/publishes-a-plugin-to-bintray.git\""))
                 .willReturn(aResponse()
@@ -403,7 +403,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
-        stubFor(put(urlEqualTo("/packages/nebula/gradle-plugins"))
+        stubFor(patch(urlEqualTo("/packages/nebula/gradle-plugins"))
                 .withRequestBody(containing("\"name\":\"publication-fails-if-repository-is-not-reachable\""))
                 .withRequestBody(containing("\"vcs_url\":\"https://github.com/nebula-plugins/publication-fails-if-repository-is-not-reachable.git\""))
                 .willReturn(aResponse()
@@ -479,7 +479,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
-        stubFor(put(urlEqualTo("/packages/nebula/gradle-plugins"))
+        stubFor(patch(urlEqualTo("/packages/nebula/gradle-plugins"))
                 .withRequestBody(containing("\"name\":\"publishes-a-plugin-to-bintray-with-gradle-metadata\""))
                 .withRequestBody(containing("\"vcs_url\":\"https://github.com/nebula-plugins/publishes-a-plugin-to-bintray-with-gradle-metadata.git\""))
                 .willReturn(aResponse()
