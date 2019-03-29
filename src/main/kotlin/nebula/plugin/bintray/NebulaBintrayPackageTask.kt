@@ -54,6 +54,8 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
                 .user(user.get())
                 .apiUrl(apiUrl.get())
                 .apiKey(apiKey.get())
+                .retryDelayInSeconds(15)
+                .maxRetries(3)
                 .build()
 
         val packageRequest = PackageRequest(

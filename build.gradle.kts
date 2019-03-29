@@ -1,6 +1,4 @@
 import nebula.plugin.contacts.Contact
-import nebula.plugin.contacts.ContactsExtension
-import org.jfrog.gradle.plugin.artifactory.dsl.PublisherConfig
 
 /*
  * Copyright 2014-2019 Netflix, Inc.
@@ -36,6 +34,7 @@ contacts {
 
 
 dependencies {
+    implementation("net.jodah:failsafe:2.0.1")
     implementation("com.squareup.retrofit2:retrofit:2.5.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.5.0")
     implementation("com.squareup.moshi:moshi-kotlin:1.8.0")
@@ -75,3 +74,7 @@ gradlePlugin {
     }
 }
 
+java {
+    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
