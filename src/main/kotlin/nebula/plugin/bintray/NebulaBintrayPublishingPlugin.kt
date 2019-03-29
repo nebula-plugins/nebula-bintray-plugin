@@ -74,7 +74,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                             project.logger.warn("Skipping adding Bintray repository - Neither bintray.user or bintray.userOrg defined")
                         } else {
                             name = "Bintray"
-                            url = project.uri("${bintray.apiUrl.get()}/maven/${bintray.subject()}/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}")
+                            url = project.uri("${bintray.apiUrl.get()}/content/${bintray.subject()}/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}")
                             credentials {
                                 username = bintray.user.get()
                                 password = bintray.apiKey.get()
@@ -89,7 +89,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                     project.logger.warn("Skipping task dependencies setup - Neither bintray.user or bintray.userOrg defined")
                 } else {
                     val subject = bintray.subject()
-                    val repoUrl = "${bintray.apiUrl.get()}/maven/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}"
+                    val repoUrl = "${bintray.apiUrl.get()}/content/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}"
                     if (repository.url == project.uri(repoUrl)) {
                         dependsOn(publishPackageToBintray)
                         finalizedBy(publishVersionToBintray)
