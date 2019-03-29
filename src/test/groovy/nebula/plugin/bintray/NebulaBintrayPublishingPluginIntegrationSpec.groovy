@@ -273,15 +273,15 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
 
     def 'publishes a plugin to bintray'() {
         given:
-        List<String> filePutUris = ["/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar.sha1",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom.sha1",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml.sha1"]
+        List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml.sha1"]
 
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
@@ -309,7 +309,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                     .withHeader("Content-Type", "application/json")))
         }
 
-        stubFor(get(urlEqualTo("/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml"))
+        stubFor(get(urlEqualTo("/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml"))
                 .willReturn(aResponse()
                 .withStatus(404)
                 .withHeader("Content-Type", "application/json")))
@@ -346,14 +346,14 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
 
     def 'publication fails if repository is not reachable'() {
         given:
-        List<String> filePutUris = ["/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar.sha1",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom.sha1",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.sha1"]
+        List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.sha1"]
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
                 .willReturn(aResponse()
@@ -379,7 +379,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                     .withHeader("Content-Type", "application/json")))
         }
 
-        stubFor(put(urlEqualTo("/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom"))
+        stubFor(put(urlEqualTo("/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom"))
                 .willReturn(aResponse()
                 .withStatus(500)
                 .withHeader("Content-Type", "application/json")))
@@ -417,18 +417,18 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
 
     def 'publishes a plugin to bintray with gradle metadata'() {
         given:
-        List<String> filePutUris = ["/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.sha1",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.sha1",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.sha1",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.md5",
-                                    "/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.sha1"]
+        List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.sha1"]
 
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
@@ -456,7 +456,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                     .withHeader("Content-Type", "application/json")))
         }
 
-        stubFor(get(urlEqualTo("/maven/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml"))
+        stubFor(get(urlEqualTo("/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml"))
                 .willReturn(aResponse()
                 .withStatus(404)
                 .withHeader("Content-Type", "application/json")))
