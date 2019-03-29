@@ -39,12 +39,16 @@ class BintrayClient private constructor(val bintrayService: BintrayService) {
 
     fun createOrUpdatePackage(subject: String, repo: String, pkg: String, packageRequest: PackageRequest) {
         val getPackageResult = bintrayService.getPackage(subject, repo, pkg).execute()
-        if(!getPackageResult.isSuccessful && getPackageResult.code() != 404) {
+        if(getPackageResult.isSuccessful) {
+            return
+        }
+
+        if(getPackageResult.code() != 404) {
             throw GradleException("Could not obtain information for package $repo/$subject/$pkg - ${getPackageResult.errorBody()?.string()}")
         }
 
-        val createOrUpdatePackageResult = if(getPackageResult.isSuccessful)  bintrayService.updatePackage(subject, repo, packageRequest).execute() else bintrayService.createPackage(subject, repo, packageRequest).execute()
-        if(!createOrUpdatePackageResult.isSuccessful) {
+        val createPackageResult = bintrayService.createPackage(subject, repo, packageRequest).execute()
+        if(!createPackageResult.isSuccessful) {
             throw GradleException("Could not create or update information for package $repo/$subject/$pkg - ${getPackageResult.errorBody()?.string()}")
         }
     }
