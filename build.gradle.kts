@@ -18,7 +18,7 @@ import nebula.plugin.contacts.Contact
 
 plugins {
     `kotlin-dsl`
-    id("nebula.plugin-plugin") version "9.3.7"
+    id("nebula.plugin-plugin") version "11.0.1"
 }
 
 description = "Additional Bintray tasks"
