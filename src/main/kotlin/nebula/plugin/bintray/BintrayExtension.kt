@@ -34,6 +34,7 @@ open class BintrayExtension(objects: ObjectFactory) {
     val websiteUrl: Property<String> = objects.property()
     val issueTrackerUrl: Property<String> = objects.property()
     val vcsUrl: Property<String> = objects.property()
+    val componentsForExport: ListProperty<String> = objects.listProperty(String::class.java)
 
     fun hasSubject(): Boolean = userOrg.isPresent || user.isPresent
 
