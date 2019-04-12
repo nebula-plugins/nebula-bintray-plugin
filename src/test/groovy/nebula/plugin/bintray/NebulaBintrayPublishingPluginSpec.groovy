@@ -16,6 +16,7 @@
 package nebula.plugin.bintray
 
 import nebula.test.PluginProjectSpec
+import org.gradle.api.UnknownTaskException
 
 class NebulaBintrayPublishingPluginSpec extends PluginProjectSpec {
     @Override
@@ -30,5 +31,21 @@ class NebulaBintrayPublishingPluginSpec extends PluginProjectSpec {
         then:
         project.tasks.getByName('publishPackageToBintray') != null
         project.tasks.getByName('publishVersionToBintray') != null
+    }
+
+    def 'apply plugin with componentsForExport'() {
+        when:
+          project.plugins.apply(NebulaBintrayPublishingPlugin)
+          project.configure(project) {
+              bintray {
+                  componentsForExport = []
+              }
+          }
+
+          project.tasks.getByName('publishMavenPublicationToBintrayRepository') == null
+
+        then:
+          def e = thrown(UnknownTaskException)
+          e.message.contains 'Task with name \'publishMavenPublicationToBintrayRepository\' not found'
     }
 }
