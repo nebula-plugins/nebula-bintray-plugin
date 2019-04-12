@@ -477,6 +477,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
                 autoPublish = true
+                componentsForExport = ['java']
             }
             
         """
@@ -492,6 +493,37 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module to repository remote at")
         result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml to repository remote at")
     }
+
+    def 'should not publish components when set empty componentsForExport'() {
+        given:
+          buildFile << """ 
+            apply plugin: 'java'
+            apply plugin: 'nebula.nebula-bintray'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0.0'
+            description = 'my plugin'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'http://localhost:${wireMockRule.port()}'
+                pkgName = 'my-plugin'
+                autoPublish = true
+                componentsForExport = []
+            }
+            
+        """
+
+          writeHelloWorld()
+
+        when:
+          def result = runTasksSuccessfully('publishAllPublicationsToBintrayRepository')
+
+        then:
+          result.wasUpToDate('publishAllPublicationsToBintrayRepository')
+    }
+
 
 
     void writeHelloWorld(String dottedPackage = 'netflix.hello') {

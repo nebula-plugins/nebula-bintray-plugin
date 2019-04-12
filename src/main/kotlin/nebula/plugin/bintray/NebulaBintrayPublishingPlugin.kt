@@ -21,6 +21,7 @@ import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
+import org.gradle.api.tasks.bundling.Zip
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
@@ -64,10 +65,16 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         project.afterEvaluate {
             project.extensions.configure<PublishingExtension> {
                 publications {
-                    register("maven", MavenPublication::class) {
-                        from(components.getByName("java"))
-                    }
+                    bintray.componentsForExport.getOrElse(emptyList())
+                            .forEach { componentName: String ->
+                                val publicationName = if (componentName == "java") "maven" else "maven${componentName.capitalize()}"
+
+                                register(publicationName, MavenPublication::class) {
+                                    from(components.getByName(componentName))
+                                }
+                            }
                 }
+
                 repositories {
                     maven {
                         if (!bintray.hasSubject()) {
@@ -112,18 +119,19 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         bintray.websiteUrl.convention("https://github.com/nebula-plugins/${project.name}")
         bintray.issueTrackerUrl.convention("https://github.com/nebula-plugins/${project.name}/issues")
         bintray.vcsUrl.convention("https://github.com/nebula-plugins/${project.name}.git")
+        bintray.componentsForExport.convention(listOf("java"))
     }
 
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {
-        if(project.hasProperty("bintrayUser")) {
+        if (project.hasProperty("bintrayUser")) {
             bintray.user.set(project.prop("bintrayUser"))
-        } else if(project.hasProperty("bintray.user")) {
+        } else if (project.hasProperty("bintray.user")) {
             bintray.user.set(project.prop("bintray.user"))
         }
 
-        if(project.hasProperty("bintrayKey")) {
+        if (project.hasProperty("bintrayKey")) {
             bintray.apiKey.set(project.prop("bintrayKey"))
-        } else if(project.hasProperty("bintray.apiKey")) {
+        } else if (project.hasProperty("bintray.apiKey")) {
             bintray.apiKey.set(project.prop("bintray.apiKey"))
         }
     }
