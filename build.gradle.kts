@@ -17,11 +17,12 @@ import nebula.plugin.contacts.Contact
  */
 
 plugins {
+    `java-gradle-plugin`
     `kotlin-dsl`
     id("nebula.plugin-plugin") version "11.2.1"
 }
 
-description = "Additional Bintray tasks"
+description = "Nebula bintray publishing using Gradle's MavenPublication"
 
 group = "com.netflix.nebula"
 
@@ -49,11 +50,28 @@ pluginBundle {
     website = "https://github.com/nebula-plugins/nebula-bintray-plugin"
     vcsUrl = "https://github.com/nebula-plugins/nebula-bintray-plugin.git"
     description = "Plugins to configure common configuration"
-    tags = listOf("nebula")
+    description = "Uploads candidate and final artifacts to bintray with Nebula defaults"
+    tags = listOf("nebula", "bintray")
 
     mavenCoordinates {
         groupId = "com.netflix.nebula"
         artifactId = "nebula-bintray-plugin"
+    }
+
+    plugins {
+        create("nebulaBintray") {
+            id = "nebula.nebula-bintray"
+            displayName = "Nebula Bintray plugin"
+            description = "Applies nebula.nebula-bintray-publishing and nebula.nebula-ojo-publishing"
+            description = "Uploads candidate and final artifacts to bintray with Nebula defaults"
+            tags = listOf("nebula", "bintray")
+        }
+        create("nebulaBintrayPublishing") {
+            id = "nebula.nebula-bintray-publishing"
+            displayName = "Nebula Bintray Publishing plugin"
+            description = "Uploads candidate and final artifacts to bintray with Nebula defaults"
+            tags = listOf("nebula", "bintray")
+        }
     }
 }
 
