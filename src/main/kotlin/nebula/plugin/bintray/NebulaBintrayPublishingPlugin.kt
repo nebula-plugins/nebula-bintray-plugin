@@ -162,12 +162,16 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     private fun setMavenCentralCredentials(bintray: BintrayExtension, project: Project) {
         if (project.hasProperty("sonatypeUsername")) {
             bintray.sonatypeUsername.set(project.prop("sonatypeUsername"))
+        }  else if (project.hasProperty("sonatype.username")) {
+            bintray.sonatypeUsername.set(project.prop("sonatype.username"))
         } else if (System.getenv("sonatypeUsername") != null) {
             bintray.sonatypeUsername.set(System.getenv("sonatypeUsername"))
         }
 
         if (project.hasProperty("sonatypePassword")) {
             bintray.sonatypePassword.set(project.prop("sonatypePassword"))
+        } else if (project.hasProperty("sonatype.password")) {
+            bintray.sonatypePassword.set(project.prop("sonatype.password"))
         } else if (System.getenv("sonatypePassword") != null) {
             bintray.sonatypePassword.set(System.getenv("sonatypePassword"))
         }
