@@ -28,6 +28,7 @@ import java.io.IOException
 import java.time.Duration
 import net.jodah.failsafe.Failsafe
 import org.slf4j.LoggerFactory
+import java.util.concurrent.TimeUnit
 
 
 class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig) {
@@ -98,6 +99,8 @@ class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig
 fun bintray(apiUrl: String, user: String, apiKey: String): BintrayService = Retrofit.Builder()
         .baseUrl(apiUrl)
         .client(OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(120, TimeUnit.SECONDS)
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
                 .addInterceptor({ chain ->
                     chain.proceed(chain.request().newBuilder()
