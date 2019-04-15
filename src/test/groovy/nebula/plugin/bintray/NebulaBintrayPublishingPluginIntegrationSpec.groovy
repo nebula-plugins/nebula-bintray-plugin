@@ -295,7 +295,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
-        stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/version/1.0.0"))
+        stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/versions/1.0.0"))
                 .withRequestBody(equalToJson("{\"sonatypeUsername\":\"my-mavencentral-username\",\"sonatypePassword\":\"my-mavencentral-password\"}"))
                 .willReturn(aResponse()
                         .withStatus(200)
@@ -449,7 +449,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
-        stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/version/1.0.0"))
+        stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/versions/1.0.0"))
                 .withRequestBody(equalToJson("{\"sonatypeUsername\":\"my-mavencentral-username\",\"sonatypePassword\":\"my-mavencentral-password\"}"))
                 .willReturn(aResponse()
                         .withStatus(200)

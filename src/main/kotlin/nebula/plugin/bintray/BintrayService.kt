@@ -55,7 +55,7 @@ interface BintrayService {
     ): Call<ResponseBody>
 
     @Headers("Content-Type: application/json")
-    @POST("/maven_central_sync/{subject}/{repo}/{pkg}/version/{version}")
+    @POST("/maven_central_sync/{subject}/{repo}/{pkg}/versions/{version}")
     fun syncVersionToMavenCentral(
             @Path("subject") subject: String,
             @Path("repo") repo: String,
