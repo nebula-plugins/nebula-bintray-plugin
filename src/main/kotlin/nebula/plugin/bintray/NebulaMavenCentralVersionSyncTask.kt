@@ -46,7 +46,7 @@ open class NebulaMavenCentralVersionSyncTask : NebulaBintrayAbstractTask() {
             logger.info("Skipping maven central sync because credentials are not present. Please set sonatypeUsername and sonatypePassword system properties")
             return
         }
-        
+
         try {
             bintrayClient.syncVersionToMavenCentral(resolveSubject.get(), repo.get(), resolvedPkgName, resolvedVersion, MavenCentralSyncRequest(sonatypeUsername.get(), sonatypePassword.get()))
             logger.info("$resolvedPkgName version $resolvedVersion has been synced to maven central")
