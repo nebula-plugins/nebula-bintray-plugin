@@ -99,8 +99,8 @@ class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig
 fun bintray(apiUrl: String, user: String, apiKey: String): BintrayService = Retrofit.Builder()
         .baseUrl(apiUrl)
         .client(OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)
-                .connectTimeout(120, TimeUnit.SECONDS)
+                .readTimeout(4, TimeUnit.MINUTES)
+                .connectTimeout(4, TimeUnit.MINUTES)
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
                 .addInterceptor({ chain ->
                     chain.proceed(chain.request().newBuilder()
