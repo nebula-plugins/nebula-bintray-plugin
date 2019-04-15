@@ -20,6 +20,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.gradle.kotlin.dsl.property
+import java.lang.Exception
 
 open class NebulaMavenCentralVersionSyncTask : NebulaBintrayAbstractTask() {
     @Input
@@ -45,7 +46,13 @@ open class NebulaMavenCentralVersionSyncTask : NebulaBintrayAbstractTask() {
             logger.info("Skipping maven central sync because credentials are not present. Please set sonatypeUsername and sonatypePassword system properties")
             return
         }
-        bintrayClient.syncVersionToMavenCentral(resolveSubject.get(), repo.get(), resolvedPkgName, resolvedVersion, MavenCentralSyncRequest(sonatypeUsername.get(), sonatypePassword.get()))
-        logger.info("$resolvedPkgName version $resolvedVersion has been synced to maven central")
+        
+        try {
+            bintrayClient.syncVersionToMavenCentral(resolveSubject.get(), repo.get(), resolvedPkgName, resolvedVersion, MavenCentralSyncRequest(sonatypeUsername.get(), sonatypePassword.get()))
+            logger.info("$resolvedPkgName version $resolvedVersion has been synced to maven central")
+        } catch (e: Exception) {
+            logger.error("Could not sync $version versio to maven central")
+        }
+
     }
 }
