@@ -80,7 +80,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
             }
             
         """
@@ -115,7 +114,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
             }
             
         """
@@ -158,7 +156,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
             }
             
         """
@@ -193,7 +190,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
             }
             
         """
@@ -228,7 +224,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
             }
             
         """
@@ -256,7 +251,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
             }
             
         """
@@ -301,6 +295,12 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
+        stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/version/1.0.0"))
+                .withRequestBody(equalToJson("{\"sonatypeUsername\":\"my-mavencentral-username\",\"sonatypePassword\":\"my-mavencentral-password\"}"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
 
         filePutUris.each { fileUri ->
             stubFor(put(urlEqualTo(fileUri))
@@ -328,7 +328,8 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
+                sonatypeUsername = 'my-mavencentral-username'
+                sonatypePassword = 'my-mavencentral-password'
             }
             
         """
@@ -342,6 +343,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar to repository remote at")
         result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom to repository remote at")
         result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml to repository remote at")
+        result.standardOutput.contains("my-plugin version 1.0.0 has been synced to maven central")
     }
 
     def 'publication fails if repository is not reachable'() {
@@ -398,7 +400,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
             }
            
             
@@ -448,6 +449,11 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
+        stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/version/1.0.0"))
+                .withRequestBody(equalToJson("{\"sonatypeUsername\":\"my-mavencentral-username\",\"sonatypePassword\":\"my-mavencentral-password\"}"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
 
         filePutUris.each { fileUri ->
             stubFor(put(urlEqualTo(fileUri))
@@ -476,8 +482,9 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
                 componentsForExport = ['java']
+                sonatypeUsername = 'my-mavencentral-username'
+                sonatypePassword = 'my-mavencentral-password'
             }
             
         """
@@ -492,7 +499,85 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom to repository remote at")
         result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module to repository remote at")
         result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml to repository remote at")
+        result.standardOutput.contains("my-plugin version 1.0.0 has been synced to maven central")
     }
+
+    def 'publishes a plugin to bintray - no maven sync if disabled'() {
+        given:
+        List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml.sha1"]
+
+
+        stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
+        stubFor(patch(urlEqualTo("/packages/nebula/gradle-plugins"))
+                .withRequestBody(containing("\"name\":\"publishes-a-plugin-to-bintray-no-maven-sync-if-disabled\""))
+                .withRequestBody(containing("\"vcs_url\":\"https://github.com/nebula-plugins/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled.git\""))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
+        stubFor(post(urlEqualTo("/content/nebula/gradle-plugins/my-plugin/1.0.0/publish"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
+
+        filePutUris.each { fileUri ->
+            stubFor(put(urlEqualTo(fileUri))
+                    .willReturn(aResponse()
+                            .withStatus(200)
+                            .withHeader("Content-Type", "application/json")))
+        }
+
+        stubFor(get(urlEqualTo("/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml"))
+                .willReturn(aResponse()
+                        .withStatus(404)
+                        .withHeader("Content-Type", "application/json")))
+
+
+        buildFile << """ 
+            apply plugin: 'java'
+            apply plugin: 'nebula.nebula-bintray'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0.0'
+            description = 'my plugin'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'http://localhost:${wireMockRule.port()}'
+                pkgName = 'my-plugin'
+                sonatypeUsername = 'my-mavencentral-username'
+                sonatypePassword = 'my-mavencentral-password'
+                syncToMavenCentral = false
+            }
+            
+        """
+
+        writeHelloWorld()
+
+        when:
+        def result = runTasksSuccessfully('publishMavenPublicationToBintrayRepository')
+
+        then:
+        result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar to repository remote at")
+        result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom to repository remote at")
+        result.standardOutput.contains("Uploading: test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml to repository remote at")
+        !result.standardOutput.contains("my-plugin version 1.0.0 has been synced to maven central")
+    }
+
 
     def 'should not publish components when set empty componentsForExport'() {
         given:
@@ -509,7 +594,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
-                autoPublish = true
                 componentsForExport = []
             }
             

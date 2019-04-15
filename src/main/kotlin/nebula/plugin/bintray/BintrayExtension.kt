@@ -27,7 +27,6 @@ open class BintrayExtension(objects: ObjectFactory) {
     val pkgName: Property<String> = objects.property()
     val repo: Property<String> = objects.property()
     val userOrg: Property<String> = objects.property()
-    val autoPublish: Property<Boolean> = objects.property()
     val licenses: ListProperty<String> = objects.listProperty(String::class.java)
     val customLicenses: ListProperty<String> = objects.listProperty(String::class.java)
     val labels: ListProperty<String> = objects.listProperty(String::class.java)
@@ -35,7 +34,9 @@ open class BintrayExtension(objects: ObjectFactory) {
     val issueTrackerUrl: Property<String> = objects.property()
     val vcsUrl: Property<String> = objects.property()
     val componentsForExport: ListProperty<String> = objects.listProperty(String::class.java)
-
+    val syncToMavenCentral: Property<Boolean> = objects.property()
+    val sonatypeUsername: Property<String> = objects.property()
+    val sonatypePassword: Property<String> = objects.property()
     fun hasSubject(): Boolean = userOrg.isPresent || user.isPresent
 
     fun subject(): String {

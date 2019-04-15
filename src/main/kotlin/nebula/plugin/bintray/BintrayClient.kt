@@ -85,6 +85,14 @@ class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig
             throw GradleException("Could not publish $version version for package $repo/$subject/$pkg - ${publishVersionResult.errorBody()?.string()}")
         }
     }
+
+    fun syncVersionToMavenCentral(subject: String, repo: String, pkg: String, version: String, mavenCentralSyncRequest: MavenCentralSyncRequest) {
+        val syncVersionToMavenCentralResult = Failsafe.with(retryPolicy).get( { ->
+            bintrayService.syncVersionToMavenCentral(subject, repo, pkg, version, mavenCentralSyncRequest).execute() } )
+        if(!syncVersionToMavenCentralResult.isSuccessful) {
+            logger.error("Could not sync $version version for package $repo/$subject/$pkg to maven central - ${syncVersionToMavenCentralResult.errorBody()?.string()}")
+        }
+    }
 }
 
 fun bintray(apiUrl: String, user: String, apiKey: String): BintrayService = Retrofit.Builder()
