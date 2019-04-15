@@ -210,6 +210,43 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         result.standardOutput.contains('my-plugin version 1.0.0 has been published')
     }
 
+    def 'publishes version to bintray- no maven sync'() {
+        given:
+        stubFor(post(urlEqualTo("/content/nebula/gradle-plugins/my-plugin/1.0.0/publish"))
+                .willReturn(aResponse()
+                .withStatus(200)
+                .withHeader("Content-Type", "application/json")))
+
+        buildFile << """ 
+            apply plugin: 'nebula.nebula-bintray'
+            apply plugin: 'java'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0.0'
+            description = 'my plugin'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'http://localhost:${wireMockRule.port()}'
+                pkgName = 'my-plugin'
+                syncToMavenCentral = false
+                sonatypeUsername = 'my-mavencentral-username'
+                sonatypePassword = 'my-mavencentral-password'         
+            }
+            
+        """
+
+        writeHelloWorld()
+
+        when:
+        def result = runTasks('publishVersionToBintray')
+
+        then:
+        result.standardOutput.contains('my-plugin version 1.0.0 has been published')
+        result.standardOutput.contains('Task :syncVersionToMavenCentral SKIPPED')
+    }
+
     def 'publishes version to bintray fails if version already exists'() {
         given:
         stubFor(post(urlEqualTo("/content/nebula/gradle-plugins/my-plugin/1.0.0/publish"))
