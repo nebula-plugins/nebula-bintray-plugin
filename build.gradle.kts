@@ -46,6 +46,7 @@ dependencies {
     testImplementation("com.github.tomakehurst:wiremock:2.22.0")
 }
 
+
 pluginBundle {
     website = "https://github.com/nebula-plugins/nebula-bintray-plugin"
     vcsUrl = "https://github.com/nebula-plugins/nebula-bintray-plugin.git"
