@@ -176,6 +176,11 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
+        stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/versions/1.0.0"))
+                .withRequestBody(equalToJson("{\"username\":\"my-mavencentral-username\",\"password\":\"my-mavencentral-password\", \"close\" : \"1\"}"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
 
         buildFile << """ 
             apply plugin: 'nebula.nebula-bintray'
@@ -190,6 +195,8 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
+                sonatypeUsername = 'my-mavencentral-username'
+                sonatypePassword = 'my-mavencentral-password'         
             }
             
         """
@@ -210,6 +217,11 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(400)
                 .withHeader("Content-Type", "application/json")))
 
+        stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/versions/1.0.0"))
+                .withRequestBody(equalToJson("{\"username\":\"my-mavencentral-username\",\"password\":\"my-mavencentral-password\", \"close\" : \"1\"}"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
 
         buildFile << """ 
             apply plugin: 'nebula.nebula-bintray'
@@ -224,6 +236,8 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
+                sonatypeUsername = 'my-mavencentral-username'
+                sonatypePassword = 'my-mavencentral-password'      
             }
             
         """
@@ -400,6 +414,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
+                syncToMavenCentral = false
             }
            
             
