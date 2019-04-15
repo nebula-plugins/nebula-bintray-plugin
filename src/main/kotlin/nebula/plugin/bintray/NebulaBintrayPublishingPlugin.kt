@@ -83,8 +83,10 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                             .forEach { componentName: String ->
                                 val publicationName = if (componentName == "java") "maven" else "maven${componentName.capitalize()}"
 
-                                register(publicationName, MavenPublication::class) {
-                                    from(components.getByName(componentName))
+                                if(!publicationName.contains("Marker")) {
+                                    register(publicationName, MavenPublication::class) {
+                                        from(components.getByName(componentName))
+                                    }
                                 }
                             }
                 }
@@ -117,6 +119,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                     }
                 }
             }
+
+
         }
     }
 
