@@ -21,7 +21,6 @@ import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
-import org.gradle.api.tasks.bundling.Zip
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
@@ -33,8 +32,9 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         val bintray = project.extensions.create("bintray", BintrayExtension::class)
         configureBintrayExtensionConventions(bintray, project)
         setBintrayCredentials(bintray, project)
+        setMavenCentralCredentials(bintray, project)
         val description = if (project.hasProperty("description") && project.description != null) project.description else project.name
-        val publishPackageToBintray = project.tasks.register<NebulaBintrayPackageTask>("publishPackageToBintray") {
+        val publishPackageToBintrayTask = project.tasks.register<NebulaBintrayPackageTask>("publishPackageToBintray") {
             user.set(bintray.user)
             apiKey.set(bintray.apiKey)
             apiUrl.set(bintray.apiUrl)
@@ -52,7 +52,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             vcsUrl.set(bintray.vcsUrl)
         }
 
-        val publishVersionToBintray = project.tasks.register<NebulaBintrayVersionTask>("publishVersionToBintray") {
+        val syncVersionToMavenCentralTask = project.tasks.register<NebulaMavenCentralVersionSyncTask>("syncVersionToMavenCentral") {
             user.set(bintray.user)
             apiKey.set(bintray.apiKey)
             apiUrl.set(bintray.apiUrl)
@@ -60,6 +60,20 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             repo.set(bintray.repo)
             userOrg.set(bintray.userOrg)
             version.set(project.version.toString())
+            sonatypeUsername.set(bintray.sonatypeUsername)
+            sonatypePassword.set(bintray.sonatypePassword)
+            onlyIf { bintray.syncToMavenCentral.get() }
+        }
+
+        val publishVersionToBintrayTask = project.tasks.register<NebulaBintrayVersionTask>("publishVersionToBintray") {
+            user.set(bintray.user)
+            apiKey.set(bintray.apiKey)
+            apiUrl.set(bintray.apiUrl)
+            pkgName.set(bintray.pkgName)
+            repo.set(bintray.repo)
+            userOrg.set(bintray.userOrg)
+            version.set(project.version.toString())
+            finalizedBy(syncVersionToMavenCentralTask)
         }
 
         project.afterEvaluate {
@@ -98,8 +112,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                     val subject = bintray.subject()
                     val repoUrl = "${bintray.apiUrl.get()}/content/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}"
                     if (repository.url == project.uri(repoUrl)) {
-                        dependsOn(publishPackageToBintray)
-                        finalizedBy(publishVersionToBintray)
+                        dependsOn(publishPackageToBintrayTask)
+                        finalizedBy(publishVersionToBintrayTask)
                     }
                 }
             }
@@ -120,6 +134,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         bintray.issueTrackerUrl.convention("https://github.com/nebula-plugins/${project.name}/issues")
         bintray.vcsUrl.convention("https://github.com/nebula-plugins/${project.name}.git")
         bintray.componentsForExport.convention(listOf("java"))
+        bintray.syncToMavenCentral.convention(true)
     }
 
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {
@@ -127,12 +142,30 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             bintray.user.set(project.prop("bintrayUser"))
         } else if (project.hasProperty("bintray.user")) {
             bintray.user.set(project.prop("bintray.user"))
+        } else if (System.getenv("bintrayUser") != null) {
+            bintray.user.set(System.getenv("bintrayUser"))
         }
 
         if (project.hasProperty("bintrayKey")) {
             bintray.apiKey.set(project.prop("bintrayKey"))
         } else if (project.hasProperty("bintray.apiKey")) {
             bintray.apiKey.set(project.prop("bintray.apiKey"))
+        } else if (System.getenv("bintrayKey") != null) {
+            bintray.apiKey.set(System.getenv("bintrayKey"))
+        }
+    }
+
+    private fun setMavenCentralCredentials(bintray: BintrayExtension, project: Project) {
+        if (project.hasProperty("sonatypeUsername")) {
+            bintray.sonatypeUsername.set(project.prop("sonatypeUsername"))
+        } else if (System.getenv("sonatypeUsername") != null) {
+            bintray.sonatypeUsername.set(System.getenv("sonatypeUsername"))
+        }
+
+        if (project.hasProperty("sonatypePassword")) {
+            bintray.sonatypePassword.set(project.prop("sonatypePassword"))
+        } else if (System.getenv("sonatypePassword") != null) {
+            bintray.sonatypePassword.set(System.getenv("sonatypePassword"))
         }
     }
 
