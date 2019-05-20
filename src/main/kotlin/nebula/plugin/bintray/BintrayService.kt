@@ -63,4 +63,15 @@ interface BintrayService {
             @Path("version") version: String,
             @Body body: MavenCentralSyncRequest
     ): Call<ResponseBody>
+
+    @POST("/gpg/{subject}/{repo}/{pkg}/versions/{version}")
+    fun gpgSign(
+            @Path("subject") subject: String,
+            @Path("repo") repo: String,
+            @Path("pkg") pkg: String,
+            @Path("version") version: String,
+            @HeaderMap headers: Map<String, String>
+    ): Call<ResponseBody>
+
+
 }
