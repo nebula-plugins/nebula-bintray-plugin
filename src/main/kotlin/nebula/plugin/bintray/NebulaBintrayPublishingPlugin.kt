@@ -33,6 +33,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         configureBintrayExtensionConventions(bintray, project)
         setBintrayCredentials(bintray, project)
         setMavenCentralCredentials(bintray, project)
+        setGpgPassphrase(bintray, project)
+
         val description = if (project.hasProperty("description") && project.description != null) project.description else project.name
         val publishPackageToBintrayTask = project.tasks.register<NebulaBintrayPackageTask>("publishPackageToBintray") {
             user.set(bintray.user)
@@ -65,6 +67,21 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             onlyIf { bintray.syncToMavenCentral.get() }
         }
 
+        val gpgSignVersionTask = project.tasks.register<NebulaGpgSignVersionTask>("gpgSignVersion") {
+            user.set(bintray.user)
+            apiKey.set(bintray.apiKey)
+            apiUrl.set(bintray.apiUrl)
+            pkgName.set(bintray.pkgName)
+            repo.set(bintray.repo)
+            userOrg.set(bintray.userOrg)
+            version.set(project.version.toString())
+            if(bintray.gpgPassphrase.isPresent) {
+                passphrase.set(bintray.gpgPassphrase)
+            }
+            onlyIf { bintray.gppSign.get() }
+            finalizedBy(syncVersionToMavenCentralTask)
+        }
+
         val publishVersionToBintrayTask = project.tasks.register<NebulaBintrayVersionTask>("publishVersionToBintray") {
             user.set(bintray.user)
             apiKey.set(bintray.apiKey)
@@ -73,7 +90,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             repo.set(bintray.repo)
             userOrg.set(bintray.userOrg)
             version.set(project.version.toString())
-            finalizedBy(syncVersionToMavenCentralTask)
+            finalizedBy(gpgSignVersionTask)
         }
 
         project.afterEvaluate {
@@ -139,6 +156,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         bintray.vcsUrl.convention("https://github.com/nebula-plugins/${project.name}.git")
         bintray.componentsForExport.convention(listOf("java"))
         bintray.syncToMavenCentral.convention(true)
+        bintray.gppSign.convention(true)
+        bintray.gpgPassphrase.convention("")
     }
 
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {
@@ -174,6 +193,16 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             bintray.sonatypePassword.set(project.prop("sonatype.password"))
         } else if (System.getenv("sonatypePassword") != null) {
             bintray.sonatypePassword.set(System.getenv("sonatypePassword"))
+        }
+    }
+
+    private fun setGpgPassphrase(bintray: BintrayExtension, project: Project) {
+        if (project.hasProperty("gpgPassphrase")) {
+            bintray.gpgPassphrase.set(project.prop("gpgPassphrase"))
+        } else if (project.hasProperty("bintray.version.gpgPassphrase")) {
+            bintray.gpgPassphrase.set(project.prop("bintray.version.gpgPassphrase"))
+        } else if (System.getenv("gpgPassphrase") != null) {
+            bintray.gpgPassphrase.set(System.getenv("gpgPassphrase"))
         }
     }
 

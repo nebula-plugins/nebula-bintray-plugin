@@ -37,6 +37,8 @@ open class BintrayExtension(objects: ObjectFactory) {
     val syncToMavenCentral: Property<Boolean> = objects.property()
     val sonatypeUsername: Property<String> = objects.property()
     val sonatypePassword: Property<String> = objects.property()
+    val gppSign:  Property<Boolean> = objects.property()
+    val gpgPassphrase:  Property<String?> = objects.property()
     fun hasSubject(): Boolean = userOrg.isPresent || user.isPresent
 
     fun subject(): String {

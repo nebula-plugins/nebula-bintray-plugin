@@ -94,6 +94,18 @@ class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig
             logger.error("Could not sync $version version for package $repo/$subject/$pkg to maven central - ${syncVersionToMavenCentralResult.errorBody()?.string()}")
         }
     }
+
+    fun gpgSignVersion(subject: String, repo: String, pkg: String, version: String, passphrase: String?) {
+        val headers = mutableMapOf<String, String>()
+        if(!passphrase.isNullOrEmpty()) {
+            headers.put("X-GPG-PASSPHRASE", passphrase)
+        }
+        val gppSignVersionResult = Failsafe.with(retryPolicy).get( { ->
+            bintrayService.gpgSign(subject, repo, pkg, version, headers).execute() } )
+        if(!gppSignVersionResult.isSuccessful) {
+            throw GradleException("Could not gpg sign $version version for package $repo/$subject/$pkg - ${gppSignVersionResult.errorBody()?.string()}")
+        }
+    }
 }
 
 fun bintray(apiUrl: String, user: String, apiKey: String): BintrayService = Retrofit.Builder()
