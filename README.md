@@ -14,7 +14,7 @@ Usages
 To apply this plugin if using Gradle 2.1 or newer
 
     plugins {
-      id 'nebula.nebula-bintray' version '7.0.0'
+      id 'nebula.nebula-bintray' version '7.3.0'
     }
 
 
@@ -29,15 +29,6 @@ nebula-bintray-publishing
 ## Usage
 
 Sets defaults on many of the fields to push `MavenPublication` to bintray. This also covers the new Gradle metadata files.
-
-> if you want to use nebula-bintray plugin with non java projects, use next snippets
-
-```groovy
-bintray {
-    ...
-    componentsForExport = []
-}
-```
 
 LICENSE
 =======
