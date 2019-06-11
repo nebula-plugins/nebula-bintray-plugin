@@ -412,10 +412,10 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         def result = runTasksSuccessfully('publishMavenPublicationToBintrayRepository')
 
         then:
-        result.standardOutput.contains("Publishing to repository 'Bintray' (http://localhost:")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-1.0.0.jar to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-1.0.0.pom to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom")
-        result.standardOutput.contains("Uploading maven-metadata.xml to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml")
+        result.standardOutput.findAll("Uploading").size() >= 3
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.jar")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray/1.0.0/publishes-a-plugin-to-bintray-1.0.0.pom")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray/maven-metadata.xml")
         result.standardOutput.contains("my-plugin version 1.0.0 has been synced to maven central")
         result.standardOutput.contains("my-plugin version 1.0.0 has been signed with GPG key")
     }
@@ -584,11 +584,11 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         def result = runTasksSuccessfully('publishMavenPublicationToBintrayRepository')
 
         then:
-        result.standardOutput.contains("Publishing to repository 'Bintray' (http://localhost:")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module")
-        result.standardOutput.contains("Uploading maven-metadata.xml to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml")
+        result.standardOutput.findAll("Uploading").size() >= 3
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml")
         result.standardOutput.contains("my-plugin version 1.0.0 has been synced to maven central")
         result.standardOutput.contains("my-plugin version 1.0.0 has been signed with GPG key")
     }
@@ -668,10 +668,10 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         def result = runTasksSuccessfully('publishMavenPublicationToBintrayRepository')
 
         then:
-        result.standardOutput.contains("Publishing to repository 'Bintray' (http://localhost:")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom")
-        result.standardOutput.contains("Uploading maven-metadata.xml to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml")
+        result.standardOutput.findAll("Uploading").size() >= 3
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml")
         !result.standardOutput.contains("my-plugin version 1.0.0 has been synced to maven central")
     }
 
@@ -746,10 +746,10 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         def result = runTasksSuccessfully('publishMavenPublicationToBintrayRepository')
 
         then:
-        result.standardOutput.contains("Publishing to repository 'Bintray' (http://localhost:")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.jar to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.jar")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.pom to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.pom")
-        result.standardOutput.contains("Uploading maven-metadata.xml to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/maven-metadata.xml")
+        result.standardOutput.findAll("Uploading").size() >= 3
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.jar")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.pom")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/maven-metadata.xml")
         !result.standardOutput.contains("my-plugin version 1.0.0 has been synced to maven central")
         result.standardOutput.contains("Task :gpgSignVersion SKIPPED")
         !result.standardOutput.contains("my-plugin version 1.0.0 has been signed with GPG key")
@@ -832,10 +832,10 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         def result = runTasksSuccessfully('publishMavenPublicationToBintrayRepository')
 
         then:
-        result.standardOutput.contains("Publishing to repository 'Bintray' (http://localhost:")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.jar to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.jar")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.pom to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.pom")
-        result.standardOutput.contains("Uploading maven-metadata.xml to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/maven-metadata.xml")
+        result.standardOutput.findAll("Uploading").size() >= 3
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.jar")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.pom")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/maven-metadata.xml")
         result.standardOutput.contains("my-plugin version 1.0.0 has been signed with GPG key")
     }
 
@@ -916,10 +916,10 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         def result = runTasksSuccessfully('publishMavenPublicationToBintrayRepository')
 
         then:
-        result.standardOutput.contains("Publishing to repository 'Bintray' (http://localhost:")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.jar to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.jar")
-        result.standardOutput.contains("Uploading publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.pom to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.pom")
-        result.standardOutput.contains("Uploading maven-metadata.xml to /content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/maven-metadata.xml")
+        result.standardOutput.findAll("Uploading").size() >= 3
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.jar")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.pom")
+        result.standardOutput.contains("test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/maven-metadata.xml")
         !result.standardOutput.contains("my-plugin version 1.0.0 has been signed with GPG key")
         result.standardError.contains("Could not sign 1.0.0 version with GPG key")
     }
