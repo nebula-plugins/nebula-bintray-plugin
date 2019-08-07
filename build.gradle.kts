@@ -19,7 +19,7 @@ import nebula.plugin.contacts.Contact
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
-    id("nebula.plugin-plugin") version "11.2.15"
+    id("nebula.plugin-plugin") version "12.0.0"
 }
 
 description = "Nebula bintray publishing using Gradle's MavenPublication"
