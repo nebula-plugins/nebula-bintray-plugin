@@ -44,6 +44,7 @@ dependencies {
         exclude(module = "groovy-all")
     }
     testImplementation("com.github.tomakehurst:wiremock:2.22.0")
+    testImplementation(gradleApi())
 }
 
 
