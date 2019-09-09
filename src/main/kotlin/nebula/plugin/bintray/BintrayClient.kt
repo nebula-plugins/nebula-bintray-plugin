@@ -37,7 +37,7 @@ class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig
     val logger = LoggerFactory.getLogger(BintrayClient::class.java)
 
     init {
-        this.retryPolicy = RetryPolicy()
+        this.retryPolicy = RetryPolicy<Any>()
                 .handle(IOException::class.java)
                 .withDelay(Duration.ofSeconds(retryConfig.retryDelayInSeconds))
                 .withMaxRetries(retryConfig.maxRetries)
