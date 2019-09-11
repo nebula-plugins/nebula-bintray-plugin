@@ -55,11 +55,6 @@ pluginBundle {
     description = "Uploads candidate and final artifacts to bintray with Nebula defaults"
     tags = listOf("nebula", "bintray")
 
-    mavenCoordinates {
-        groupId = "com.netflix.nebula"
-        artifactId = "nebula-bintray-plugin"
-    }
-
     plugins {
         create("nebulaBintray") {
             id = "nebula.nebula-bintray"
