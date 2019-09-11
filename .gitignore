@@ -1,7 +1,6 @@
 build/
 .gradle/
 .gradletasknamecache
-gradle.properties
 
 .idea/
 out/
