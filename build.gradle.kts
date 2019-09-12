@@ -42,6 +42,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:3.12.2")
     implementation("org.jfrog.buildinfo:build-info-extractor-gradle:latest.release") {
         exclude(module = "groovy-all")
+        exclude(group = "com.google.guava", module = "guava")
     }
     testImplementation("com.github.tomakehurst:wiremock:2.22.0")
     testImplementation(gradleApi())
