@@ -25,6 +25,7 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.register
+import org.gradle.util.GradleVersion
 
 open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     override fun apply(project: Project) {
@@ -118,6 +119,11 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                             credentials {
                                 username = bintray.user.get()
                                 password = bintray.apiKey.get()
+                            }
+
+                            //Gradle 6.x emits warnings when repos are not HTTP and not set to allow non-secure protocol. Using reflection to maintain backwards compatibility
+                            if(GradleVersion.current().baseVersion >= GradleVersion.version("6.0") && bintray.apiUrl.get().startsWith("http://")) {
+                                (this::class.java).getDeclaredMethod("setAllowInsecureProtocol", Boolean::class.java).invoke(this,true)
                             }
                         }
                     }
