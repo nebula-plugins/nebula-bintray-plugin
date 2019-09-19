@@ -1,5 +1,9 @@
 {
     "compileClasspath": {
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
         "com.squareup.moshi:moshi-kotlin": {
             "locked": "1.8.0",
             "requested": "1.8.0"
@@ -54,6 +58,10 @@
         }
     },
     "default": {
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
         "com.squareup.moshi:moshi-kotlin": {
             "locked": "1.8.0",
             "requested": "1.8.0"
@@ -90,6 +98,10 @@
         }
     },
     "implementationDependenciesMetadata": {
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
         "com.squareup.moshi:moshi-kotlin": {
             "locked": "1.8.0",
             "requested": "1.8.0"
@@ -115,22 +127,14 @@
             "requested": "latest.release"
         }
     },
-    "integTestApiDependenciesMetadata": {
-        "com.netflix.nebula:nebula-test": {
-            "locked": "7.3.0",
-            "requested": "7.+"
-        }
-    },
-    "integTestCompile": {
-        "com.netflix.nebula:nebula-test": {
-            "locked": "7.3.0",
-            "requested": "7.+"
-        }
-    },
     "integTestCompileClasspath": {
         "com.github.tomakehurst:wiremock": {
             "locked": "2.22.0",
             "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
         },
         "com.netflix.nebula:nebula-test": {
             "locked": "7.3.0",
@@ -174,6 +178,10 @@
             "locked": "2.22.0",
             "requested": "2.22.0"
         },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
         "com.netflix.nebula:nebula-test": {
             "locked": "7.3.0",
             "requested": "7.+"
@@ -211,16 +219,14 @@
             "requested": "latest.release"
         }
     },
-    "integTestRuntime": {
-        "com.netflix.nebula:nebula-test": {
-            "locked": "7.3.0",
-            "requested": "7.+"
-        }
-    },
     "integTestRuntimeClasspath": {
         "com.github.tomakehurst:wiremock": {
             "locked": "2.22.0",
             "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
         },
         "com.netflix.nebula:nebula-test": {
             "locked": "7.3.0",
@@ -285,6 +291,10 @@
         }
     },
     "runtimeClasspath": {
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
         "com.squareup.moshi:moshi-kotlin": {
             "locked": "1.8.0",
             "requested": "1.8.0"
@@ -310,22 +320,14 @@
             "requested": "latest.release"
         }
     },
-    "testApiDependenciesMetadata": {
-        "com.netflix.nebula:nebula-test": {
-            "locked": "7.3.0",
-            "requested": "7.+"
-        }
-    },
-    "testCompile": {
-        "com.netflix.nebula:nebula-test": {
-            "locked": "7.3.0",
-            "requested": "7.+"
-        }
-    },
     "testCompileClasspath": {
         "com.github.tomakehurst:wiremock": {
             "locked": "2.22.0",
             "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
         },
         "com.netflix.nebula:nebula-test": {
             "locked": "7.3.0",
@@ -369,6 +371,10 @@
             "locked": "2.22.0",
             "requested": "2.22.0"
         },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
         "com.netflix.nebula:nebula-test": {
             "locked": "7.3.0",
             "requested": "7.+"
@@ -406,16 +412,14 @@
             "requested": "latest.release"
         }
     },
-    "testRuntime": {
-        "com.netflix.nebula:nebula-test": {
-            "locked": "7.3.0",
-            "requested": "7.+"
-        }
-    },
     "testRuntimeClasspath": {
         "com.github.tomakehurst:wiremock": {
             "locked": "2.22.0",
             "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
         },
         "com.netflix.nebula:nebula-test": {
             "locked": "7.3.0",

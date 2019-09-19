@@ -44,6 +44,7 @@ dependencies {
         exclude(module = "groovy-all")
         exclude(group = "com.google.guava", module = "guava")
     }
+    implementation("com.google.guava:guava:23.1-jre")
     testImplementation("com.github.tomakehurst:wiremock:2.22.0")
     testImplementation(gradleApi())
 }
