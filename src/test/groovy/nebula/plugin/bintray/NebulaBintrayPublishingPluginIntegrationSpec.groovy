@@ -338,11 +338,17 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.jar.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/1.0.0/publication-fails-if-repository-is-not-reachable-1.0.0.pom.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.md5",
-                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.sha1"]
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.sha512",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publication-fails-if-repository-is-not-reachable/maven-metadata.xml.sha256"]
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
                 .willReturn(aResponse()
@@ -417,15 +423,23 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.jar.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.pom.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/1.0.0/publishes-a-plugin-to-bintray-with-gradle-metadata-1.0.0.module.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.md5",
-                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.sha1"]
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-with-gradle-metadata/maven-metadata.xml.sha512"]
 
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
@@ -469,11 +483,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(404)
                 .withHeader("Content-Type", "application/json")))
 
-        if (GradleVersion.current().baseVersion < GradleVersion.version("6.0")) {
-            settingsFile << '''\
-                enableFeaturePreview("GRADLE_METADATA")
-            '''.stripIndent()
-        }
 
         buildFile << """ 
             apply plugin: 'java'
@@ -515,21 +524,23 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.jar.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.module",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.module.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.module.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.module.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.module.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled-1.0.0.pom.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-maven-sync-if-disabled/maven-metadata.xml.sha1"]
-
-        if (GradleVersion.current().baseVersion < GradleVersion.version("6.0")) {
-            settingsFile << '''\
-                enableFeaturePreview("GRADLE_METADATA")
-            '''.stripIndent()
-        }
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
                 .willReturn(aResponse()
@@ -606,21 +617,24 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.jar",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.jar.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.jar.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.jar.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.module",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.module.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.module.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.module.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.module.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.pom",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.pom.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.pom.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/1.0.0/publishes-a-plugin-to-bintray-no-gpg-if-disabled-1.0.0.pom.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/maven-metadata.xml",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/maven-metadata.xml.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/maven-metadata.xml.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/maven-metadata.xml.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-no-gpg-if-disabled/maven-metadata.xml.sha1"]
 
-        if (GradleVersion.current().baseVersion < GradleVersion.version("6.0")) {
-            settingsFile << '''\
-                enableFeaturePreview("GRADLE_METADATA")
-            '''.stripIndent()
-        }
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
                 .willReturn(aResponse()
@@ -694,21 +708,24 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.jar",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.jar.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.jar.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.jar.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.module",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.module.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.module.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.module.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.module.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.pom",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.pom.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.pom.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/1.0.0/publishes-a-plugin-to-bintray-custom-gpg-phrase-1.0.0.pom.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/maven-metadata.xml",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/maven-metadata.xml.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/maven-metadata.xml.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/maven-metadata.xml.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-custom-gpg-phrase/maven-metadata.xml.sha1"]
 
-        if (GradleVersion.current().baseVersion < GradleVersion.version("6.0")) {
-            settingsFile << '''\
-                enableFeaturePreview("GRADLE_METADATA")
-            '''.stripIndent()
-        }
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
                 .willReturn(aResponse()
@@ -786,21 +803,23 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         List<String> filePutUris = ["/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.jar",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.jar.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.jar.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.jar.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.jar.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.module",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.module.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.module.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.module.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.module.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.pom",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.pom.md5",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.pom.sha1",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.pom.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/1.0.0/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails-1.0.0.pom.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/maven-metadata.xml",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/maven-metadata.xml.md5",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/maven-metadata.xml.sha256",
+                                    "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/maven-metadata.xml.sha512",
                                     "/content/nebula/gradle-plugins/my-plugin/1.0.0/test/nebula/netflix/publishes-a-plugin-to-bintray-does-not-fail-if-gpg-fails/maven-metadata.xml.sha1"]
-
-        if (GradleVersion.current().baseVersion < GradleVersion.version("6.0")) {
-            settingsFile << '''\
-                enableFeaturePreview("GRADLE_METADATA")
-            '''.stripIndent()
-        }
 
         stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
                 .willReturn(aResponse()
