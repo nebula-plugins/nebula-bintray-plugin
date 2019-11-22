@@ -18,7 +18,6 @@ package nebula.plugin.bintray
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration
 import com.github.tomakehurst.wiremock.junit.WireMockRule
 import nebula.test.IntegrationSpec
-import org.gradle.util.GradleVersion
 import org.junit.Rule
 import static com.github.tomakehurst.wiremock.client.WireMock.*
 
@@ -52,6 +51,30 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
 
         then:
         result.standardOutput.contains('Task :publishPackageToBintray')
+    }
+
+    def 'apply plugin without any language plugin fails with clear message'() {
+        given:
+        buildFile << """ 
+            apply plugin: 'nebula.nebula-bintray'
+                
+            group = 'test.nebula.netflix'
+            version = '1.0.0'
+            
+            bintray {
+                user = 'nebula-plugins'
+                apiKey = 'mykey'
+                apiUrl = 'https://api.bintray.com'
+                pkgName = 'my-plugin'
+            }
+            
+        """
+
+        when:
+        def result = runTasksWithFailure('help')
+
+        then:
+        result.standardError.contains("You need to apply language plugin to have publishable component named 'java'. It will be most likely: `apply plugin: 'java'`")
     }
 
     def 'publishes package to bintray'() {
