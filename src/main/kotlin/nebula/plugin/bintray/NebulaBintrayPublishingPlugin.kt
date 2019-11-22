@@ -15,6 +15,7 @@
  */
 package nebula.plugin.bintray
 
+import org.gradle.api.BuildCancelledException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
@@ -76,7 +77,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             repo.set(bintray.repo)
             userOrg.set(bintray.userOrg)
             version.set(project.version.toString())
-            if(bintray.gpgPassphrase.isPresent) {
+            if (bintray.gpgPassphrase.isPresent) {
                 passphrase.set(bintray.gpgPassphrase)
             }
             onlyIf { bintray.gppSign.get() }
@@ -99,12 +100,16 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                 publications {
                     bintray.componentsForExport.getOrElse(emptyList())
                             .forEach { componentName: String ->
-                                val publicationName = if (componentName == "java") "maven" else "maven${componentName.capitalize()}"
+                                if (components.names.contains(componentName)) {
+                                    val publicationName = if (componentName == "java") "maven" else "maven${componentName.capitalize()}"
 
-                                if(!publicationName.contains("Marker")) {
-                                    register(publicationName, MavenPublication::class) {
-                                        from(components.getByName(componentName))
+                                    if (!publicationName.contains("Marker")) {
+                                        register(publicationName, MavenPublication::class) {
+                                            from(components.getByName(componentName))
+                                        }
                                     }
+                                } else {
+                                    throw BuildCancelledException("You need to apply language plugin to have publishable component named '$componentName'. It will be most likely: `apply plugin: '$componentName'`")
                                 }
                             }
                 }
@@ -122,8 +127,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                             }
 
                             //Gradle 6.x emits warnings when repos are not HTTP and not set to allow non-secure protocol. Using reflection to maintain backwards compatibility
-                            if(GradleVersion.current().baseVersion >= GradleVersion.version("6.0") && bintray.apiUrl.get().startsWith("http://")) {
-                                (this::class.java).getDeclaredMethod("setAllowInsecureProtocol", Boolean::class.java).invoke(this,true)
+                            if (GradleVersion.current().baseVersion >= GradleVersion.version("6.0") && bintray.apiUrl.get().startsWith("http://")) {
+                                (this::class.java).getDeclaredMethod("setAllowInsecureProtocol", Boolean::class.java).invoke(this, true)
                             }
                         }
                     }
@@ -187,7 +192,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     private fun setMavenCentralCredentials(bintray: BintrayExtension, project: Project) {
         if (project.hasProperty("sonatypeUsername")) {
             bintray.sonatypeUsername.set(project.prop("sonatypeUsername"))
-        }  else if (project.hasProperty("sonatype.username")) {
+        } else if (project.hasProperty("sonatype.username")) {
             bintray.sonatypeUsername.set(project.prop("sonatype.username"))
         } else if (System.getenv("sonatypeUsername") != null) {
             bintray.sonatypeUsername.set(System.getenv("sonatypeUsername"))
