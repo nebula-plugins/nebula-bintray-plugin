@@ -20,6 +20,7 @@ plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
     id("nebula.plugin-plugin") version "13.2.0"
+    id("nebula.kotlin") version "1.3.60"
 }
 
 description = "Nebula bintray publishing using Gradle's MavenPublication"
@@ -35,6 +36,11 @@ contacts {
 
 
 dependencies {
+    constraints {
+        val kotlinVersion by extra("kotlinVersion")
+        implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+    }
+
     implementation("net.jodah:failsafe:2.0.1")
     implementation("com.squareup.retrofit2:retrofit:2.5.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.5.0")
