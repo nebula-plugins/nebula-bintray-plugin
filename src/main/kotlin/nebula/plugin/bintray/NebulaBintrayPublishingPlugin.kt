@@ -172,48 +172,48 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     }
 
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {
-        if (project.hasProperty("bintrayUser")) {
+        if (System.getenv("bintrayUser") != null) {
+            bintray.user.set(System.getenv("bintrayUser"))
+        } else if (project.hasProperty("bintrayUser")) {
             bintray.user.set(project.prop("bintrayUser"))
         } else if (project.hasProperty("bintray.user")) {
             bintray.user.set(project.prop("bintray.user"))
-        } else if (System.getenv("bintrayUser") != null) {
-            bintray.user.set(System.getenv("bintrayUser"))
         }
 
-        if (project.hasProperty("bintrayKey")) {
+        if (System.getenv("bintrayKey") != null) {
+            bintray.apiKey.set(System.getenv("bintrayKey"))
+        } else if (project.hasProperty("bintrayKey")) {
             bintray.apiKey.set(project.prop("bintrayKey"))
         } else if (project.hasProperty("bintray.apiKey")) {
             bintray.apiKey.set(project.prop("bintray.apiKey"))
-        } else if (System.getenv("bintrayKey") != null) {
-            bintray.apiKey.set(System.getenv("bintrayKey"))
         }
     }
 
     private fun setMavenCentralCredentials(bintray: BintrayExtension, project: Project) {
-        if (project.hasProperty("sonatypeUsername")) {
+        if (System.getenv("sonatypeUsername") != null) {
+            bintray.sonatypeUsername.set(System.getenv("sonatypeUsername"))
+        } else if (project.hasProperty("sonatypeUsername")) {
             bintray.sonatypeUsername.set(project.prop("sonatypeUsername"))
         } else if (project.hasProperty("sonatype.username")) {
             bintray.sonatypeUsername.set(project.prop("sonatype.username"))
-        } else if (System.getenv("sonatypeUsername") != null) {
-            bintray.sonatypeUsername.set(System.getenv("sonatypeUsername"))
         }
 
-        if (project.hasProperty("sonatypePassword")) {
+        if (System.getenv("sonatypePassword") != null) {
+            bintray.sonatypePassword.set(System.getenv("sonatypePassword"))
+        } else if (project.hasProperty("sonatypePassword")) {
             bintray.sonatypePassword.set(project.prop("sonatypePassword"))
         } else if (project.hasProperty("sonatype.password")) {
             bintray.sonatypePassword.set(project.prop("sonatype.password"))
-        } else if (System.getenv("sonatypePassword") != null) {
-            bintray.sonatypePassword.set(System.getenv("sonatypePassword"))
         }
     }
 
     private fun setGpgPassphrase(bintray: BintrayExtension, project: Project) {
-        if (project.hasProperty("gpgPassphrase")) {
+        if (System.getenv("gpgPassphrase") != null) {
+            bintray.gpgPassphrase.set(System.getenv("gpgPassphrase"))
+        } else if (project.hasProperty("gpgPassphrase")) {
             bintray.gpgPassphrase.set(project.prop("gpgPassphrase"))
         } else if (project.hasProperty("bintray.version.gpgPassphrase")) {
             bintray.gpgPassphrase.set(project.prop("bintray.version.gpgPassphrase"))
-        } else if (System.getenv("gpgPassphrase") != null) {
-            bintray.gpgPassphrase.set(System.getenv("gpgPassphrase"))
         }
     }
 
