@@ -27,6 +27,8 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.register
 import org.gradle.util.GradleVersion
+import java.io.File
+import java.net.URI
 
 open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     override fun apply(project: Project) {
@@ -120,7 +122,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                             project.logger.warn("Skipping adding Bintray repository - Neither bintray.user or bintray.userOrg defined")
                         } else {
                             name = "Bintray"
-                            url = project.uri("${bintray.apiUrl.get()}/content/${bintray.subject()}/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}")
+                            url = getRepoUrl(project, bintray)
                             credentials {
                                 username = bintray.user.get()
                                 password = bintray.apiKey.get()
@@ -140,7 +142,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                     project.logger.warn("Skipping task dependencies setup - Neither bintray.user or bintray.userOrg defined")
                 } else {
                     val subject = bintray.subject()
-                    val repoUrl = "${bintray.apiUrl.get()}/content/$subject/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}"
+                    val repoUrl = getRepoUrl(project, bintray)
                     if (repository.url == project.uri(repoUrl)) {
                         dependsOn(publishPackageToBintrayTask)
                         finalizedBy(publishVersionToBintrayTask)
@@ -150,6 +152,18 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
 
 
         }
+    }
+
+    private fun getRepoUrl(project: Project, bintray: BintrayExtension) : URI {
+        return if(shouldUseSnapshotRepo(project)) {
+            project.uri(bintray.apiUrl.get() + File.separator + bintray.repo.get())
+        } else {
+            project.uri("${bintray.apiUrl.get()}/content/${bintray.subject()}/${bintray.repo.get()}/${bintray.pkgName.get()}/${project.version.toString()}")
+        }
+    }
+
+    private fun shouldUseSnapshotRepo(project: Project) : Boolean {
+        return project.gradle.startParameter.taskNames.contains("snapshot") || project.gradle.startParameter.taskNames.contains(":snapshot")
     }
 
     private fun configureBintrayExtensionConventions(bintray: BintrayExtension, project: Project) {
