@@ -20,7 +20,7 @@ plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
     id("nebula.plugin-plugin") version "13.2.0"
-    id("nebula.kotlin") version "1.3.60"
+    id("nebula.kotlin") version "1.3.61"
 }
 
 description = "Nebula bintray publishing using Gradle's MavenPublication"
