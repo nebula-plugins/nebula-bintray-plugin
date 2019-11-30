@@ -1,0 +1,463 @@
+{
+    "compileClasspath": {
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.61"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "compileOnlyDependenciesMetadata": {
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        }
+    },
+    "default": {
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.61"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "embeddedKotlin": {
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        }
+    },
+    "implementationDependenciesMetadata": {
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.61"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "integTestCompileClasspath": {
+        "com.github.tomakehurst:wiremock": {
+            "locked": "2.22.0",
+            "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.netflix.nebula:nebula-test": {
+            "locked": "7.6.0",
+            "requested": "7.+"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.50"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "integTestImplementationDependenciesMetadata": {
+        "com.github.tomakehurst:wiremock": {
+            "locked": "2.22.0",
+            "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.netflix.nebula:nebula-test": {
+            "locked": "7.6.0",
+            "requested": "7.+"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.50"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "integTestRuntimeClasspath": {
+        "com.github.tomakehurst:wiremock": {
+            "locked": "2.22.0",
+            "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.netflix.nebula:nebula-test": {
+            "locked": "7.6.0",
+            "requested": "7.+"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.50"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "jacocoAgent": {
+        "org.jacoco:org.jacoco.agent": {
+            "locked": "0.8.5"
+        }
+    },
+    "jacocoAnt": {
+        "org.jacoco:org.jacoco.ant": {
+            "locked": "0.8.5"
+        }
+    },
+    "kotlinCompilerClasspath": {
+        "org.jetbrains.kotlin:kotlin-compiler-embeddable": {
+            "locked": "1.3.61"
+        }
+    },
+    "kotlinCompilerPluginClasspath": {
+        "org.jetbrains.kotlin:kotlin-sam-with-receiver": {
+            "locked": "1.3.61",
+            "requested": "1.3.61"
+        },
+        "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable": {
+            "locked": "1.3.61",
+            "requested": "1.3.61"
+        }
+    },
+    "runtimeClasspath": {
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.61"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "testCompileClasspath": {
+        "com.github.tomakehurst:wiremock": {
+            "locked": "2.22.0",
+            "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.netflix.nebula:nebula-test": {
+            "locked": "7.6.0",
+            "requested": "7.+"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.50"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "testImplementationDependenciesMetadata": {
+        "com.github.tomakehurst:wiremock": {
+            "locked": "2.22.0",
+            "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.netflix.nebula:nebula-test": {
+            "locked": "7.6.0",
+            "requested": "7.+"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.50"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    },
+    "testRuntimeClasspath": {
+        "com.github.tomakehurst:wiremock": {
+            "locked": "2.22.0",
+            "requested": "2.22.0"
+        },
+        "com.google.guava:guava": {
+            "locked": "23.1-jre",
+            "requested": "23.1-jre"
+        },
+        "com.netflix.nebula:nebula-test": {
+            "locked": "7.6.0",
+            "requested": "7.+"
+        },
+        "com.squareup.moshi:moshi-kotlin": {
+            "locked": "1.8.0",
+            "requested": "1.8.0"
+        },
+        "com.squareup.okhttp3:logging-interceptor": {
+            "locked": "3.12.2",
+            "requested": "3.12.2"
+        },
+        "com.squareup.retrofit2:converter-moshi": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "com.squareup.retrofit2:retrofit": {
+            "locked": "2.5.0",
+            "requested": "2.5.0"
+        },
+        "net.jodah:failsafe": {
+            "locked": "2.0.1",
+            "requested": "2.0.1"
+        },
+        "org.jetbrains.kotlin:kotlin-reflect": {
+            "locked": "1.3.50",
+            "requested": "1.3.50"
+        },
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.3.61",
+            "requested": "1.3.50"
+        },
+        "org.jfrog.buildinfo:build-info-extractor-gradle": {
+            "locked": "4.11.0",
+            "requested": "latest.release"
+        }
+    }
+}
