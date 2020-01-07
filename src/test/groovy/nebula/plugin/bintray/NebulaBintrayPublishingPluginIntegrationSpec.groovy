@@ -200,11 +200,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 .withStatus(200)
                 .withHeader("Content-Type", "application/json")))
 
-        stubFor(post(urlEqualTo("/gpg/nebula/gradle-plugins/my-plugin/versions/1.0.0"))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withHeader("Content-Type", "application/json")))
-
         stubFor(post(urlEqualTo("/maven_central_sync/nebula/gradle-plugins/my-plugin/versions/1.0.0"))
                 .withRequestBody(equalToJson("{\"username\":\"my-mavencentral-username\",\"password\":\"my-mavencentral-password\", \"close\" : \"1\"}"))
                 .willReturn(aResponse()
@@ -237,7 +232,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
 
         then:
         result.standardOutput.contains('my-plugin version 1.0.0 has been published')
-        result.standardOutput.contains("my-plugin version 1.0.0 has been signed with GPG key")
     }
 
     def 'publishes version to bintray- no maven sync'() {
