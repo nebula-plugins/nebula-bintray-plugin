@@ -179,7 +179,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         bintray.websiteUrl.convention("https://github.com/nebula-plugins/${project.name}")
         bintray.issueTrackerUrl.convention("https://github.com/nebula-plugins/${project.name}/issues")
         bintray.vcsUrl.convention("https://github.com/nebula-plugins/${project.name}.git")
-        bintray.componentsForExport.convention(listOf("java"))
+        bintray.componentsForExport.convention(emptyList())
         bintray.syncToMavenCentral.convention(true)
         bintray.gppSign.convention(true)
         bintray.gpgPassphrase.convention("")
