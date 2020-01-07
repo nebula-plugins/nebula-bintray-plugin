@@ -66,6 +66,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiKey = 'mykey'
                 apiUrl = 'https://api.bintray.com'
                 pkgName = 'my-plugin'
+                componentsForExport = ['java']
             }
             
         """
@@ -423,6 +424,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 apiUrl = 'http://localhost:${wireMockRule.port()}'
                 pkgName = 'my-plugin'
                 syncToMavenCentral = false
+                componentsForExport = ['java']
             }
            
             
@@ -617,6 +619,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 sonatypeUsername = 'my-mavencentral-username'
                 sonatypePassword = 'my-mavencentral-password'
                 syncToMavenCentral = false
+                componentsForExport = ['java']
             }
             
         """
@@ -706,6 +709,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 sonatypePassword = 'my-mavencentral-password'
                 syncToMavenCentral = false
                 gppSign = false
+                componentsForExport = ['java']
             }
             
         """
@@ -803,6 +807,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 sonatypePassword = 'my-mavencentral-password'
                 syncToMavenCentral = false
                 gpgPassphrase = 'supersecret'
+                componentsForExport = ['java']
             }
             
         """
@@ -897,6 +902,7 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
                 sonatypePassword = 'my-mavencentral-password'
                 syncToMavenCentral = false
                 gpgPassphrase = 'supersecret'
+                componentsForExport = ['java']
             }
             
         """
