@@ -71,6 +71,18 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
             onlyIf { bintray.syncToMavenCentral.get() }
         }
 
+
+        val publishVersionToBintrayTask = project.tasks.register<NebulaBintrayVersionTask>("publishVersionToBintray") {
+            user.set(bintray.user)
+            apiKey.set(bintray.apiKey)
+            apiUrl.set(bintray.apiUrl)
+            pkgName.set(bintray.pkgName)
+            repo.set(bintray.repo)
+            userOrg.set(bintray.userOrg)
+            version.set(project.version.toString())
+            finalizedBy(syncVersionToMavenCentralTask)
+        }
+
         val gpgSignVersionTask = project.tasks.register<NebulaGpgSignVersionTask>("gpgSignVersion") {
             user.set(bintray.user)
             apiKey.set(bintray.apiKey)
@@ -83,18 +95,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                 passphrase.set(bintray.gpgPassphrase)
             }
             onlyIf { bintray.gppSign.get() }
-            finalizedBy(syncVersionToMavenCentralTask)
-        }
-
-        val publishVersionToBintrayTask = project.tasks.register<NebulaBintrayVersionTask>("publishVersionToBintray") {
-            user.set(bintray.user)
-            apiKey.set(bintray.apiKey)
-            apiUrl.set(bintray.apiUrl)
-            pkgName.set(bintray.pkgName)
-            repo.set(bintray.repo)
-            userOrg.set(bintray.userOrg)
-            version.set(project.version.toString())
-            finalizedBy(gpgSignVersionTask)
+            finalizedBy(publishVersionToBintrayTask)
         }
 
         project.afterEvaluate {
@@ -141,11 +142,10 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                 if (!bintray.hasSubject()) {
                     project.logger.warn("Skipping task dependencies setup - Neither bintray.user or bintray.userOrg defined")
                 } else {
-                    val subject = bintray.subject()
                     val repoUrl = getRepoUrl(project, bintray)
                     if (repository.url == project.uri(repoUrl)) {
                         dependsOn(publishPackageToBintrayTask)
-                        finalizedBy(publishVersionToBintrayTask)
+                        finalizedBy(gpgSignVersionTask)
                     }
                 }
             }
