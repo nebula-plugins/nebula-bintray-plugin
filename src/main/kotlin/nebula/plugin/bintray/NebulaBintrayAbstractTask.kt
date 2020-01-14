@@ -47,6 +47,12 @@ open class NebulaBintrayAbstractTask : DefaultTask() {
     val version: Property<String> = project.objects.property()
 
     @Internal
+    val readTimeoutInSeconds: Property<Long> = project.objects.property()
+
+    @Internal
+    val connectionTimeoutInSeconds: Property<Long> = project.objects.property()
+
+    @Internal
     val resolveSubject : Provider<String> = user.map {
         val resolvedSubject = userOrg.getOrElse(user.get())
         if (resolvedSubject.isNotSet()) {

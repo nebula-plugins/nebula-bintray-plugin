@@ -39,6 +39,10 @@ open class BintrayExtension(objects: ObjectFactory) {
     val sonatypePassword: Property<String> = objects.property()
     val gppSign:  Property<Boolean> = objects.property()
     val gpgPassphrase:  Property<String?> = objects.property()
+
+    val readTimeoutInSeconds: Property<Long> = objects.property()
+    val connectionTimeoutInSeconds: Property<Long> = objects.property()
+
     fun hasSubject(): Boolean = userOrg.isPresent || user.isPresent
 
     fun subject(): String {
