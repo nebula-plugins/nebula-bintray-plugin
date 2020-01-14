@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Netflix, Inc.
+ * Copyright 2019-2020 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,30 +53,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         result.standardOutput.contains('Task :publishPackageToBintray')
     }
 
-    def 'apply plugin without any language plugin fails with clear message'() {
-        given:
-        buildFile << """ 
-            apply plugin: 'nebula.nebula-bintray'
-                
-            group = 'test.nebula.netflix'
-            version = '1.0.0'
-            
-            bintray {
-                user = 'nebula-plugins'
-                apiKey = 'mykey'
-                apiUrl = 'https://api.bintray.com'
-                pkgName = 'my-plugin'
-                componentsForExport = ['java']
-            }
-            
-        """
-
-        when:
-        def result = runTasksWithFailure('help')
-
-        then:
-        result.standardError.contains("You need to apply language plugin to have publishable component named 'java'. It will be most likely: `apply plugin: 'java'`")
-    }
 
     def 'publishes package to bintray'() {
         given:
@@ -945,7 +921,174 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
           result.wasUpToDate('publishAllPublicationsToBintrayRepository')
     }
 
+    def 'publishes package to bintray - multi module'() {
+        given:
+        List<String> clientUploadUris = [
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.jar",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.jar.md5",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.jar.sha1",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.jar.sha256",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.jar.sha512",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.pom",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.pom.md5",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.pom.sha1",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.pom.sha256",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.pom.sha512",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.module",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.module.md5",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.module.sha1",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.module.sha256",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/1.0.0/client-1.0.0.module.sha512",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/maven-metadata.xml",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/maven-metadata.xml.md5",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/maven-metadata.xml.sha1",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/maven-metadata.xml.sha256",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/maven-metadata.xml.sha512"
+        ]
+        
+        List<String> severUploadUris = [
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.jar",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.jar.md5",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.jar.sha1",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.jar.sha256",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.jar.sha512",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.pom",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.pom.md5",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.pom.sha1",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.pom.sha256",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.pom.sha512",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.module",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.module.md5",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.module.sha1",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.module.sha256",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/1.0.0/server-1.0.0.module.sha512",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/maven-metadata.xml",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/maven-metadata.xml.md5",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/maven-metadata.xml.sha1",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/maven-metadata.xml.sha256",
+                "/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/maven-metadata.xml.sha512"
+        ]
 
+        stubFor(get(urlEqualTo("/packages/netflixoss/maven/myproject"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
+        stubFor(patch(urlEqualTo("/packages/netflixoss/maven"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
+        stubFor(get(urlEqualTo("/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/client/maven-metadata.xml"))
+                .willReturn(aResponse()
+                        .withStatus(404)))
+
+        stubFor(get(urlEqualTo("/content/netflixoss/maven/myproject/1.0.0/test/nebula/netflix/server/maven-metadata.xml"))
+                .willReturn(aResponse()
+                        .withStatus(404)))
+
+
+        clientUploadUris.each { fileUri ->
+            stubFor(put(urlEqualTo(fileUri))
+                    .willReturn(aResponse()
+                            .withStatus(200)
+                            .withHeader("Content-Type", "application/json")))
+        }
+
+        severUploadUris.each { fileUri ->
+            stubFor(put(urlEqualTo(fileUri))
+                    .willReturn(aResponse()
+                            .withStatus(200)
+                            .withHeader("Content-Type", "application/json")))
+        }
+
+        stubFor(post(urlEqualTo("/gpg/netflixoss/maven/myproject/versions/1.0.0"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
+        stubFor(post(urlEqualTo("/content/netflixoss/maven/myproject/1.0.0/publish"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
+        stubFor(post(urlEqualTo("/maven_central_sync/netflixoss/maven/myproject/versions/1.0.0"))
+                .withRequestBody(equalToJson("{\"username\":\"my-mavencentral-username\",\"password\":\"my-mavencentral-password\", \"close\" : \"1\"}"))
+                .willReturn(aResponse()
+                        .withStatus(200)
+                        .withHeader("Content-Type", "application/json")))
+
+        writeHelloWorld()
+
+        buildFile << """            
+            allprojects {
+               apply plugin: 'nebula.nebula-bintray'
+               group = 'test.nebula.netflix'
+               version = '1.0.0'
+            }
+            
+            subprojects {
+               apply plugin: 'java'
+            }       
+         
+            bintray {
+                user = 'netflixoss'
+                userOrg = 'netflixoss'
+                apiKey = 'mykey'
+                apiUrl = 'http://localhost:${wireMockRule.port()}'
+                pkgName = 'myproject'
+                repo = 'maven'
+                sonatypeUsername = 'my-mavencentral-username'
+                sonatypePassword = 'my-mavencentral-password'   
+                componentsForExport = ['java']
+            }
+            
+        """
+
+        addSubproject("client", """
+
+        """)
+        addSubproject("server","""
+        """)
+
+
+        writeHelloWorld()
+
+        when:
+        def resultDryRun = runTasks('publishMavenPublicationToBintrayRepository', '--dry-run')
+
+        then:
+        resultDryRun.standardOutput.contains(""":publishPackageToBintray SKIPPED
+:client:compileJava SKIPPED
+:client:processResources SKIPPED
+:client:classes SKIPPED
+:client:jar SKIPPED
+:client:generateMetadataFileForMavenPublication SKIPPED
+:client:generatePomFileForMavenPublication SKIPPED
+:client:publishMavenPublicationToBintrayRepository SKIPPED
+:server:compileJava SKIPPED
+:server:processResources SKIPPED
+:server:classes SKIPPED
+:server:jar SKIPPED
+:server:generateMetadataFileForMavenPublication SKIPPED
+:server:generatePomFileForMavenPublication SKIPPED
+:server:publishMavenPublicationToBintrayRepository SKIPPED
+:gpgSignVersion SKIPPED
+:publishVersionToBintray SKIPPED
+:syncVersionToMavenCentral SKIPPED
+""")
+
+        when:
+        def result = runTasks('publishMavenPublicationToBintrayRepository')
+
+        then:
+        result.wasExecuted(':server:publishMavenPublicationToBintrayRepository')
+        result.wasExecuted(':client:publishMavenPublicationToBintrayRepository')
+        result.wasExecuted('publishPackageToBintray')
+        result.wasExecuted('syncVersionToMavenCentral')
+        result.wasExecuted('publishVersionToBintray')
+        result.wasExecuted('gpgSignVersion')
+    }
 
     void writeHelloWorld(String dottedPackage = 'netflix.hello') {
         writeHelloWorld(dottedPackage, getProjectDir())
