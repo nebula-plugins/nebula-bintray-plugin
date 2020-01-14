@@ -59,6 +59,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                 websiteUrl.set(bintray.websiteUrl)
                 issueTrackerUrl.set(bintray.issueTrackerUrl)
                 vcsUrl.set(bintray.vcsUrl)
+                readTimeoutInSeconds.set(bintray.readTimeoutInSeconds)
+                connectionTimeoutInSeconds.set(bintray.connectionTimeoutInSeconds)
             }
 
 
@@ -72,6 +74,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                 version.set(project.version.toString())
                 sonatypeUsername.set(bintray.sonatypeUsername)
                 sonatypePassword.set(bintray.sonatypePassword)
+                readTimeoutInSeconds.set(bintray.readTimeoutInSeconds)
+                connectionTimeoutInSeconds.set(bintray.connectionTimeoutInSeconds)
                 onlyIf { bintray.syncToMavenCentral.get() }
             }
 
@@ -84,6 +88,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                 repo.set(bintray.repo)
                 userOrg.set(bintray.userOrg)
                 version.set(project.version.toString())
+                readTimeoutInSeconds.set(bintray.readTimeoutInSeconds)
+                connectionTimeoutInSeconds.set(bintray.connectionTimeoutInSeconds)
                 finalizedBy(syncVersionToMavenCentralTask)
             }
 
@@ -95,6 +101,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
                 repo.set(bintray.repo)
                 userOrg.set(bintray.userOrg)
                 version.set(project.version.toString())
+                readTimeoutInSeconds.set(bintray.readTimeoutInSeconds)
+                connectionTimeoutInSeconds.set(bintray.connectionTimeoutInSeconds)
                 if (bintray.gpgPassphrase.isPresent) {
                     passphrase.set(bintray.gpgPassphrase)
                 }
@@ -197,6 +205,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         bintray.syncToMavenCentral.convention(true)
         bintray.gppSign.convention(true)
         bintray.gpgPassphrase.convention("")
+        bintray.readTimeoutInSeconds.convention(4L * 60L) // 4 minutes
+        bintray.connectionTimeoutInSeconds.convention(4L * 60L) // 4 minutes
     }
 
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {

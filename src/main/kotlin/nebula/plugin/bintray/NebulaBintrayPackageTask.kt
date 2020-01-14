@@ -19,6 +19,7 @@ package nebula.plugin.bintray
 import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.Optional
 import org.gradle.api.tasks.TaskAction
 import org.gradle.kotlin.dsl.property
@@ -47,7 +48,6 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
     @Optional
     val vcsUrl: Property<String> = project.objects.property()
 
-
     @TaskAction
     fun createOrUpdatePackage() {
         val bintrayClient = BintrayClient.Builder()
@@ -55,7 +55,10 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
                 .apiUrl(apiUrl.get())
                 .apiKey(apiKey.get())
                 .retryDelayInSeconds(15)
+
                 .maxRetries(3)
+                .readTimeoutInSeconds(readTimeoutInSeconds.get())
+                .connectionTimeoutInSeconds(connectionTimeoutInSeconds.get())
                 .build()
 
         val packageRequest = PackageRequest(

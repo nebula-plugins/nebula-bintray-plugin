@@ -51,14 +51,18 @@ class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig
         var apiKey: String? = null,
         var apiUrl: String? = null,
         var maxRetries: Int = 3,
-        var retryDelayInSeconds: Long = 15) {
+        var retryDelayInSeconds: Long = 15,
+        var readTimeoutInSeconds: Long = 240,
+        var connectionTimeoutInSeconds: Long = 240) {
 
         fun user(user: String) = apply { this.user = user }
         fun apiKey(apiKey: String) = apply { this.apiKey = apiKey }
         fun apiUrl(apiUrl: String) = apply { this.apiUrl = apiUrl }
         fun maxRetries(maxRetries: Int) = apply { this.maxRetries = maxRetries }
         fun retryDelayInSeconds(retryDelayInSeconds: Long) = apply { this.retryDelayInSeconds = retryDelayInSeconds }
-        fun build() = BintrayClient(bintray(apiUrl!!, user!!, apiKey!!), RetryConfig(this.maxRetries, this.retryDelayInSeconds))
+        fun readTimeoutInSeconds(readTimeoutInSeconds: Long) = apply { this.readTimeoutInSeconds = readTimeoutInSeconds }
+        fun connectionTimeoutInSeconds(connectionTimeoutInSeconds: Long) = apply { this.connectionTimeoutInSeconds = connectionTimeoutInSeconds }
+        fun build() = BintrayClient(bintray(apiUrl!!, user!!, apiKey!!, readTimeoutInSeconds, connectionTimeoutInSeconds), RetryConfig(this.maxRetries, this.retryDelayInSeconds))
     }
 
     data class RetryConfig(val maxRetries: Int, val retryDelayInSeconds: Long)
@@ -108,11 +112,11 @@ class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig
     }
 }
 
-fun bintray(apiUrl: String, user: String, apiKey: String): BintrayService = Retrofit.Builder()
+fun bintray(apiUrl: String, user: String, apiKey: String, readTimeoutInSeconds: Long, connectionTimeoutInSeconds: Long): BintrayService = Retrofit.Builder()
         .baseUrl(apiUrl)
         .client(OkHttpClient.Builder()
-                .readTimeout(4, TimeUnit.MINUTES)
-                .connectTimeout(4, TimeUnit.MINUTES)
+                .readTimeout(readTimeoutInSeconds, TimeUnit.SECONDS)
+                .connectTimeout(connectionTimeoutInSeconds, TimeUnit.SECONDS)
                 .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC))
                 .addInterceptor({ chain ->
                     chain.proceed(chain.request().newBuilder()

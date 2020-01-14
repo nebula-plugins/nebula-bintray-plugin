@@ -39,6 +39,8 @@ open class NebulaMavenCentralVersionSyncTask : NebulaBintrayAbstractTask() {
                 .apiKey(apiKey.get())
                 .retryDelayInSeconds(15)
                 .maxRetries(3)
+                .readTimeoutInSeconds(readTimeoutInSeconds.get())
+                .connectionTimeoutInSeconds(connectionTimeoutInSeconds.get())
                 .build()
 
 
