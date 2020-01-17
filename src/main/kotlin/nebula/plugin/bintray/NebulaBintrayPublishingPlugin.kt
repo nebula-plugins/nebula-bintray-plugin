@@ -31,7 +31,11 @@ import org.gradle.util.GradleVersion
 import java.io.File
 import java.net.URI
 
+private const val defaultReadTimeoutInSeconds : Long = 900L // 15 minutes
+private const val defaultConnectionTimeoutInSeconds : Long = 5L  // 5 seconds
+
 open class NebulaBintrayPublishingPlugin : Plugin<Project> {
+
     override fun apply(project: Project) {
         project.apply<MavenPublishPlugin>()
         val bintray = project.rootProject.extensions.findByType(BintrayExtension::class.java) ?: project.rootProject.extensions.create("bintray", BintrayExtension::class)
@@ -205,8 +209,8 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         bintray.syncToMavenCentral.convention(true)
         bintray.gppSign.convention(true)
         bintray.gpgPassphrase.convention("")
-        bintray.readTimeoutInSeconds.convention(4L * 60L) // 4 minutes
-        bintray.connectionTimeoutInSeconds.convention(4L * 60L) // 4 minutes
+        bintray.readTimeoutInSeconds.convention(defaultReadTimeoutInSeconds)
+        bintray.connectionTimeoutInSeconds.convention(defaultConnectionTimeoutInSeconds)
     }
 
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {
