@@ -19,7 +19,7 @@ import nebula.plugin.contacts.Contact
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
-    id("nebula.plugin-plugin") version "14.2.1"
+    id("nebula.plugin-plugin") version "14.3.0"
     id("nebula.kotlin") version "1.3.70"
 }
 
