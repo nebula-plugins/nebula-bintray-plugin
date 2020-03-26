@@ -50,7 +50,7 @@ open class NebulaMavenCentralVersionSyncTask : NebulaBintrayAbstractTask() {
         }
 
         try {
-            bintrayClient.syncVersionToMavenCentral(resolveSubject.get(), repo.get(), resolvedPkgName, resolvedVersion, MavenCentralSyncRequest(sonatypeUsername.get(), sonatypePassword.get()))
+            bintrayClient.syncVersionToMavenCentral(resolveSubject.get().toLowerCase(), repo.get().toLowerCase(), resolvedPkgName.toLowerCase(), resolvedVersion, MavenCentralSyncRequest(sonatypeUsername.get(), sonatypePassword.get()))
             logger.info("$resolvedPkgName version $resolvedVersion has been synced to maven central")
         } catch (e: Exception) {
             logger.error("Could not sync $version versio to maven central")

@@ -74,7 +74,7 @@ open class NebulaBintrayPackageTask : NebulaBintrayAbstractTask() {
                 public_stats = true
         )
 
-        bintrayClient.createOrUpdatePackage(resolveSubject.get(),  repo.get(), pkgName.get(), packageRequest)
-        logger.info("Package ${pkgName.get()} has been created/updated")
+        bintrayClient.createOrUpdatePackage(resolveSubject.get().toLowerCase(),  repo.get().toLowerCase(), pkgName.get().toLowerCase(), packageRequest)
+        logger.lifecycle("Package ${pkgName.get()} has been created/updated")
     }
 }

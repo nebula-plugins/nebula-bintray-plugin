@@ -42,7 +42,7 @@ open class NebulaGpgSignVersionTask : NebulaBintrayAbstractTask() {
                 .build()
 
         try {
-            bintrayClient.gpgSignVersion(resolveSubject.get(), repo.get(), resolvedPkgName, resolvedVersion, passphrase.orNull)
+            bintrayClient.gpgSignVersion(resolveSubject.get().toLowerCase(), repo.get().toLowerCase(), resolvedPkgName.toLowerCase(), resolvedVersion, passphrase.orNull)
             logger.info("$resolvedPkgName version $resolvedVersion has been signed with GPG key")
         } catch (e: Exception) {
             logger.error("Could not sign ${version.get()} version with GPG key")

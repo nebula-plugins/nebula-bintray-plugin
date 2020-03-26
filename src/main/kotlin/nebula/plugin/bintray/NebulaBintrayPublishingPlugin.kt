@@ -196,7 +196,7 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
         bintray.user.convention("MY_USER")
         bintray.apiKey.convention("MY_API_KEY")
         bintray.apiUrl.convention("https://api.bintray.com")
-        bintray.pkgName.convention(project.rootProject.name)
+        bintray.pkgName.convention(project.rootProject.name.toLowerCase())
         bintray.repo.convention("gradle-plugins")
         bintray.userOrg.convention("nebula")
         bintray.licenses.convention(listOf("Apache-2.0"))

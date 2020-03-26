@@ -36,7 +36,7 @@ open class NebulaBintrayVersionTask : NebulaBintrayAbstractTask() {
                 .build()
 
 
-        bintrayClient.publishVersion(resolveSubject.get(), repo.get(), resolvedPkgName, resolvedVersion, PublishRequest())
+        bintrayClient.publishVersion(resolveSubject.get().toLowerCase(), repo.get().toLowerCase(), resolvedPkgName.toLowerCase(), resolvedVersion, PublishRequest())
         logger.info("$resolvedPkgName version $resolvedVersion has been published")
     }
 }
