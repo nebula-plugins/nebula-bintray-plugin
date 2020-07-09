@@ -15,10 +15,12 @@
  */
 package nebula.plugin.bintray
 
+import com.netflix.nebula.interop.versionLessThan
 import org.gradle.api.BuildCancelledException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaBasePlugin
+import org.gradle.api.provider.ProviderFactory
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.api.publish.maven.plugins.MavenPublishPlugin
@@ -30,11 +32,12 @@ import org.gradle.kotlin.dsl.register
 import org.gradle.util.GradleVersion
 import java.io.File
 import java.net.URI
+import javax.inject.Inject
 
 private const val defaultReadTimeoutInSeconds : Long = 900L // 15 minutes
 private const val defaultConnectionTimeoutInSeconds : Long = 5L  // 5 seconds
 
-open class NebulaBintrayPublishingPlugin : Plugin<Project> {
+open class NebulaBintrayPublishingPlugin @Inject constructor(private val providerFactory: ProviderFactory): Plugin<Project> {
 
     override fun apply(project: Project) {
         project.apply<MavenPublishPlugin>()
@@ -214,48 +217,82 @@ open class NebulaBintrayPublishingPlugin : Plugin<Project> {
     }
 
     private fun setBintrayCredentials(bintray: BintrayExtension, project: Project) {
-        if (System.getenv("bintrayUser") != null) {
-            bintray.user.set(System.getenv("bintrayUser"))
-        } else if (project.hasProperty("bintrayUser")) {
-            bintray.user.set(project.prop("bintrayUser"))
-        } else if (project.hasProperty("bintray.user")) {
-            bintray.user.set(project.prop("bintray.user"))
+        val bintrayUserEnv = readEnvVariable("bintrayUser", project)
+        when {
+            bintrayUserEnv != null -> {
+                bintray.user.set(bintrayUserEnv)
+            }
+            project.hasProperty("bintrayUser") -> {
+                bintray.user.set(project.prop("bintrayUser"))
+            }
+            project.hasProperty("bintray.user") -> {
+                bintray.user.set(project.prop("bintray.user"))
+            }
         }
 
-        if (System.getenv("bintrayKey") != null) {
-            bintray.apiKey.set(System.getenv("bintrayKey"))
-        } else if (project.hasProperty("bintrayKey")) {
-            bintray.apiKey.set(project.prop("bintrayKey"))
-        } else if (project.hasProperty("bintray.apiKey")) {
-            bintray.apiKey.set(project.prop("bintray.apiKey"))
+        val bintrayKeyEnv = readEnvVariable("bintrayKey", project)
+        when {
+            bintrayKeyEnv != null -> {
+                bintray.apiKey.set(bintrayKeyEnv)
+            }
+            project.hasProperty("bintrayKey") -> {
+                bintray.apiKey.set(project.prop("bintrayKey"))
+            }
+            project.hasProperty("bintray.apiKey") -> {
+                bintray.apiKey.set(project.prop("bintray.apiKey"))
+            }
         }
     }
 
     private fun setMavenCentralCredentials(bintray: BintrayExtension, project: Project) {
-        if (System.getenv("sonatypeUsername") != null) {
-            bintray.sonatypeUsername.set(System.getenv("sonatypeUsername"))
-        } else if (project.hasProperty("sonatypeUsername")) {
-            bintray.sonatypeUsername.set(project.prop("sonatypeUsername"))
-        } else if (project.hasProperty("sonatype.username")) {
-            bintray.sonatypeUsername.set(project.prop("sonatype.username"))
+        val sonatypeUsernameEnv = readEnvVariable("sonatypeUsername", project)
+        when {
+            sonatypeUsernameEnv!= null -> {
+                bintray.sonatypeUsername.set(sonatypeUsernameEnv)
+            }
+            project.hasProperty("sonatypeUsername") -> {
+                bintray.sonatypeUsername.set(project.prop("sonatypeUsername"))
+            }
+            project.hasProperty("sonatype.username") -> {
+                bintray.sonatypeUsername.set(project.prop("sonatype.username"))
+            }
         }
 
-        if (System.getenv("sonatypePassword") != null) {
-            bintray.sonatypePassword.set(System.getenv("sonatypePassword"))
-        } else if (project.hasProperty("sonatypePassword")) {
-            bintray.sonatypePassword.set(project.prop("sonatypePassword"))
-        } else if (project.hasProperty("sonatype.password")) {
-            bintray.sonatypePassword.set(project.prop("sonatype.password"))
+        val sonatypePasswordEnv = readEnvVariable("sonatypePassword", project)
+        when {
+            sonatypePasswordEnv != null -> {
+                bintray.sonatypePassword.set(sonatypePasswordEnv)
+            }
+            project.hasProperty("sonatypePassword") -> {
+                bintray.sonatypePassword.set(project.prop("sonatypePassword"))
+            }
+            project.hasProperty("sonatype.password") -> {
+                bintray.sonatypePassword.set(project.prop("sonatype.password"))
+            }
         }
     }
 
     private fun setGpgPassphrase(bintray: BintrayExtension, project: Project) {
-        if (System.getenv("gpgPassphrase") != null) {
-            bintray.gpgPassphrase.set(System.getenv("gpgPassphrase"))
-        } else if (project.hasProperty("gpgPassphrase")) {
-            bintray.gpgPassphrase.set(project.prop("gpgPassphrase"))
-        } else if (project.hasProperty("bintray.version.gpgPassphrase")) {
-            bintray.gpgPassphrase.set(project.prop("bintray.version.gpgPassphrase"))
+        val gpgPassphraseEnv = readEnvVariable("gpgPassphrase", project)
+        when {
+            gpgPassphraseEnv != null -> {
+                bintray.gpgPassphrase.set(gpgPassphraseEnv)
+            }
+            project.hasProperty("gpgPassphrase") -> {
+                bintray.gpgPassphrase.set(project.prop("gpgPassphrase"))
+            }
+            project.hasProperty("bintray.version.gpgPassphrase") -> {
+                bintray.gpgPassphrase.set(project.prop("bintray.version.gpgPassphrase"))
+            }
+        }
+    }
+
+    private fun readEnvVariable(envVariableName: String, project: Project) : String? {
+        return if(project.gradle.versionLessThan("6.5")) {
+            val envVariable = providerFactory.environmentVariable(envVariableName).forUseAtConfigurationTime()
+            return if(envVariable.isPresent) envVariable.get() else null
+        } else {
+            System.getenv(envVariableName)
         }
     }
 
