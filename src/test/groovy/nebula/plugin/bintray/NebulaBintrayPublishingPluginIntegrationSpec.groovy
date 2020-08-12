@@ -1124,8 +1124,8 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         writeHelloWorld()
 
         when:
-        runTasks('--configuration-cache=on', 'publishPackageToBintray')
-        def result = runTasks('--configuration-cache=on', 'publishPackageToBintray')
+        runTasks('--configuration-cache', 'publishPackageToBintray')
+        def result = runTasks('--configuration-cache', 'publishPackageToBintray')
 
         then:
         result.standardOutput.contains('Reusing configuration cache')
