@@ -1090,48 +1090,6 @@ class NebulaBintrayPublishingPluginIntegrationSpec extends IntegrationSpec {
         result.wasExecuted('gpgSignVersion')
     }
 
-    def 'allows to publish when enabling configuration cache'() {
-        given:
-        stubFor(get(urlEqualTo("/packages/nebula/gradle-plugins/my-plugin"))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withHeader("Content-Type", "application/json")))
-
-        stubFor(patch(urlEqualTo("/packages/nebula/gradle-plugins"))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withHeader("Content-Type", "application/json")))
-
-
-
-        buildFile << """ 
-            apply plugin: 'nebula.nebula-bintray'
-            apply plugin: 'java'
-                
-            group = 'test.nebula.netflix'
-            version = '1.0.0'
-            description = 'my plugin'
-            
-            bintray {
-                user = 'nebula-plugins'
-                apiKey = 'mykey'
-                apiUrl = 'http://localhost:${wireMockRule.port()}'
-                pkgName = 'my-plugin'
-            }
-            
-        """
-
-        writeHelloWorld()
-
-        when:
-        runTasks('--configuration-cache', 'publishPackageToBintray')
-        def result = runTasks('--configuration-cache', 'publishPackageToBintray')
-
-        then:
-        result.standardOutput.contains('Reusing configuration cache')
-        result.standardOutput.contains('my-plugin has been created/updated')
-    }
-
     void writeHelloWorld(String dottedPackage = 'netflix.hello') {
         writeHelloWorld(dottedPackage, getProjectDir())
     }
