@@ -41,8 +41,13 @@ class BintrayClient(var bintrayService: BintrayService, retryConfig: RetryConfig
                 .handle(IOException::class.java)
                 .withDelay(Duration.ofSeconds(retryConfig.retryDelayInSeconds))
                 .withMaxRetries(retryConfig.maxRetries)
-                .onFailedAttempt({ e -> logger.error("Trying to publish a new version to Bintray failed.", e.lastFailure) })
-                .onRetry({ e -> logger.info("Retrying to publish a new version to Bintray.") })
+                .onFailedAttempt { e ->
+                    logger.error(
+                        "Trying to publish a new version to Bintray failed.",
+                        e.lastFailure
+                    )
+                }
+            .onRetry { _ -> logger.info("Retrying to publish a new version to Bintray.") }
     }
 
 

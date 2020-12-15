@@ -29,36 +29,36 @@
             "requested": "2.0.1"
         },
         "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.20"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.20",
+            "requested": "1.4.20"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.16.1",
+            "locked": "4.18.2",
             "requested": "latest.release"
         }
     },
     "compileOnlyDependenciesMetadata": {
         "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.20",
+            "requested": "1.4.20"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.20",
+            "requested": "1.4.20"
         }
     },
     "embeddedKotlin": {
         "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.20",
+            "requested": "1.4.20"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.20",
+            "requested": "1.4.20"
         }
     },
     "implementationDependenciesMetadata": {
@@ -90,13 +90,14 @@
             "locked": "2.0.1",
             "requested": "2.0.1"
         },
-        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
-        },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.16.1",
+            "locked": "4.18.2",
             "requested": "latest.release"
+        }
+    },
+    "integTestApiDependenciesMetadata": {
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.4.21"
         }
     },
     "integTestCompileClasspath": {
@@ -113,7 +114,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "7.8.6",
+            "locked": "7.9.4",
             "requested": "7.+"
         },
         "com.squareup.moshi:moshi-kotlin": {
@@ -137,16 +138,22 @@
             "requested": "2.0.1"
         },
         "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.20"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.20"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.16.1",
+            "locked": "4.18.2",
             "requested": "latest.release"
+        }
+    },
+    "integTestImplementationDependenciesMetadata": {
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
+            "locked": "1.4.21",
+            "requested": "1.4.21"
         }
     },
     "integTestRuntimeClasspath": {
@@ -163,7 +170,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "7.8.6",
+            "locked": "7.9.4",
             "requested": "7.+"
         },
         "com.squareup.moshi:moshi-kotlin": {
@@ -187,41 +194,46 @@
             "requested": "2.0.1"
         },
         "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.20"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.20"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.16.1",
+            "locked": "4.18.2",
             "requested": "latest.release"
         }
     },
     "jacocoAgent": {
         "org.jacoco:org.jacoco.agent": {
-            "locked": "0.8.5"
+            "locked": "0.8.6"
         }
     },
     "jacocoAnt": {
         "org.jacoco:org.jacoco.ant": {
-            "locked": "0.8.5"
+            "locked": "0.8.6"
         }
     },
     "kotlinCompilerClasspath": {
         "org.jetbrains.kotlin:kotlin-compiler-embeddable": {
-            "locked": "1.3.72"
+            "locked": "1.4.21"
         }
     },
     "kotlinCompilerPluginClasspath": {
         "org.jetbrains.kotlin:kotlin-sam-with-receiver": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.21"
         },
         "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.21"
+        }
+    },
+    "kotlinKlibCommonizerClasspath": {
+        "org.jetbrains.kotlin:kotlin-klib-commonizer-embeddable": {
+            "locked": "1.4.21"
         }
     },
     "runtimeClasspath": {
@@ -253,12 +265,8 @@
             "locked": "2.0.1",
             "requested": "2.0.1"
         },
-        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
-        },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.16.1",
+            "locked": "4.18.2",
             "requested": "latest.release"
         }
     },
@@ -276,7 +284,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "7.8.6",
+            "locked": "7.9.4",
             "requested": "7.+"
         },
         "com.squareup.moshi:moshi-kotlin": {
@@ -300,15 +308,15 @@
             "requested": "2.0.1"
         },
         "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.20"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.20",
+            "requested": "1.4.20"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.16.1",
+            "locked": "4.18.2",
             "requested": "latest.release"
         }
     },
@@ -326,7 +334,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "7.8.6",
+            "locked": "7.9.4",
             "requested": "7.+"
         },
         "com.squareup.moshi:moshi-kotlin": {
@@ -350,15 +358,15 @@
             "requested": "2.0.1"
         },
         "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.20"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.20",
+            "requested": "1.4.20"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.16.1",
+            "locked": "4.18.2",
             "requested": "latest.release"
         }
     },
@@ -376,7 +384,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
-            "locked": "7.8.6",
+            "locked": "7.9.4",
             "requested": "7.+"
         },
         "com.squareup.moshi:moshi-kotlin": {
@@ -400,15 +408,15 @@
             "requested": "2.0.1"
         },
         "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.21",
+            "requested": "1.4.20"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.72",
-            "requested": "1.3.72"
+            "locked": "1.4.20",
+            "requested": "1.4.20"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
-            "locked": "4.16.1",
+            "locked": "4.18.2",
             "requested": "latest.release"
         }
     }
