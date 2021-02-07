@@ -4,38 +4,13 @@ nebula-bintray-plugin
 On Feb 3 2021, JFrog announced they are sunsetting Bintray and JCenter. Because of this, this plugin is not useful anymore. [More info](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/)
 
 ![Support Status](https://img.shields.io/badge/nebula-inactive-red.svg)
-[![Build Status](https://travis-ci.com/nebula-plugins/nebula-bintray-plugin.svg)](https://travis-ci.com/nebula-plugins/nebula-bintray-plugin)
 [![Coverage Status](https://coveralls.io/repos/nebula-plugins/nebula-bintray-plugin/badge.svg?branch=master&service=github)](https://coveralls.io/github/nebula-plugins/nebula-bintray-plugin?branch=master)
 [![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/nebula-bintray-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-
-Additional Bintray tasks and defaults for nebula projects
-
-Usages
-------
-
-To apply this plugin if using Gradle 2.1 or newer
-
-    plugins {
-      id 'nebula.nebula-bintray' version '7.3.0'
-    }
-
-
-### Applies the Following Plugins
-
-* nebula.nebula-bintray-publishing
-* nebula.nebula-ojo-publishing
-
-nebula-bintray-publishing
--------------------------
-
-## Usage
-
-Sets defaults on many of the fields to push `MavenPublication` to bintray. This also covers the new Gradle metadata files.
 
 LICENSE
 =======
 
-Copyright 2013-2019 Netflix, Inc.
+Copyright 2013-2021 Netflix, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
