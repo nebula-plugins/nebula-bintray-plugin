@@ -1,7 +1,9 @@
 nebula-bintray-plugin
 =====================
 
-![Support Status](https://img.shields.io/badge/nebula-supported-brightgreen.svg)
+On Feb 3 2021, JFrog announced they are sunsetting Bintray and JCenter. Because of this, this plugin is not useful anymore. [More info](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/)
+
+![Support Status](https://img.shields.io/badge/nebula-inactive-red.svg)
 [![Build Status](https://travis-ci.com/nebula-plugins/nebula-bintray-plugin.svg)](https://travis-ci.com/nebula-plugins/nebula-bintray-plugin)
 [![Coverage Status](https://coveralls.io/repos/nebula-plugins/nebula-bintray-plugin/badge.svg?branch=master&service=github)](https://coveralls.io/github/nebula-plugins/nebula-bintray-plugin?branch=master)
 [![Apache 2.0](https://img.shields.io/github/license/nebula-plugins/nebula-bintray-plugin.svg)](http://www.apache.org/licenses/LICENSE-2.0)
